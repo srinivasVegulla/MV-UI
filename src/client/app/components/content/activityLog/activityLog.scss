@@ -1,0 +1,101 @@
+// Activity Log Styles
+
+@import "../../../../styles/_variables.scss";
+.ecb-activityLogDashboard  table {
+  width : 100%;
+}
+.ecb-activityLogDashboard  table tr > td{
+  padding : 0;
+}
+.ecb-activityLogDashboard  table tr > td:first-child{
+  padding : 0 15px;
+}
+.ecb-activityLogDashboard  .ecb-activityView{
+  margin-bottom : 5px;
+}
+.ecb-activityLogDashboard  .ecb-circle{
+  height : 10px;
+  width : 10px;
+  background: #00285E;
+  border-radius : 10px;
+  position : relative;
+  left : -5px;
+  border : 2px solid #fff;
+}
+body[dir=RTL] .ecb-activityLogDashboard  .ecb-circle{
+  left: 5px;
+}
+body[dir=LTR] .ecb-activityLogDashboard  .ecb-timelineTextLine{
+  border-left : 1px solid #CCCCCC;
+}
+body[dir=RTL] .ecb-activityLogDashboard  .ecb-timelineTextLine{
+  border-right : 1px solid #CCCCCC;
+}
+.ecb-activityBox{
+  margin : 5px;
+}
+.ecb-activityBoxContent{
+  overflow : hidden;
+  height : 150px;
+}
+.ecb-activityLogBoxHandler {
+  text-align: center;
+  background-color: #d3d3d3 !important;
+  padding: 4px 0 !important;
+  cursor: pointer;
+}
+.success-ecbActivityBox{
+  border: 1px solid #b8d674;
+  background: #f3f8e8;
+  border-radius: 4px;
+  padding: 0px;
+}
+.success-ecbActivityBox p {
+  color: #137500;
+}
+.error-ecbActivityBox{
+  border: 1px solid #ee7a75;
+  background: #fce9e8;
+  border-radius: 4px;
+  padding: 0px;
+}
+.error-ecbActivityBox p {
+  color: #c70000;
+}
+.success-ecbActivityBox p,
+.error-ecbActivityBox p{
+  margin : 5px 8px;
+}
+.ecb-activityLogDay p{
+  margin : 0 0 3px;
+}
+.ecb-dayTimeHeader p{
+  margin-bottom : 2px;
+}
+.activity-header-name{
+  display: inline-block;
+}
+.ecb-expandActivityContent{
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin : -1px;
+}
+.ecb-expandActivityBoxHandler{
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin : -1px;
+}
+.ecb-dayTimeHeader .ebAccordion-header{
+  cursor : default !important;
+}
+.ecb-activityTypeText{
+  float : right;
+  margin : 0 8px !important;
+}
+
+/*Hebrew Translation */
+body[dir=RTL] .ecb-rtlCloseIcon{
+  float: left !important;
+}

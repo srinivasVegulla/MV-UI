@@ -1,0 +1,39 @@
+.widget .header .ecb-sinceLastBillHeader{
+	border: none;
+}
+.ecb-lastBillContent{
+	display: inline-block;
+}
+.ecb-lastBillContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ecb-transcationFilterIcon{
+	display: inline-block;
+    position: relative;
+    top: 8px;
+}
+.ecb-sinceLastBillImage {
+	width: 60px;
+	height: 60px;
+	opacity: .9;
+}
+.ecb-sinceLastBillRow {
+	padding: 10px;
+}
+.ecb-sinceLastBillText {
+	padding-left: 10px;
+	cursor: pointer;
+}
+
+/*Hebrew Css Fixes start*/
+body[dir='RTL'] .ecb-sinceLatBillTitle{
+  float: left !important;
+}
+/*Hebrew Css Fixes end*/
+.ecb-linkdisabled{
+  cursor: not-allowed;
+  pointer-events: none;
+  color: #adadad!important;
+}

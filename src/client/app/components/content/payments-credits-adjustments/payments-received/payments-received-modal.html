@@ -1,0 +1,54 @@
+<div class="widget payments-received-modal-content">
+    <div class="modal-header clearfix">
+        <h2 class="modal-title pull-left noBorder">{{ 'TEXT_PAYMENTS_RECEIVED' | translate }}</h2>
+        <button class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue pull-right close-image-view-all" ng-click="vm.closepaymentsReceived()"><i class="fa fa-times ebIcon" aria-hidden="true"></i></button>
+    </div>
+    <div class="ebText total-amount-payments-received">
+        <span>{{ 'TEXT_TOTAL_PAYMENTS_RECEIVED' | translate }} : </span>
+        <sup class="ebText_lead currency-symbol" ng-if="vm.paymentsReceived.length>0">{{vm.getCurrencySign(vm.paymentsReceived[0].currency)}}</sup>
+        <span class="ebText_lead total-payment-amount" ng-if="vm.paymentsReceived.length>0">{{vm.currencyFormatter(vm.totalPaymentAmount, vm.paymentsReceived[0].currency, false)}}</span>
+        <span class="ebText_lead total-payment-amount" ng-if="vm.paymentsReceived.length==0">0</span>
+    </div>
+    <div ng-if="!vm.paymentsReceivedError" class="content payments payments-received" ng-repeat="payment in vm.paymentsReceived" ng-class="(payment.paymentMethodName==='Credit Card') ? 'creditCard' : 'achCard'">
+        <div>
+            <div class="payment-date">{{payment.paymentDateString}}</div>
+            <span class="ebText amount-display">
+              <sup class="currency-symbol">{{vm.getCurrencySign(payment.currency)}}</sup>
+              {{vm.currencyFormatter(payment.amount, payment.currency, false)}}
+            </span>
+        </div>
+        <table class="table table-noborder table-responsive payments-received-table">
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>{{payment.paymentMethodName}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{payment.creditCardTypeName ==='None'? "N/A" : payment.creditCardTypeName}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>*{{payment.checkOrCardNumber}}</td>
+                </tr>
+                <tr>
+                    <td>{{'TEXT_TRANSACTION_ID'|translate}}</td>
+                    <td>{{payment.paymentTxnId}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-if="vm.paymentsReceivedError">
+      <div class="error-ebDialogBox error-confirmation">
+         <div class="ebDialogBox-contentBlock confirmation-content">
+         <div ng-click="vm.paymentsReceivedError = false">
+            <i class="fa fa-times error-close" aria-hidden="true"></i>
+         </div>
+          <div class="row ebDialogBox-primaryTextBox error-primaryText">
+            <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_ERROR_RETREIVING_DETAILS' |translate }}</p>
+            <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_TRY_AGAIN' |translate }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

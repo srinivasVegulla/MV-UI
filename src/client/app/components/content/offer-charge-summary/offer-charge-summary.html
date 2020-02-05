@@ -1,0 +1,355 @@
+<div class="widget ecb-offercharge" ng-class="{ 'card-expanded': vm.widgetOpen, 'card-collapsed': !vm.widgetOpen}">
+  <div class="header clearfix">
+    <div ng-if="!vm.widgetOpen || vm.widgetOpenType == 'viewall'">
+      <h2 class="offerCharge-header-name">
+        <span>{{'TEXT_OFFER_CHARGE_SUMMARY'| translate}}</span>
+      </h2>
+      <span class="pull-{{vm.layoutRightDirection}} close-image-view-all ecb-closeViewAllTr" ng-click="vm.closeExpandView()" ng-show="vm.widgetOpen">
+        <i class="fa fa-times ebIcon ebIcon_interactive ebColor_textLinkBlue" aria-hidden="true"></i>
+      </span>
+    </div>
+    <div ng-if="vm.widgetOpen && vm.widgetOpenType == 'usage'">
+      <h2 class="offerCharge-header-name">
+        <span>{{vm.prItemsInfo[vm.prItemsInfo.activeNode].node.name}}</span>
+      </h2>
+      <span ng-if="chargeType != 'subCharge' && vm.widgetViewAllOpen"
+        class="pull-{{vm.layoutRightDirection}} close-image-view-all ecb-closeViewAllTr" ng-click="vm.closeUsageData()">
+        <i class="fa fa-times ebIcon ebIcon_interactive ebColor_textLinkBlue" aria-hidden="true"></i>
+      </span>
+      <span ng-if="chargeType != 'subCharge' && !vm.widgetViewAllOpen"
+        class="pull-{{vm.layoutRightDirection}} close-image-view-all ecb-closeViewAllTr"
+        ng-click="vm.closeExpandView()">
+        <i class="fa fa-times ebIcon ebIcon_interactive ebColor_textLinkBlue qwerty" aria-hidden="true"></i>
+      </span>
+      <div class="pull-{{vm.layoutRightDirection}} ecb-cardTabularDownloadMain" ng-if="vm.isMobile">
+        <a href="#" file-name="'OfferChargeSummary.csv'" ng-click="vm.getUsageDetailFile(vm.prItemsInfo[vm.prItemsInfo.activeNode].node, 'grid')"
+          file-download="vm.downloadUsageFile(vm.prItemsInfo[vm.prItemsInfo.activeNode].node, 'grid')">
+          <div class="ecb-cardTabularDownload"><i class="fa fa-download ecb-settingsHeaderIcon" aria-hidden="true">
+        </a>
+      </div>
+      <div class="pull-right ecb-cardTabularExpandIcons" ng-if="!vm.isMobile">
+        <div class="pull-{{vm.layoutRightDirection}} ecb-cardTabularDownloadMain">
+          <a href="#" file-name="'OfferChargeSummary.csv'" ng-click="vm.getUsageDetailFile(vm.prItemsInfo[vm.prItemsInfo.activeNode].node, 'grid')"
+            file-download="vm.downloadUsageFile(vm.prItemsInfo[vm.prItemsInfo.activeNode].node, 'grid')">
+            <div class="ecb-cardTabularDownload"><i class="fa fa-download ecb-settingsHeaderIcon" aria-hidden="true">
+          </a>
+        </div>
+        <div class="pull-right text-center ecb-rtlTabularIconSet ecb-cardTabularIconSetMain">
+          <div class="ecb-cardTabularIconSet" class="col-md-12">
+            <div ng-click="vm.showChargesTabularCardView('table')" ng-class="vm.getActiveViewStyle('table')"><i class="fa fa-table ecb-settingsHeaderIcon"
+                aria-hidden="true"></div>
+            <div ng-click="vm.showChargesTabularCardView('card')" ng-class="vm.getActiveViewStyle('card')"><i class="fa fa-th ecb-settingsHeaderIcon"
+                aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="col-md-3 pull-right ecb-settingsMenu text-center ecb-rtlSettingsMenu" ng-click="vm.toggleTabularViewSettings()"
+          ng-if="vm.tabularView">
+          <span class="ebIcon_settings ecb-headerIcons"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ecb-UsageLoader" ng-if="vm.loading || vm.childAccloading" ng-class="{ 'ecb-chargeLoading': vm.chargeWidgetLoading }">
+    <div class="ebLoader">
+      <div class="ebLoader-Holder">
+        <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+      </div>
+    </div>
+  </div>
+  <div class='ecb-offerCharge-body col-xs-12 col-sm-12 col-md-12 col-lg-12 content ecb-expandBody' ng-class="{'ecbOverflowHidden': vm.widgetOpen && vm.widgetOpenType == 'usage' && vm.tabularView}">
+    <div class="ebSplitBtn pull-{{vm.layoutRightDirection}}" ng-if="(!vm.widgetOpen || vm.widgetOpenType == 'viewall') && !vm.isSubscriber && vm.widgetDataStatus == 'data'">
+      <button class="ecbBtn" ng-class="{'active': vm.viewMode == 'offer'}" ng-click="vm.selectOfferView()">{{'TEXT_OFFER_VIEW'|
+        translate}}</button>
+      <button class="ecbBtn" ng-class="{'active': vm.viewMode == 'account'}" ng-click="vm.selectAccountView()">{{'TEXT_ACCOUNT_VIEW'|
+        translate}}</button>
+    </div>
+    <div class="ecb-cardTabularSettings ecb-rtlCardTabularSettings" ng-if="vm.widgetOpen && vm.tabularView && vm.isTabularViewSettings">
+      <div class="ecb-settingsHeader">
+        <div class="pull-{{vm.layoutLeftDirection}}">
+          <span class="ebIcon_settings ecb-headerIcons"></span>
+          <span class="ebText"><b>{{'TEXT_SETTINGS'|translate}}</b></span>
+        </div>
+        <div class="pull-{{vm.layoutRightDirection}}">
+          <button class="btn ebBtn ebBtn_color_darkBlue" ng-click="vm.applyCancelSettings(1)" ng-disabled="vm.isAllColumnDeselected()">{{'TEXT_APPLY'|
+            translate}}</button>
+          <button class="btn ebBtn ebBtn-default" ng-click="vm.applyCancelSettings(0)">{{'TEXT_CANCEL'| translate}}</button>
+        </div>
+      </div>
+      <div class="ecb-settingsCheckboxHeader">
+        <div class="ebLabel pull-{{vm.layoutLeftDirection}}">{{'TEXT_SELECT'| translate}} :</div>
+        <div class="pull-{{vm.layoutLeftDirection}}"><a class="ebColor_textLinkBlue" ng-click="vm.toggleSelectAll(1)">{{'TEXT_ALL'|
+            translate}}</a></div>
+        <div class="pull-{{vm.layoutLeftDirection}}">|</div>
+        <div class="pull-{{vm.layoutLeftDirection}}"><a class="ebColor_textLinkBlue" ng-click="vm.toggleSelectAll(0)">{{'TEXT_NONE'|
+            translate}}</a></div>
+      </div>
+      <div class="ecb-settingsColumnList" ng-style="vm.getSettingsHeight()">
+        <ul class="list-unstyled">
+          <li ng-repeat="header in vm.unFreezeColumnsList(vm.prItemsInfo[vm.prItemsInfo.activeNode].config.isColumns)">
+            <label>
+              <input class="ebCheckbox" type="checkbox" value="{{header}}" ng-checked="vm.isCheckboxSelection(header)"
+                ng-click="vm.toggleHeaderSelection(header)" ng-disabled="vm.freezeColumnsTemp.indexOf(header) > -1">
+              <span class="ebCheckbox-inputStatus"></span>
+              <span class="ebCheckbox-label">{{vm.getLocaleHeaderName(header)}}</span>
+            </label>
+            <div ng-class="{ 'ecb-freezeChecked': vm.checkboxSelectionTemp.indexOf(header) == -1}" ng-click="vm.toggleFreezingColumns(header, true)"><i
+                class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i></div>
+          </li>
+          <li ng-if="vm.showMidLine(vm.prItemsInfo[vm.prItemsInfo.activeNode].config.isColumns)" class="ecb-freezeColumnsDivide"></li>
+          <li ng-repeat="header in vm.freezeColumns">
+            <label>
+              <input class="ebCheckbox" type="checkbox" value="{{header}}" checked="checked" disabled="disabled">
+              <span class="ebCheckbox-inputStatus"></span>
+              <span class="ebCheckbox-label">{{vm.getLocaleHeaderName(header)}}</span>
+            </label>
+            <div ng-class="{ 'ecb-freeze': vm.freezeColumnsTemp.indexOf(header) > -1}" ng-click="vm.toggleFreezingColumns(header)"><i
+                class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div ng-if="!vm.loading && (!vm.widgetOpen || vm.widgetOpenType == 'viewall')">
+      <p ng-if="vm.widgetDataStatus == 'noOffer'">{{'TEXT_NO_OFFERS'|translate}}</p>
+      <p ng-if="vm.widgetDataStatus == 'noAccount'">{{'TEXT_NO_ACCOUNTS'|translate}}</p>
+      <script type="text/ng-template" id="ecbOfferchargeHeader.html">
+        <tr>
+          <th>
+            <div class="ecb-hierarchyTable-header ebTable-header text-{{vm.layoutLeftDirection}}">{{'TEXT_NAME'|translate}}</div>
+          </th>
+          <th>
+            <div class="ecb-hierarchyTable-header ebTable-header text-{{vm.layoutRightDirection}}">{{'TEXT_UNIT_PRICE'| translate}}</div>
+          </th>
+        </tr>
+      </script>
+      <script type="text/ng-template" id="ecbOfferchargeFooter.html">
+        <tr class="ecb-hierarchyTable-footer" ng-if="!vm.isViewAll || vm.widgetOpen">
+          <th class="text-{{vm.layoutLeftDirection}}">
+            <span class="visible-xs visible-sm  pull-{{vm.layoutLeftDirection}}" ng-if="vm.parentRecord">{{vm.parentRecord.name}}:  </span>
+            <span class="pull-{{vm.layoutLeftDirection}}">{{'TEXT_CHARGES_SUB_TOTAL'|translate}}</span>
+          </th>
+          <th class="text-{{vm.layoutRightDirection}}">
+            <span class="visible-xs visible-sm">{{vm.currencyFormatter(vm.parentRecord ? vm.parentRecord.amount : vm.getTotalChargeAmount(), vm.currency, false)}}</span>
+            <span class="hidden-xs hidden-sm visible-md-up">{{vm.currencyFormatter(vm.getTotalChargeAmount(), vm.currency, false)}}</span>
+          </th>
+        </tr>
+        <tr class="ecb-hierarchyTable-footer ecb-pointer" ng-if="vm.isViewAll && !vm.widgetOpen" ng-click="vm.openExpandView('viewall')" >
+          <th colspan="2" class="text-center"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></th>
+        </tr>
+      </script>
+      <div class='ecb-offerCharge-content' ng-if="vm.widgetDataStatus == 'data'">
+        <div class="ecb-chargeMillerView visible-xs visible-sm">
+          <table class="ecb-hierarchyTable">
+            <thead ng-include="'ecbOfferchargeHeader.html'"></thead>
+            <tbody>
+              <tr class="child-header" ng-if="vm.hasHierarchy()">
+                <th colspan="2" class="text-center" id="ocd-header">
+                  <a href="" ng-click="vm.back()" class="pull-{{vm.layoutLeftDirection}}">
+                    < {{'TEXT_BACK'|translate}} </a> <span class="ocs-heading" ng-if="vm.parentRecord">{{vm.parentRecord.name}}</span>
+                </th>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div id="ecbOfferContentMiller">
+                    <ul class="ebTree">
+                      <li class="ebTreeItem ebTreeItem_expandable ecb-FullW ecb-filterAccounts" ng-if="vm.viewMode == 'account' && vm.parentRecord && vm.isAccFilterInput(vm.parentRecord) && vm.widgetOpenType == 'viewall'">
+                        <div class="input-group pull-{{vm.layoutLeftDirection}}">
+                          <input id="filterAccounts-miller-{{vm.parentRecord.hierarchy}}" ng-model="vm.filterAccounts[vm.parentRecord.hierarchy]" ng-disabled="vm.childAccloading" placeholder="{{ 'TEXT_ENTER_FILTER_CRITERIA' | translate }}"
+                          class="filterChildInputs form-control ebInput ebInput_width_full" type='text' ng-keyup="vm.filterChildAccounts(event, vm.parentRecord, 'miller', true)" />
+                          <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        </div>
+                        <div class="pull-{{vm.layoutLeftDirection}} ecb-chRecordTxt">
+                          <a>{{'TEXT_PAGE' | translate}}</a></div>
+                        <div class="pageFilter pull-{{vm.layoutLeftDirection}}">
+                          <input id="filterAccounts-millerX-{{vm.parentRecord.hierarchy}}"
+                            ng-model="vm.filterPageNumber[vm.parentRecord.hierarchy]" ng-disabled="vm.childAccloading"
+                            placeholder="{{'TEXT_PAGE' | translate}}" class="filterChildInputs form-control ebInput
+                            ebInput_width_full"
+                            type='text' value="1" ng-keyup="vm.filterChildAccounts(event, vm.parentRecord, 'miller',
+                            false)" />
+                        </div>
+                        <div class="pull-{{vm.layoutLeftDirection}} ecb-chRecordTxt">
+                          <a>{{'TEXT_OF' | translate}} {{vm.parentRecord.totalPages}} </a></div>
+                        <div class="pull-{{vm.layoutLeftDirection}} ecb-chRecordTxt">
+                          <a>{{vm.parentRecord.accountsBeenShown}} {{'TEXT_OF'|translate}}
+                            {{vm.parentRecord.childAccountsTotalCount}} {{'TEXT_RECORDS'|translate}}   </a></div>
+                      </li>
+                      <li class="ebTreeItem ebTreeItem_expandable" data-ng-repeat="node in vm.activeMillerPage.records">
+                        <div class="ebTreeItem-content col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{'{{vm.getClassByNode(node.nodeType)}}' : node.nodeType, 'ecb-layoutLoading': vm.islayoutLoading(node)}">
+                          <div class="ebTreeItem-label pull-{{vm.layoutLeftDirection}} ecb-treeText col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <a href="#" class="ng-binding" ng-click="vm.showNextNodes($event, node, 'miller', $index)">{{node.name}}</a>
+                            <a href="#" class="fa fa-download" aria-hidden="true" ng-if="node.nodeType=='PI'" ng-click="vm.getUsageDetailFile(node, 'miller')"
+                              file-download="vm.downloadUsageFile(node, 'miller')" file-name="'OfferChargeSummary.csv'"></a>
+                          </div>
+                          <div class="ebTreeItem-label pull-{{vm.layoutRightDirection}} text-{{vm.layoutRightDirection}} col-lg-3 col-md-3 col-sm-3 col-xs-3 ecb-treeAmount">
+                            <a href="#" ng-click="vm.showNextNodes($event, node, 'miller', $index)">{{vm.currencyFormatter(node.amount, vm.currency, false)}}</a>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="ebTreeItem ebTreeItem_expandable ecb-FullW" ng-if="vm.viewMode == 'account' && vm.parentRecord && vm.isAccFilterInput(vm.parentRecord)">
+                        <div class="ebTreeItem-content col-lg-12 col-md-12 col-sm-12 col-xs-12 ecb-accountCharges ecb-chRecordTxt" ng-click="vm.focusOnFilter(vm.parentRecord.hierarchy, 'miller')">
+                            <a>
+                              <span class="pull-{{vm.layoutLeftDirection}}" >{{vm.parentRecord.name}}: {{'TEXT_DISPLAYING'|translate}} {{vm.parentRecord.accountsBeenShown}} {{'TEXT_OF'|translate}} {{vm.parentRecord.childAccountsTotalCount}}. </span>
+                              <span class="pull-{{vm.layoutLeftDirection}}" ng-if="vm.parentRecord.isFilterOutput && vm.widgetOpenType != 'viewall'">{{'TEXT_CLICK_VIEWALL_EXPAND_FILTER'|translate}}.</span>
+                              <span class="pull-{{vm.layoutLeftDirection}}" ng-if="!vm.parentRecord.isFilterOutput || vm.widgetOpenType == 'viewall'">{{'TEXT_EXPAND_FILTER'|translate}}.</span>
+                            </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot ng-include="'ecbOfferchargeFooter.html'"></tfoot>
+          </table>
+        </div>
+        <div class="ecb-chargeTreeView hidden-xs hidden-sm visible-md-up">
+          <table class="ecb-hierarchyTable">
+            <thead ng-include="'ecbOfferchargeHeader.html'"></thead>
+            <tbody>
+              <tr>
+                <td colspan="2">
+                  <div id="ecbOfferContentTree">
+                    <ul class="ecbTreeList ebTree">
+                      <li ng-repeat="node in vm.getChargeData()" ng-include="'treeLevel.html'" class="ebTreeItem ebTreeItem_expandable"
+                        ng-class="{ 'ecbOfferNodeExpand': vm.openNodes[vm.viewMode].indexOf(node.hierarchy) >= 0, 'ecbOfferNodeCollapse': vm.openNodes[vm.viewMode].indexOf(node.hierarchy) == -1 }">
+                      </li>
+                    </ul>
+                  </div>
+                  <script type="text/ng-template" id="treeLevel.html">
+                    <div class="ebTreeItem-content col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="{'{{vm.getClassByNode(node.nodeType)}}' : node.nodeType, 'active': vm.activeHierarchy[vm.viewMode] && vm.activeHierarchy[vm.viewMode] == node.hierarchy, 'ecb-layoutLoading': vm.islayoutLoading(node)}">
+                      <div class="pull-{{vm.layoutLeftDirection}} ecb-treeText col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                        <div class="ebTreeItem-expandButton" ng-click="vm.showNextNodes($event, node, 'tree', $index)"> 
+                          <a href="#"> 
+                            <span class="chevron" ng-if="vm.hasChild(node.nodeType)" ng-class="vm.getChevronClass(node)"></span>
+                          </a> 
+                        </div> 
+                        <div class="ebTreeItem-label">
+                          <a href="#" class="ng-binding" ng-click="vm.showNextNodes($event, node, 'tree', $index)">{{node.name}}</a>
+                          <a href="#" class="fa fa-download" aria-hidden="true" ng-if="node.nodeType=='PI'" ng-click="vm.getUsageDetailFile(node, 'tree')" file-download="vm.downloadUsageFile(node, 'tree')" file-name="'OfferChargeSummary.csv'"></a>
+                        </div>
+                      </div>
+                      <div class="ebTreeItem-label pull-{{vm.layoutRightDirection}} text-{{vm.layoutRightDirection}} col-lg-3 col-md-3 col-sm-3 col-xs-3 ecb-treeAmount">
+                        <a href="#" class="" ng-click="vm.showNextNodes($event, node, 'tree', $index)">{{vm.currencyFormatter(node.amount, vm.currency, false)}}</a>
+                      </div>
+                    </div>
+                    <ul class="ebTree">
+                      <li class="ebTreeItem ebTreeItem_expandable ecb-FullW ecb-filterAccounts" ng-if="vm.isAccFilterInput(node) && vm.widgetOpenType == 'viewall'">
+                        <div class="input-group pull-{{vm.layoutLeftDirection}}">
+                          <input id="filterAccounts-tree-{{node.hierarchy}}" ng-model="vm.filterAccounts[node.hierarchy]" ng-disabled="vm.childAccloading" placeholder="{{ 'TEXT_ENTER_FILTER_CRITERIA' | translate }}"
+                          class="filterChildInputs form-control ebInput ebInput_width_full" type='text' ng-keyup="vm.filterChildAccounts(event, node, 'tree', true)" />
+                          <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        </div>
+                        <div class="pull-{{vm.layoutLeftDirection}} ecb-chRecordTxt">
+                           <a>{{'TEXT_PAGE' | translate}}</a></div>
+                        <div class="pageFilter pull-{{vm.layoutLeftDirection}}">
+                          <input id="filterAccounts-treeX-{{node.hierarchy}}"
+                            ng-model="vm.filterPageNumber[node.hierarchy]" ng-disabled="vm.childAccloading"
+                            placeholder="{{'TEXT_PAGE' | translate}}"
+                            class="filterChildInputs form-control ebInput ebInput_width_full" type='text' value="1"
+                            ng-keyup="vm.filterChildAccounts(event, node, 'tree', false)" />
+                        </div>
+                        <div class="pull-{{vm.layoutLeftDirection}} ecb-chRecordTxt">
+                          <a>{{'TEXT_OF' | translate}} {{node.totalPages}} </a></div>
+                        <div class="pull-{{vm.layoutRightDirection}} ecb-chRecordTxt">
+                          <a> {{node.accountsBeenShown}} {{'TEXT_OF'|translate}}
+                            {{node.childAccountsTotalCount}} {{'TEXT_RECORDS'|translate}}</a></div>
+                      </li>
+                      <li class="ebTreeItem ebTreeItem_expandable ecb-FullW" data-ng-repeat="node in node.childNodes" ng-include="'treeLevel.html'" ng-class="{ 'ecbOfferNodeExpand': vm.openNodes[vm.viewMode].indexOf(node.hierarchy) >= 0, 'ecbOfferNodeCollapse': vm.openNodes[vm.viewMode].indexOf(node.hierarchy) == -1 }">
+                      </li>
+                      <li class="ebTreeItem ebTreeItem_expandable ecb-FullW" ng-if="vm.isAccFilterInput(node)">
+                          <div class="ebTreeItem-content col-lg-12 col-md-12 col-sm-12 col-xs-12 ecb-accountCharges ecb-chRecordTxt" ng-click="vm.focusOnFilter(node.hierarchy, 'tree')">
+                              <a>
+                                <span class="pull-{{vm.layoutLeftDirection}}" >{{node.name}}: {{'TEXT_DISPLAYING'|translate}} {{node.accountsBeenShown}} {{'TEXT_OF'|translate}} {{node.childAccountsTotalCount}}. </span>
+                                <span class="pull-{{vm.layoutLeftDirection}}" ng-if="node.isFilterOutput && vm.widgetOpenType != 'viewall'">{{'TEXT_CLICK_VIEWALL_EXPAND_FILTER'|translate}}.</span>
+                                <span class="pull-{{vm.layoutLeftDirection}}" ng-if="!node.isFilterOutput || vm.widgetOpenType == 'viewall'">{{'TEXT_EXPAND_FILTER'|translate}}.</span>
+                              </a>
+                          </div>
+                      </li>
+                    </ul>
+                  </script>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot ng-include="'ecbOfferchargeFooter.html'"></tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div ng-if="vm.widgetOpen && vm.widgetOpenType == 'usage'">
+      <div ng-if="vm.usageDetails.length == 0 && !vm.loading" ng-bind-html="vm.utilityService.getNotificationHTML('info', false, 'TEXT_NO_TRANSACTION')"></div>
+      <div ng-if="vm.tabularView && (vm.usageDetails.length > 0 || !vm.gridOptions)" class="ecb-uiGrid" ui-grid="vm.gridOptions"
+        ui-grid-resize-columns ui-grid-auto-resize ui-grid-move-columns ui-grid-pinning ng-style="vm.getViewAllBodyHeight()" ui-grid-infinite-scroll dir="{{vm.i18n.languageDirection}}"></div>
+      <div ng-if="!vm.tabularView && vm.usageDetails.length > 0" class="ecb-cardContainer ecbFullHeight">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ecb-cardPadding" ng-repeat="card in vm.usageDetails | orderBy: vm.getSortByColumn():(vm.sortOrder == 'desc' ? true : false) | filter:vm.selectedFilters track by $index"
+          class="ecb-cardLayout" ecb-ellipsis>
+          <div class="ecb-cardLayoutBoxMain">
+            <table class="ebTable ebTable_striped ebTable_fullW">
+              <tbody>
+                <tr ng-if="vm.isCustomImplementation">
+                  <td class="ecb-cardLayoutLabel ebDialogBox-secondaryText">{{'TEXT_ACTIONS'|translate}}</td>
+                  <td class="ebText ecb-recurMore"><button class="btn ebBtn ebColor_textLinkBlue ecb-ProtBn" ng-click="vm.showProrateMessage(card)">{{'TEXT_MORE'|translate}}</td>
+                </tr>
+                <tr ng-if="vm.hasSubCharge()">
+                  <td class="ecb-cardLayoutLabel ebDialogBox-secondaryText">{{'TEXT_MULTIPOINT'|translate}}</td>
+                  <td class="ebText">
+                    <select ng-if="card.hidden_subChargeRecords != null" class="form-control subcharge-dropdown"
+                      ng-model="vm.selectedItem[$index]" ng-change="vm.showSubcharge($index)" ng-options="x as x.viewname for x in card.hidden_subChargeRecords">
+                    <option value="" disabled>{{'TEXT_SELECT_MULTIPOINTS'|translate}}</option>
+                    </select>
+                    </td>
+                </tr>
+                <tr ng-if="vm.hasSubCharge()">
+                    <td class="ecb-cardLayoutLabel ebDialogBox-secondaryText">{{'TEXT_MULTIPOINTS_TOTAL'|translate}}</td>
+                    <td class="ebText">{{card.hidden_subChargeRecordsTotal}}</td>
+                </tr>
+                <tr ng-repeat="(key, value) in card" ng-if="!vm.isHidden(key)">
+                  <td class="ecb-cardLayoutLabel ebDialogBox-secondaryText">{{vm.getLocaleHeaderName(key)}}</td>
+                  <td class="ebText">{{value}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='ecb-offerCharge-footer footer clearfix' ng-if="!vm.widgetOpen">
+    <p class="ebText ecb-panel-footer pull-{{vm.layoutRightDirection}}" ng-click="vm.openExpandView('viewall')" ng-if="!vm.widgetOpen && vm.widgetDataStatus == 'data' && !(vm.loading || vm.childAccloading)">
+      <a href="#" class="">{{'TEXT_VIEW_ALL'|translate}} ></a>
+    </p>
+  </div>
+  <div ng-if="vm.isTabularViewSettings" class="ecb-widgetBackdrop"></div>
+  <div ng-if="vm.hasSubCharge()">
+    <ecb-modal-dialog id="ecb-subCharge">
+      <div class="ecb-modalDialog">
+          <div class="ecb-modalDialogBody">
+              <div class="modal-header">
+                <h2>{{'TEXT_MULTIPOINT'|translate}}</h2>
+                <span class="pull-{{vm.layoutRightDirection}} close-image-view-all ecb-closeViewAllTr"
+                  ng-click="vm.closeModal('ecb-subCharge');" ng-show="vm.widgetOpen"><i
+                    class="fa fa-times ebIcon ebIcon_interactive ebColor_textLinkBlue" aria-hidden="true"></i></span>
+              </div>
+              <ecb-offer-charge-summary class="widget-directive" charge-type="subCharge" select-sub-charge="{{vm.selectSubCharge}}" parent-dr="self">
+              </ecb-offer-charge-summary>
+          </div>
+      </div>
+      <div class="ecb-modalDialogBackground"></div>
+    </ecb-modal-dialog>
+  </div>
+  <div ng-if="vm.isCustomImplementation">
+      <ecb-modal-dialog id="ecb-prorate">
+        <div class="ecb-modalDialog">
+            <div class="ecb-modalDialogBody">
+                <div class="modal-header">
+                  <h2>More Information</h2>
+                  <span class="pull-{{vm.layoutRightDirection}} close-image-view-all ecb-closeViewAllTr"
+                    ng-click="vm.closeModal('ecb-prorate');" ng-show="vm.widgetOpen"><i
+                      class="fa fa-times ebIcon ebIcon_interactive ebColor_textLinkBlue" aria-hidden="true"></i></span>
+                </div>
+                <p ng-bind-html="vm.prorateMessage | trustHtml"></p>
+            </div>
+        </div>
+        <div class="ecb-modalDialogBackground"></div>
+      </ecb-modal-dialog>
+    </div>
+</div>

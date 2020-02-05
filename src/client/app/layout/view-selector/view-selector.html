@@ -1,0 +1,4 @@
+<select class="ebText view-selector-dropdown"          
+          ng-options="option.name for option in xm.data.availableOptions track by option.id"
+          ng-model="xm.data.selectedOption" ng-change="xm.selectView(xm.data.selectedOption.id)" ng-if="xm.navigationBar">
+</select>

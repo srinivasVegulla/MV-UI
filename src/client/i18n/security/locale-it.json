@@ -1,0 +1,17 @@
+{
+  "LOGIN_TITLE": "Ericsson Enterprise e Cloud fatturazione - MetraView",
+  "LOGIN_INVALID_CREDENTIALS": "Nome utente o password errati",
+  "LOGIN_INPUT_USERNAME": "Nome utente",
+  "LOGIN_INPUT_PASSWORD": "parola d'ordine",
+  "LOGIN_INPUT_SUBMIT": "Accesso",
+  "LOGIN_FORGOT_PASSWORD": "Hai dimenticato la tua password?",
+  "LOGIN_VALIDATION_PATTERN_USERNAME": "I caratteri non validi non sono ammessi.",
+  "LOGIN_VALIDATION_REQUIRED_USERNAME": "È richiesto il nome utente.",
+  "LOGIN_VALIDATION_REQUIRED_PASSWORD": "E 'richiesta la password.",
+  "LOGIN_ACCOUNT_LOCKED": "Il tuo account è bloccato out.Call Customer Service per sbloccare il conto ",
+  "LOGIN_NO_LOGON": "Il tuo account non dispone delle autorizzazioni per questa applicazione",
+  "LOGIN_INVALID_TICKET": "Login non valido",
+  "LOGIN_UNABLE_TO_CONNECT_TO_SERVER": "Impossibile stabilire una connessione al server",
+  "LOGIN_SIGN_UP": "Registrazione",
+  "LOGIN_COPYRIGHT": "Ⓒ Ericsson Enterprise e Cloud fatturazione , 2016 Tutti i diritti riservato"
+}

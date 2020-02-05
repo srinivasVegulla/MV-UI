@@ -1,0 +1,32 @@
+<ul class="ecb-systemBarList" ng-class="vmad.billManagerUserList()">
+  <li>
+    <div class="row ecb-activeUserTab">
+      <div class="col-xs-12 ecb-activeUserDetails">
+        <p>{{ vmad.userDisplayName}}</p>
+        <p>{{'TEXT_ACCOUNT_ID'|translate}} {{vmad.activeUserAccountId }}</p>
+        <a class="ecb-userChangePassword" ng-click="vmad.changePassword(vmad.accountId)">{{'TEXT_CHANGE_PASSWORD'|translate}}
+          <i class="fa fa-pencil ebIcon account-info-edit-icon" aria-hidden="true"></i>
+        </a>
+        <p>
+          <button type="button" class="ebBtn ebBtn_small ebBtn_color_darkBlue" ng-click="vmad.myAccountRoute()">{{'TEXT_MY_ACCOUNT'|translate}}</button>
+        </p>
+      </div>
+    </div>
+  </li>
+  <li class="divider" ng-if="vmad.billManagerUsersLength > 0"></li>
+  <li ng-repeat="billUsers in vmad.billManagerUsers | limitTo:3"  ng-click="vmad.makeUserActive($index,billUsers.userName,billUsers.accountId)">
+    <div class="row ecb-activeUserTab">
+      <div class="col-xs-12 ecb-activeUserDetails">
+        <p>{{vmad.getUserDisplayName(billUsers)}}</p>
+        <p>{{'TEXT_ACCOUNT_ID'|translate}} {{billUsers.accountId}}</p>
+      </div>
+    </div>
+    <div class="ecb-listDivider"></div>
+  </li>
+</ul>
+<ul class="ecb-systemBarList" ng-if="vmad.billManagerUsersLength > 3">
+  <li class="ecb-userViewAll">
+    <button type="button" class="ebBtn ebBtn_small ebBtn_default" ng-click="vmad.openAccountDetails()">{{'TEXT_VIEW_ALL'|translate}}
+    </button>
+  </li>
+</ul>

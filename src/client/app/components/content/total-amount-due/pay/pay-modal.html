@@ -1,0 +1,519 @@
+<form id="AddPayNowCheck" name="amountEditForm" class="form-horizontal ecb-paymodal" ecb-aside-modal novalidate="novalidate">
+    <div class="modal-header payment-modal-header" ng-if="vm.payNowWidgetContent === 1 && !vm.isTransactionSuccessPage">
+        <h3 class="modal-title noBorder">{{'TEXT_MAKE_A_PAYMENT'| translate}}</h3>
+        <div class="pull-{{vm.layoutRightDirection}}">
+      <button type="button" class="btn ebBtn ebBtn_color_darkBlue" ng-disabled="vm.enablePayButton() || amountEditForm.$invalid || (vm.amountPayable <= 0)" ng-if="vm.payNow && vm.ecbARCheck"  ng-click="vm.payNowWidget(2)">
+        {{'TEXT_PAY_NOW'| translate}}
+      </button>
+      <button type="button" class="btn ebBtn ebBtn_color_darkBlue" ng-disabled="vm.enablePayButton() || amountEditForm.$invalid" ng-if="vm.payNow && !vm.ecbARCheck"  ng-click="vm.payNowWidget(2)">
+          {{'TEXT_PAY_NOW'| translate}}
+        </button>
+      <button type="button" class="btn ebBtn ebBtn_color_darkBlue" ng-disabled="vm.enablePayButton() || amountEditForm.$invalid || (vm.amountPayable <= 0)" ng-if="vm.schedulePay && vm.ecbARCheck" ng-click="vm.payNowWidget(2)">
+        {{'TEXT_SCHEDULE_NOW'| translate}}
+      </button>
+      <button type="button" class="btn ebBtn ebBtn_color_darkBlue" ng-disabled="vm.enablePayButton() || amountEditForm.$invalid" ng-if="vm.schedulePay && !vm.ecbARCheck" ng-click="vm.payNowWidget(2)">
+          {{'TEXT_SCHEDULE_NOW'| translate}}
+        </button>
+      <button type="button" class="btn ebBtn ebBtn_color_darkBlue" ng-disabled="vm.enablePayButton() || amountEditForm.$invalid || (vm.amountPayable<= 0)" ng-if="vm.addNowPayNow && vm.ecbARCheck" ng-click="vm.payNowWidget(2)">
+        {{'TEXT_ADD_NOW_PAY_NOW'| translate}}
+      </button>
+      <button type="button" class="btn ebBtn ebBtn_color_darkBlue" ng-disabled="vm.enablePayButton() || amountEditForm.$invalid" ng-if="vm.addNowPayNow && !vm.ecbARCheck" ng-click="vm.payNowWidget(2)">
+          {{'TEXT_ADD_NOW_PAY_NOW'| translate}}
+        </button>
+      <button type="button" class="btn ebBtn ebBtn_color_darkBlue" ng-disabled="vm.enablePayButton() || amountEditForm.$invalid || (vm.amountPayable <= 0)" ng-if="vm.addNowScheduleNow && vm.ecbARCheck" ng-click="vm.payNowWidget(2)">
+        {{'TEXT_ADD_NOW_SCHEDULE_NOW'| translate}}
+      </button>
+      <button type="button" class="btn ebBtn ebBtn_color_darkBlue" ng-disabled="vm.enablePayButton() || amountEditForm.$invalid" ng-if="vm.addNowScheduleNow && !vm.ecbARCheck" ng-click="vm.payNowWidget(2)">
+          {{'TEXT_ADD_NOW_SCHEDULE_NOW'| translate}}
+        </button>
+            <button type="submit" class="btn ebBtn ebBtn-default payment-modal-cancel" ng-click="vm.cancel()">
+        {{'TEXT_CANCEL'| translate}}</button>
+        </div>
+    </div>
+    <div class="ecbRelativeClass" ng-if="vm.payNowWidgetContent === 1 && vm.loading">
+      <div class="ebLoader">
+        <div class="ebLoader-Holder">
+          <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+        </div>
+      </div>
+    </div>
+    <div ng-if="vm.payNowWidgetContent === 1 && !vm.isTransactionSuccessPage && !vm.loading" class="modal-body">
+        <div class="content total-amount-due row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="pull-{{vm.layoutLeftDirection}}" ng-class="(vm.duePaymentAmount.amount > 0) ? 'col-xs-6 col-sm-6' : 'col-xs-12 col-sm-12'">
+              <p class="ebText ebColor_grey_40">{{'TEXT_TOTAL_AMOUNT_DUE'| translate}}</p>
+              <span class="ebText amount">
+                {{vm.currencyFormatter(vm.duePaymentAmount.amount, vm.duePaymentAmount.currency)}}
+              </span>
+            </div>
+            <div class="text-center payment-modal-due" ng-class="(vm.duePaymentAmount.amount > 0) ? 'col-xs-6 col-sm-6' : 'col-xs-12 col-sm-12'" ng-if="vm.duePaymentAmount.amount > 0">
+              <p class="ebText ebColor_grey_40">{{'TEXT_PAYMENT_DUE'|translate}}</p>
+              <div class="top "><span class="ebText month-day">{{vm.duePaymentAmount.dueDate| date:'MMM'}} {{vm.duePaymentAmount.dueDate| date:'dd'}}</span></div>
+              <div class="bottom"><span class="ebText white-year">{{vm.duePaymentAmount.dueDate| date:'yyyy'}}</span></div>
+              <span ng-if="vm.accountPastDue" class="ecb-accountPastDue">{{'TEXT_ACCOUNT_PAST_DUE' | translate}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="payment-modal-form">
+          <form>
+            <div class="form-group">
+              <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+                {{'TEXT_PAYTHIS_AMOUNT'|translate}}
+              </label>
+              <div class="col-xs-9 col-sm-9">
+                <div class="input-group ecb-fullWidth" ng-if="!vm.ecbARCheck">
+                    <div class="input-group-addon payment-modal-currency">{{vm.getCurrencySign(vm.duePaymentAmount.currency)}}</div>
+                    <input type="number" id="amountValue" step="any" min="0" class="form-control ebInput ebInput_width_full textBoxHeight ecb-rtlAmountDue" ng-model="vm.duePaymentAmountPayable" value="vm.duePaymentAmount.amount" ecb-set-focus="true" />
+                </div>
+                <div ng-if="vm.ecbARCheck">
+                  <span class="ebText amount ng-binding">
+                    {{vm.currencyFormatter(vm.amountPayable, vm.duePaymentAmount.currency)}}  
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group" ng-class="(vm.saveCard) ? 'ecb-payUsing' : ''">
+              <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+              {{'TEXT_PAY_USING'| translate}}
+              </label>
+              <div class="col-xs-9 col-sm-9">
+                  <div class="dropdown">
+                    <button class="ebBtn ebBtn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="vm.payUsingMethod">
+                    <span class="dropdown-text pull-{{vm.layoutLeftDirection}}">
+                      {{vm.payUsingMethod}}
+                      </span>
+                      <span class="caret pull-right filter-dropdown-caret pull-{{vm.layoutRightDirection}}"></span>
+                    </button>
+                    <ul class="dropdown-menu filterDropDownBox scrollable-menu" aria-labelledby="dropdownMenu2">
+                      <li ng-repeat="x in vm.payUsing" class="ebComponentList-item" ng-class="{'ebComponentList-item_selected': (vm.payUsingMethod == x)}" ng-click="vm.setPayUsing(x)">
+                        <a href="#" ng-init="vm.payUsingMethod" class="pull-{{vm.layoutLeftDirection}}">
+                          {{x}}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="pull-{{vm.layoutLeftDirection}} ecbSaveForFuture" ng-if="vm.saveCard">
+                      <input type="checkbox" ng-model="vm.saveChecked" ng-init="vm.saveChecked" ng-click="vm.caldendarCheck()" ng-disabled="vm.disableSavingCard" />
+                      <label>{{'TEXT_SAVE_FOR_FUTURE_USE'| translate}}</label>
+                  </div>
+                </div>
+              </div>
+              <div ng-if="vm.newPaymentMethod" class="form-group">
+                <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+                  {{'TEXT_PAYMENT_METHOD'|translate}}
+                </label>
+                <div class="col-xs-9 col-sm-9">
+                  <div class="dropdown">
+                    <button class="ebBtn ebBtn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="vm.cardSelected">
+                      <span class="dropdown-text pull-{{vm.layoutLeftDirection}}" ng-if="!vm.isRTL">
+                      {{vm.cardSelected.nameCreditcardType || vm.cardSelected.accountType}} {{ vm.cardSelected.truncdAcctNum }} {{vm.cardSelected.idPriority == '1' ? '(Primary)' : ''}}
+                      </span>
+                      <span class="dropdown-text pull-{{vm.layoutLeftDirection}}" ng-if="vm.isRTL">
+                      {{vm.cardSelected.idPriority == '1' ? 'Primary)' : ''}} {{vm.cardSelected.nameCreditcardType || vm.cardSelected.accountType}} {{ vm.cardSelected.truncdAcctNum }} {{vm.cardSelected.idPriority == '1' ? ')' : ''}}
+                      </span>
+                      <span class="caret pull-right filter-dropdown-caret pull-{{vm.layoutRightDirection}}"></span>
+                    </button>
+                      <ul class="dropdown-menu filterDropDownBox scrollable-menu" aria-labelledby="dropdownMenu2">
+                        <li ng-repeat="y in vm.paymentMethods" class="ebComponentList-item" ng-class="{'ebComponentList-item_selected': (vm.cardSelected == y)}">
+                          <a href="#" ng-init="vm.cardSelected" ng-click="vm.setSelected(y)" ng-if="vm.cardSelected">
+                            {{y.nameCreditcardType || y.accountType}} {{ y.truncdAcctNum }} {{$first ? '(Primary)' : ''}}
+                          </a>
+                        </li>
+                      </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+                  {{'TEXT_PAYMENT_DATE'|translate}}
+                </label>
+                <div class="col-xs-9 col-sm-9">
+                  <datepicker button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" date-min-limit="{{ vm.currentDate }}" date-format="{{vm.localizePickDateFormat}}" date-set="{{vm.currentDate}}" date-max-limit="{{ vm.maxDateLimit }}">
+                    <input name="vm.datePicker" type="text" class="form-control ebInput ebInput_width_full textBoxHeight ecb-alignRight" ng-model="vm.datePicker" id="dateId" ng-change="vm.schedulePayment()" ng-disabled="!vm.saveChecked" />
+                    <i ng-click="vm.displayCalender()" class="ebIcon ebIcon_calendar ecb-calendar ecb-calendarRight" ng-class="vm.caldendarCheck()"></i>
+                  </datepicker>
+                </div>
+              </div>
+          <div ng-if="vm.ecbARCheck" class="form-group row ecb-formResponsive">
+            <label class="col-xs-12 text-leftAlign ecb-paymentLabel ebControl-label ebText pull-{{vm.layoutLeftDirection}}">
+                {{'TEXT_INVOICE_TOBE_PAID'| translate}}
+            </label>
+            <div class="ecb-invoiceTableContainer">
+            <table class="table ecb-invoiceTable ecb-invoiceTablePad">
+                <thead>
+                  <tr>
+                    <td>{{'TEXT_INVOICE_DATE'| translate}}</td>
+                    <td>{{'TEXT_INVOICE_NUMBER'| translate}}</td>
+                    <td>{{'TEXT_DUE_DATE'| translate}}</td>
+                    <td>{{'TEXT_TOTAL_AMOUNT_DUE'| translate}}</td>
+                    <td>{{'TEXT_PAYTHIS_AMOUNT'| translate}}</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="invoices in vm.invoiceList">
+                    <td>{{ invoices.IssueDt | date: 'shortDate'}}</td>
+                    <td class="ecb-invoiceAlign">{{ invoices.InvoiceString }}</td>
+                    <td>{{ invoices.DueDt | date: 'shortDate' }}<br/>
+                      <span class="ecb-invoicePastDue" ng-if="vm.showPastDue(invoices.DueDt,$index) && $index == vm.invoiceIndex">{{'TEXT_PAST_DUE' | translate}}</span></td>                    
+                    <td class="ecb-invoiceAlign">
+                        {{vm.currencyFormatter(vm.duePaymentAmount.amount, vm.duePaymentAmount.currency)}}
+                    </td>
+                    <td><div class="input-group-addon ecb-invoiceDollarSymbol ng-binding">$</div>
+                      <input type="number" step="0.01" min="" max="{{invoices.OpenAmtAsNum}}" class="form-control ebInput ebInput_width_full textBoxHeight ecb-invoiceAmountDue ecb-invoiceAlign" ng-change="vm.totalInvoiceAmount()" pattern="^\d+(?:\.\d{1,2})?$" ng-model="invoices.OpenAmt"/>
+                      <!--<span ng-messages="amountEditForm['invoice_' + $index].$invalid"> Invalid Entry </span>-->
+                      </td>
+                  </tr>
+                </tbody>
+            </table>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  <div ng-if="vm.ecbARCheck">
+  <div id="AddPayNowCheck" ="vm.ecbARCheck" ="vm.payNowWidgetContent === 1" class="modal-footer payment-modal-footer"></div>
+</form>
+<div ng-if="vm.payNowWidgetContent === 2" class="modal-header">
+    <h3 class="modal-title noBorder" ng-click="vm.payNowWidget(1);vm.uncheckAuthorization()"><a href="#">&lt; {{'TEXT_BACK'| translate}}</a></h3>
+    <div class="pull-{{vm.layoutRightDirection}}">
+        <button type="button" id="payNow" value="true" class="btn ebBtn ebBtn_color_darkBlue" ng-click="vm.payNowWidget(3, vm.selectedIdPaymentInstrument)" ng-disabled="!vm.authorizeCheck" ng-if="vm.payNow">{{'TEXT_PAY_NOW'| translate}}</button>
+        <button type="button" id="payNow" value="false" class="btn ebBtn ebBtn_color_darkBlue" ng-click="vm.payNowWidget(3, vm.selectedIdPaymentInstrument)" ng-disabled="!vm.authorizeCheck" ng-if="vm.schedulePay">{{'TEXT_SCHEDULE_NOW'| translate}}</button>
+        <button type="button" id="payNow" value="true" class="btn ebBtn ebBtn_color_darkBlue" ng-click="vm.addPayNowPopup()" ng-disabled="!vm.authorizeCheck" ng-if="vm.addNowPayNow">{{'TEXT_ADD_NOW_PAY_NOW'| translate}}</button>
+        <button type="button" id="payNow" value="false" class="btn ebBtn ebBtn_color_darkBlue" ng-click="vm.addPayNowPopup()" ng-disabled="!vm.authorizeCheck" ng-if="vm.addNowScheduleNow">{{'TEXT_ADD_NOW_SCHEDULE_NOW'| translate}}</button>
+    </div>
+</div>
+<div class="ecbRelativeClass" ng-if="vm.payNowWidgetContent === 2 && vm.loading">
+      <div class="ebLoader">
+        <div class="ebLoader-Holder">
+          <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+        </div>
+      </div>
+    </div>
+<div ng-if="vm.disclaimerError" class="ecb-disclaimerError">
+    <div class="error-ebDialogBox error-confirmation">
+        <div class="ebDialogBox-contentBlock confirmation-content">
+            <div ng-click="vm.closeDisclaimerError()">
+                <i class="fa fa-times error-close" aria-hidden="true"></i>
+            </div>
+            <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                <p class="col-xs-12 col-sm-12 col-md-12 ecbWidth">{{'TEXT_DISCLAIMER_ERROR' | translate}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-show="!vm.addError" ng-if="vm.payNowWidgetContent === 2 && !vm.loading" class="modal-body">
+    <div class="form-group review-message">
+        <p class="col-xs-12 col-md-12 col-lg-12 ebText ebColor_grey_40 ecbRtlTextAlignRight">{{'TEXT_REVIEW_PAYMENT_DETAILS'| translate}}</p>
+        <p class="col-xs-12 col-md-12 col-lg-12 ebText ebColor_grey_40 ecbRtlTextAlignRight">
+            {{'TEXT_REVIEW_PAYMENT_CORRECT' | translate}}
+            <span class="ebColor_black" ng-if="vm.payReview">{{'TEXT_PAY_NOW' | translate}}</span>
+            <span class="ebColor_black" ng-if="vm.scheduleReview">{{'TEXT_SCHEDULE_NOW'| translate}}</span>
+            <span class="ebColor_black" ng-if="vm.addPayNowReview">{{'TEXT_ADD_NOW_PAY_NOW'| translate}}</span>
+            <span class="ebColor_black" ng-if="vm.addScheduleNowReview">{{'TEXT_ADD_NOW_SCHEDULE_NOW'| translate}}</span> {{'TEXT_BUTTON' | translate}}</p>
+    </div>
+    <div class="payment-modal-form payment-review-form">
+        <div class="form-group">
+            <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+        {{'TEXT_AMOUNT'| translate}}
+      </label>
+            <div class="col-xs-9 col-sm-9">
+                <span class="ebText amount ng-binding">
+                    {{vm.currencyFormatter((vm.ecbARCheck ? vm.amountPayable : vm.duePaymentAmountPayable), vm.duePaymentAmount.currency)}}
+                </span>
+            </div>
+        </div>
+        <div ng-if="vm.newPaymentMethod" class="form-group">
+            <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+        {{'TEXT_METHOD'| translate}}
+      </label>
+            <div class="col-xs-9 col-sm-9">
+                <span class="ebText amount ng-binding" ng-if="!vm.isRTL">
+            {{vm.cardSelected.nameCreditcardType || vm.cardSelected.accountType}} {{ vm.cardSelected.truncdAcctNum }} {{vm.cardSelected.idPriority == '1' ? '(Primary)' : ''}}
+        </span>
+                <span class="dropdown-text" ng-if="vm.isRTL">
+            {{vm.cardSelected.idPriority == '1' ? 'Primary)' : ''}} {{vm.cardSelected.nameCreditcardType || vm.cardSelected.accountType}} {{ vm.cardSelected.truncdAcctNum }} {{vm.cardSelected.idPriority == '1' ? ')' : ''}}
+        </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+        {{'TEXT_PAY_USING'| translate}}
+      </label>
+            <div class="col-xs-9 col-sm-9">
+                <span class="ebText amount ng-binding">
+            {{vm.payUsingMethod}}
+        </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+        {{'TEXT_DATE'| translate}}
+      </label>
+            <div class="col-xs-9 col-sm-9">
+                <span class="ebText amount ng-binding">
+            {{vm.datePicker | date: 'shortDate'}}
+        </span>
+            </div>
+        </div>
+    <div ng-if="vm.ecbARCheck" class="form-group">
+        <label class="col-xs-3 ebControl-label ebControlLabelRtl">
+            {{'TEXT_INVOICE_TOBE_PAID'| translate}}
+        </label>
+        <table class="col-xs-9 table ecb-invoiceReviewTable ecb-invoiceTablePad">
+            <thead>
+              <tr>
+                <td>{{'TEXT_INVOICE_NUMBER'| translate}}</td>
+                <td>{{'TEXT_AMOUNT'| translate}}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="invoices in vm.invoiceList" ng-if="invoices.OpenAmt !== null">
+                <td class="ecb-invoiceAlign">{{ invoices.InvoiceString }}</td>
+                <td class="ecb-invoiceAlign">
+                    {{vm.currencyFormatter(invoices.OpenAmt, vm.duePaymentAmount.currency)}}
+                </td>
+              </tr>
+            </tbody>
+        </table>                
+     </div>
+    </div>
+    <div ng-if="vm.authorizeUser" class="row">
+        <div class="col-md-12 ecb-terms">
+            <p class="disclaimerCheck">{{'TEXT_CLICK_TO_PROCESS_PAYMENT' | translate }}</p>
+            <p><a class="disclaimerCheck" href="{{'TEXT_URL' | translate }}" target="_blank">{{'TEXT_VIEW_STATE_REFUND_FEE' | translate }}</a></p>
+            <p class="disclaimerCheck">{{'TEXT_AUTHORIZE_CORPORATE_ACCOUNT' | translate }}</p>
+            <div class="ecb-terms-inputBox">
+                <input type="checkbox" class="ecb-termscheckbox" ng-model="vm.authorizeCheck" /><label class="disclaimerCheck">{{'TEXT_I_AUTHORIZE' | translate }}</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-if="vm.payNowWidgetContent === 2" class="modal-footer payment-modal-footer"></div>
+<div ng-if="vm.payNowWidgetContent === 3  || vm.isTransactionSuccessPage" class="modal-header">
+    <h3 class="modal-title noBorder">{{'TEXT_PAYMENT_CONFIRMATION'| translate}}</h3>
+    <div class="pull-{{vm.layoutRightDirection}}">
+        <i class="fa fa-times ebIcon_interactive" aria-hidden="true" ng-click="vm.cancel()"></i>
+    </div>
+</div>
+<div class="ecbRelativeClass" ng-if="vm.payNowWidgetContent === 3 && vm.loading">
+      <div class="ebLoader">
+        <div class="ebLoader-Holder">
+          <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+        </div>
+      </div>
+    </div>
+<div ng-cloak id="hide-pay" ng-show="!vm.addError && vm.payment" ng-if="vm.payNowWidgetContent === 3 && !vm.loading" class="modal-body payment-modal-content">
+    <div class="form-group review-message">
+        <p class="col-md-12 col-xs-12 col-sm-12 ebText ebColor_grey_40 ecbRtlTextAlignRight" ng-if="vm.payConfirm">{{'TEXT_PAYMENT_PROCESSED'| translate}}</p>
+        <p class="col-md-12 col-xs-12 col-sm-12 ebText ebColor_grey_40 ecbRtlTextAlignRight" ng-if="vm.scheduleConfirm">{{'TEXT_PAYMENT_PROCESSED_ON' | translate}} {{vm.currentDateSigned | date: 'shortDate'}}</p>
+    </div>
+    <div class="payment-modal-form payment-review-form">
+        <div class="form-group">
+            <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+        {{'TEXT_CONFIRMATION_NUMBER'| translate}}
+      </label>
+            <div class="col-xs-9 col-sm-9"><span class="ecb-confirm ebText amount ng-binding">{{vm.confirmationNo}}</span></div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+        {{'TEXT_AMOUNT'| translate}}
+      </label>
+        <div class="col-xs-9 col-sm-9">
+            <span class="ebText amount ng-binding">
+                {{vm.currencyFormatter(vm.amountPayable, vm.duePaymentAmount.currency)}}
+            </span>
+        </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+        {{'TEXT_METHOD'| translate}}
+      </label>
+            <div class="col-xs-9 col-sm-9"><span class="ebText amount ng-binding">{{vm.cardSelected.nameCreditcardType || vm.cardSelected.accountType}} {{ vm.cardSelected.truncdAcctNum }} {{vm.cardSelected.idPriority == '1' ? '(Primary)' : ''}}</span></div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+        {{'TEXT_DATE'| translate}}
+      </label>
+            <div class="col-xs-9 col-sm-9"><span class="ebText amount ng-binding">{{vm.currentDateSigned | date: 'shortDate'}}</span></div>
+        </div>
+    <div ng-if="vm.ecbARCheck" class="form-group row ecb-formResponsive">
+        <label class="col-xs-3 ebControl-label ebControlLabelRtl">
+            {{'TEXT_INVOICES_PAID'| translate}}
+        </label>
+        <table class="table ecb-invoiceReviewTable ecb-invoiceTablePad">
+            <thead>
+              <tr>
+                <td>{{'TEXT_INVOICE_NUMBER'| translate}}</td>
+                <td>{{'TEXT_AMOUNT'| translate}}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="invoices in vm.invoicePaymentDetails" ng-if="invoices.AmountToPay" >
+                <td class="ecb-invoiceAlign">{{ invoices.InvoiceNum }}</td>
+                <td class="ecb-invoiceAlign">
+                    {{vm.currencyFormatter(invoices.AmountToPay, vm.duePaymentAmount.currency)}}
+                </td>
+              </tr>
+            </tbody>
+        </table>                
+     </div>
+    </div>
+</div>
+<!--<div ng-if="vm.payNowWidgetContent === 3 && vm.payment" class="modal-footer payment-modal-confirm-footer">
+  <button type="button" class="btn ebBtn ebBtn_color_darkBlue payment-modal-ok" ng-click="vm.cancel()">{{'TEXT_OK'| translate}}</button>
+</div>-->
+<div ng-if="vm.payNowWidgetContent === 4" class="modal-header">
+    <h3 class="modal-title noBorder">{{'TEXT_PAYMENT_CONFIRMATION'| translate}}</h3>
+    <div class="pull-{{vm.layoutRightDirection}}">
+        <i class="fa fa-times ebIcon_interactive" aria-hidden="true" ng-click="vm.cancel()"></i>
+    </div>
+</div>
+<div ng-cloak id="hide-pay" ng-show="!vm.addError" ng-if="vm.payNowWidgetContent === 4 && !vm.loading" class="modal-body payment-modal-content">
+    <div class="form-group review-message">
+        <p class="col-md-12 col-xs-12 col-sm-12 ebText ebColor_grey_40 ecbRtlTextAlignRight"> {{'TEXT_ONETIMEPAYMENT_CONFIRMATION'| translate}}</p>
+    </div>
+    <div class="payment-modal-form payment-review-form">
+        <div class="form-group">
+            <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+        {{'TEXT_CONFIRMATION_NUMBER'| translate}}
+      </label>
+            <div class="col-xs-9 col-sm-9"><span class="ecb-confirm ebText amount ng-binding">{{vm.confirmationNo}}</span></div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+        {{'TEXT_AMOUNT'| translate}}
+      </label>
+            <div class="col-xs-9 col-sm-9">
+                <span class="ebText amount ng-binding">
+                    {{vm.currencyFormatter(vm.amountPayable, vm.duePaymentAmount.currency)}}
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+        {{'TEXT_METHOD'| translate}}
+      </label>
+            <div class="col-xs-9 col-sm-9"><span class="ebText amount ng-binding">{{vm.oneTimeCardType}}</span></div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 col-sm-3 ebControl-label ebControlLabelRtl">
+        {{'TEXT_DATE'| translate}}
+      </label>
+            <div class="col-xs-9 col-sm-9"><span class="ebText amount ng-binding">{{vm.currentDateSigned | date: 'shortDate'}}</span></div>
+        </div>
+    <div ng-if="vm.ecbARCheck" class="form-group row ecb-formResponsive">
+        <label class="col-xs-3 ebControl-label ebControlLabelRtl">
+            {{'TEXT_INVOICES_PAID'| translate}}
+        </label>
+        <table class="table ecb-invoiceReviewTable ecb-invoiceTablePad">
+            <thead>
+              <tr>
+                <td>{{'TEXT_INVOICE_NUMBER'| translate}}</td>
+                <td>{{'TEXT_AMOUNT'| translate}}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="invoices in vm.oneTimeInvoiceList" ng-if="invoices.amountToPay !== null">
+                <td class="ecb-invoiceAlign">{{ invoices.invoiceNum }}</td>
+                <td class="ecb-invoiceAlign">
+                    {{vm.currencyFormatter(invoices.amountToPay, vm.duePaymentAmount.currency, false)}}
+                </td>
+              </tr>
+            </tbody>
+        </table>                
+     </div>
+    </div>
+</div>
+<!--<div ng-if="vm.payNowWidgetContent === 4" class="modal-footer payment-modal-confirm-footer">
+    <button type="button" class="btn ebBtn ebBtn_color_darkBlue payment-modal-ok" ng-click="vm.cancel()">{{'TEXT_OK'| translate}}</button>
+</div>-->
+
+<div ng-if="vm.invoiceError" class="pay-modal-error">
+    <div class="error-ebDialogBox error-confirmation">
+      <div class="ebDialogBox-contentBlock confirmation-content">
+        <div class="row ebDialogBox-primaryTextBox error-primaryText">
+          <p class="col-xs-12 col-sm-12 col-md-12 ecbWidth">{{'TEXT_UNABLE_TO_LOAD_INVOICES'}}</p>
+          <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_TRY_AGAIN' |translate }}</p>
+        </div>
+      </div>
+    </div>
+</div>
+<div ng-if="vm.addError" class="pay-modal-error">
+    <div class="error-message">
+        <div ng-if="vm.cyberError">
+            <div class="error-ebDialogBox error-confirmation">
+                <div class="ebDialogBox-contentBlock confirmation-content">
+                    <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                        <p class="col-xs-12 col-sm-12 col-md-12 ecbWidth">{{ 'TEXT_UNABLE_TO_PROCESS_REQUEST' |translate }}</p>
+                        <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_TRY_AGAIN' |translate }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="vm.cyberAddError">
+            <div class="error-ebDialogBox error-confirmation">
+                <div class="ebDialogBox-contentBlock confirmation-content">
+                    <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                        <p class="col-xs-12 col-sm-12 col-md-12 ecbWidth">{{ 'TEXT_ERROR_LAUNCHING_PAGE' |translate }}</p>
+                        <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_TRY_AGAIN' |translate }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="vm.cyberScheduleError">
+            <div class="error-ebDialogBox error-confirmation">
+                <div class="ebDialogBox-contentBlock confirmation-content">
+                    <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                        <p class="col-xs-12 col-sm-12 col-md-12 ecbWidth">{{'TEXT_ERROR_SCHEDULE_PAYMENT' | translate }}</p>
+                        <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_TRY_AGAIN' |translate }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="vm.cyberMakePaymentError">
+            <div class="error-ebDialogBox error-confirmation">
+                <div class="ebDialogBox-contentBlock confirmation-content">
+                    <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                        <p class="col-xs-12 col-sm-12 col-md-12 ecbWidth">{{ 'TEXT_ERROR_MAKING_PAYMENT' |translate }}</p>
+                        <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_TRY_AGAIN' |translate }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="vm.cyberAddPayNowError">
+            <div class="error-ebDialogBox error-confirmation">
+                <div class="ebDialogBox-contentBlock confirmation-content">
+                    <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                        <p class="col-xs-12 col-sm-12 col-md-12 ecbWidth">{{'TEXT_ERROR_ADD_PAYMENT'| translate}}</p>
+                        <p class="col-xs-12 col-sm-12 col-md-12"> {{'TEXT_CALL_CUSTOMER_CARE'| translate}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="vm.nodata">
+        <p>{{ 'TEXT_NO_PAYMENTS' |translate }}</p>
+    </div>
+</div>
+<div class="modal fade" id="hide-payments" ng-bind-html="vm.template" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
+<!-- Cybersource Redirection Confrimation Popup-->
+<div class="modal fade ecb-modalPayPopup" tabindex="-1" id="payConfirmPopup" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content ecb-contentPaymentPopup">
+            <div class="modal-header ecb-headerPaymentPopup">
+                <h2 class="modal-title ecb-headerPaymentPopup">{{'TEXT_ADD_NOW_PAY_NOW'| translate}}?</h2>
+            </div>
+            <div class="modal-body ecb-bodyPaymentPopup">
+                <span>{{'TEXT_CYBERSOURCE_POPUP'| translate}}</span>
+            </div>
+            <div class="modal-body ecb-bodyPaymentPopup">
+                <span>{{'TEXT_WISH_TO_PROCEED'| translate}}</span>
+            </div>
+            <div class="modal-footer ecb-footerPaymentPopup">
+                <button class="btn ebBtn ebBtn_color_darkBlue" type="button" data-target="#hide-payments" ng-click="vm.addCardNowPayNow()">{{'TEXT_PROCEED'| translate}}</button>
+                <button class="btn ebBtn ebBtn_default" type="button" ng-click="vm.closePayPopup()" data-dismiss="modal">{{'TEXT_CANCEL'| translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

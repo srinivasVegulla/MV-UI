@@ -1,0 +1,167 @@
+.ecb-chargesCloseImageViewAll {
+    cursor: pointer;
+    position: relative;
+    left: 5px;
+    min-width: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.ecb-chargesLiveWidget {
+	background: #34BADD !important;
+	border-radius: 6px;
+	color: #FFF;
+  margin-bottom: 5px !important;
+}
+.ecb-chargesLiveWidget .ecb-minimalWidgetHeader {
+	border-bottom: 1px solid rgba(255, 255, 255, .4);
+    background-color: #34BADD;
+    padding: 0 10px;
+}
+.ecb-chargesLiveWidget .ecb-linkToBills .ebBtn {
+	font-size: 1.2rem;
+	color: #FFF;
+	text-decoration: none;
+}
+.ecb-chargesLiveWidget .ecb-minimalWidgetHeader h2 {
+	border-bottom: none;
+	color: #FFF;
+}
+.ecb-chargesLiveWidget .ecb-chargesLiveWidgetContent {
+	background: #34BADD;
+	color: #FFF;
+	padding: 15px 0px 5px 0px;
+}
+.ecb-chargesLiveWidgetContent .ecb-minimalChargesAmount {
+	width: 35%;
+	background: rgba(255, 255, 255, 0.2);
+	font-size: 20px;
+	color: #FFF;
+	float: left;
+    text-align: center;
+    height: 70px;
+    display: table;
+}
+.ecb-chargesLiveWidgetContent .ecb-minimalChargesAmount span {
+	display: table-cell;
+	vertical-align: middle;
+}
+.ecb-chargesLiveWidgetContent .ecb-minimalChargesAmount sup {
+	color: #FFF !important;
+    font-size: 70%;
+    top: .3em;
+    vertical-align: super;
+}
+.ecb-chargesLiveWidgetContent .ecb-minimalChargesAdjustments {
+	width: 65%;
+	color: #FFF;
+	float: left;
+	padding: 10px;
+}
+.ecb-minimalChargesAdjustments table {
+	margin-bottom: 0;
+}
+.ecb-minimalChargesAdjustments table tr td {
+	border: none;
+	padding: 0 10px;
+	text-align: left;
+	padding: 2px 7px;
+}
+body[dir='RTL'] .ecb-minimalChargesAdjustments table tr td {
+  text-align: right;
+}
+.ecb-minimalChargesAdjustments table tr td:first-child {
+	width: 60%;
+	text-align: right;
+	opacity: 0.8;
+}
+body[dir='RTL'] .ecb-minimalChargesAdjustments table tr td:first-child {
+  text-align: left;
+}
+.ecb-minimalChargesAdjustments table tr td sup {
+	color: #FFF !important;
+    top: .3em;
+    vertical-align: super;
+}
+.ecb-chargesLiveWidgetContent .ecb-linkToBills {
+	text-align: right;
+    padding-right: 10px;
+    clear: both;
+}
+.ecb-chargesLiveWidgetContent .ecb-linkToBills a {
+	color: #FFF;
+}
+.ecb-chargesLiveWidgetContent p{
+  padding-left:10px;
+}
+
+@media screen and (min-width:990px) and (max-width:1117px){
+  .ecb-chargesLiveWidgetContent {
+    padding-top: 5px !important;
+  }
+  .ecb-minimalChargesAmount{
+    padding-top: 0px !important;
+  }
+  .ecb-minimalChargesAdjustments{
+    padding-bottom: 0px !important;
+  }
+}
+.ebCloseIcon{
+	padding: 0px 8px;
+}
+
+@media screen and (min-width:320px) and (max-width:500px){
+  .ecb-chargesLiveWidgetContent .ecb-minimalChargesAmount {
+		font-size:14px;
+		height: 95px;
+	}
+	.ecb-minimalChargesAdjustments table tr td:first-child {
+		width: 100%;
+		display: block;
+	}
+	.ecb-minimalChargesAdjustments table tr td {
+		width: 100%;
+		display: block;
+		text-align: right;
+	}
+}
+
+@media screen and (min-width:768px) and (max-width:900px){
+  .ecb-chargesLiveWidgetContent .ecb-minimalChargesAmount {
+		// font-size:14px;
+		height: 95px;
+	}
+	.ecb-minimalChargesAdjustments table tr td:first-child {
+		width: 100%;
+		display: block;
+	}
+	.ecb-minimalChargesAdjustments table tr td {
+		width: 100%;
+		display: block;
+		text-align: right;
+	}
+}
+
+@media screen and (min-width:990px) and (max-width:1200px){
+  .ecb-chargesLiveWidgetContent .ecb-minimalChargesAmount {
+		// font-size:14px;
+		height: 95px;
+	}
+	.ecb-minimalChargesAdjustments table tr td:first-child {
+		width: 100%;
+		display: block;
+	}
+	.ecb-minimalChargesAdjustments table tr td {
+		width: 100%;
+		display: block;
+		text-align: right;
+	}
+}
+
+/*Hebrew Css Fixes start*/
+body[dir='RTL'] .ecb-minimalChargesAmount{
+  float: right;
+}
+body[dir='RTL'] .ecb-linkToBills{
+  float: left;
+}
+/*Hebrew Css Fixes end*/

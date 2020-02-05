@@ -1,0 +1,15 @@
+#server:
+#    port: 8001
+#    use-forward-headers: true
+#zuul:
+# routes:
+#    oauth:
+#     path: /oauth/**
+#     url: http://10.200.37.7:8081/uaa/oauth
+#    api:
+#      path: /api/**
+#      url: http://10.200.37.7:8082
+#security:
+#  oauth2:
+#    resource:
+#      userInfoUri: http://10.200.37.7:8081/uaa/user

@@ -1,0 +1,13 @@
+<div>
+  <div class="widget">
+    <div class="header clearfix">
+      <h2 class="pull-left ecb-rtlLayoutTitle">
+        {{ vm.headerText }}
+      </h2>
+      <span class="pull-right ecb-rtlLayoutContent" ng-transclude="actions">
+      </span>
+    </div>
+    <div class="content {{ vm.contentCssClass }}" ng-transclude="content">
+    </div>
+  </div>
+</div>

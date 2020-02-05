@@ -1,0 +1,31 @@
+<div class="widget">
+    <div class="header clearfix">
+        <h2 class="usage-header-name">{{'TEXT_USAGE_ACTIVITY'| translate}}</h2>
+    </div>
+    <div class="ecbRelativeClass" ng-if="ua.loading">
+      <div class="ebLoader">
+        <div class="ebLoader-Holder">
+          <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+        </div>
+      </div>
+    </div>
+    <div class="content usage-activity">
+        <div ng-if="ua.noData">{{'TEXT_NO_PRIOR_USAGE_ACTIVITY' | translate}}</div>
+        <div ng-show="ua.showGraph()" class="eaColumnChart-rCharts-section">
+            <div class="usageActivity-eaColumnChart-rCharts-columnChart">
+            </div>
+        </div>
+        <div ng-if="ua.connectionError">
+         <div class="error-ebDialogBox error-confirmation">
+            <div class="ebDialogBox-contentBlock confirmation-content">
+              <div>
+                <i ng-click="ua.clickClose()" class="fa fa-times error-close" aria-hidden="true"></i>
+              </div>
+              <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                <p class="col-xs-12">{{'TEXT_CONNECTION_ERROR' | translate}}</p>
+              </div>
+             </div>
+         </div>
+        </div>
+    </div>
+</div>

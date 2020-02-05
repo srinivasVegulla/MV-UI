@@ -1,0 +1,22 @@
+{
+	"url": {
+		"URL": "https://10.200.165.8:8080/Metraview",
+		"Title": "ECB MetraView : Login",
+		"CurrentUrl": "https://10.200.165.8:8080/login",
+    "DashBoardURL": "https://10.200.165.8:8080/dashboard",
+		"DashBoard": "ECB MetraView : Dashboard"
+	},
+  "user": {
+		"username": "accsub02m",
+		"passwordField": "MetraTech1"
+	},
+    "interval": "4/1/17 - 4/30/17",
+   "widgetname": "Usage Activity",
+   "displaymessage": "No prior usage activity",
+   "date": "12/31/17",
+     "changedinterval": "12/1/16 - 12/31/16 #Invoice: 000010069",
+     "numofbarsinboth": "10",
+     "usagebars": "5",
+     "numberofbars": "5 bars are present in this period"
+  }
+  

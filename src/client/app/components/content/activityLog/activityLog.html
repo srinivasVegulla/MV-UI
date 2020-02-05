@@ -1,0 +1,92 @@
+<div class="widget ecb-activityLogDetail" ng-class="{ 'card-expanded ecbCardExpanded': vm.activityLogState === 'expanded'}">
+  <div class="header clearfix">
+    <h2 class="activity-header-name">
+      <span>{{'TEXT_ACTIVITY_LOG'| translate}}</span>
+    </h2>
+    <div class="pull-right ecb-rtlCloseIcon" ng-if="vm.expandedState">
+      <ul class="list-inline">
+        <li>
+          <button class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue pull-right close-image-view-all" ng-click="vm.closeAllActivities()">
+            <i class="fa fa-times ebIcon" aria-hidden="true"></i></button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="ecbRelativeClass" ng-if="vm.loading && !vm.expandedState">
+    <div class="ebLoader">
+      <div class="ebLoader-Holder">
+        <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+      </div>
+    </div>
+  </div>
+  <div class="content" ng-if="!vm.loading && !vm.expandedState" ng-class="{ 'widget-no-content': (vm.activityLogList.length <= 3 ) } " ng-if="!vm.expandedState">
+    <div ng-if="vm.activityCount === 0">{{'TEXT_NO_ACTIVITY_LOG' | translate}}</div>
+    <div class="ecb-activityLogDashboard" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <table>
+        <tbody>
+          <tr ng-repeat="activityLog in vm.activityLogList track by $index" ng-if="$index < vm.dashboardActivityLogLimit">
+            <td class="col-xs-3 text-right">
+              <div ng-if="!activityLog.isPreviousDay" class="ecb-activityLogDay">
+                <div ng-switch="activityLog.activitydate">
+                  <p ng-switch-when="d0">{{'TEXT_TODAY' | translate}}</p>
+                  <p ng-switch-when="d1">{{'TEXT_YESTERDAY' | translate}}</p>
+                  <p ng-switch-default>{{activityLog.activitydate}}</p>
+                </div>
+              </div>
+            </td>
+            <td class="col-xs-1 ecb-timelineTextLine">
+              <div class="ecb-circle"></div>
+            </td>
+            <td class="col-xs-8">
+               <div class="ebNotification ecb-activityView" ng-class="vm.getClassAsperActivityType(activityLog.isfailure, $index)">
+                <p>{{activityLog.eventname}}</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  </div>
+  <div class="content widget-content-list ecb-expandBody" ng-if="vm.expandedState">
+    <div ng-if="vm.activityCount === 0">{{'TEXT_NO_ACTIVITY_LOG' | translate}}</div>
+    <div ecb-infinite-scroller scroll-get-more-fn="vm.getMoreData(index, count)" scroll-page-size="20" scroll-style="card" >
+        <div ng-if="($first || item.activitydate != dataBuffer[$index-1].activitydate) && vm.isDefaultSort()">
+          <div class="ecb-dayTimeHeader col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-click="show = !show" active={{show}} style="background-color : transparent;">
+              <div class="ebAccordion-header" style="background-color : transparent;">
+                <div class="ebAccordion-title" ng-switch="item.activitydate" style="background-color : transparent;">
+                  <p ng-switch-when="d0">{{'TEXT_TODAY' | translate}} </p>
+                  <p ng-switch-when="d1">{{'TEXT_YESTERDAY' | translate}}</p>
+                  <p ng-switch-default>{{item.activitydate}}</p>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pull-{{vm.layoutLeftDirection}}">
+          <div class="ecb-activityBox success-ecbActivityBox" ecb-activity-card-overflow ecb-activity-cardlayout-height toggle="0" isfailure="{{item.isfailure}}"
+                   cardindex="{{item.id_audit}}">
+            <div class="ecb-activityBoxContent">
+                <section>
+                  <p class="ecb-activityTypeText">
+                    <span ng-if="!item.isfailure">{{'TEXT_SUCCESS' | translate}}</span>
+                    <span ng-if="item.isfailure">{{'TEXT_ERROR' | translate}}</span>
+                  </p>
+                  <p>{{item.localeTime}}</p>
+                  <p>{{item.username}} / {{item.applicationname}}</p>
+                  <p>{{item.eventname}}</p>
+                  <p>{{item.details}}</p>
+                </section>
+            </div>
+            <div class="ecb-activityLogBoxHandler" ng-click="showCompleteDetails(item)">
+                <i ng-if="!vm.checkExpandState(item.toggle)" class="fa fa-angle-down"  aria-hidden="true"></i>
+                <i ng-if="vm.checkExpandState(item.toggle)" class="fa fa-angle-up"  aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="footer clearfix">
+    <p class="ebText pull-{{vm.layoutRightDirection}}" ng-if="!vm.expandedState && !vm.loading && vm.activityCount > 0">
+      <button class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue pull-right" ng-click="vm.showAllActivities()">{{'TEXT_VIEW_ALL'|translate}} ></button>
+    </p>
+  </div>
+</div>

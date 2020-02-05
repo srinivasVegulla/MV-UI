@@ -1,0 +1,9 @@
+﻿<div class="locale-selector btn-group">
+        <img ng-repeat="flagData in vm.localeFlagData track by $index" tabindex="{{flagData.tabindex}}"
+        ng-if="flagData.loginDisplay" ng-src="/static/{{vm.flagLocationFolder}}/localeConfig/{{flagData.locale}}.png"
+        alt="{{flagData.alternateName}}" title="{{flagData.title}}"
+        ng-click="vm.changeLocale(flagData.locale, flagData.direction)"
+        ng-keypress="vm.checkIfEnterKeyWasPressed($event,flagData.locale, flagData.direction)"
+        ng-class="{ 'selected-locale': vm.isSelected(flagData.locale, flagData.direction) }">
+
+</div>

@@ -1,0 +1,57 @@
+<div class="ecbRelativeClass" ng-if="vm.loading">
+  <div class="ebLoader">
+    <div class="ebLoader-Holder">
+      <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+    </div>
+  </div>
+</div>
+<div class="form-group ecb-changePasswordError" ng-if="vm.error">
+  <div class="col-xs-12" ng-if="vm.errorMessage == 1">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="vm.error = ''">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ 'TEXT_COULD_NOT_SAVE_EDIT' | translate }} {{ 'TEXT_SERVER_CONNECTION_FAILED' | translate }}
+    </div>
+  </div>
+  <div class="col-xs-12" ng-if="vm.errorMessage == 2">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="vm.error = ''">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ 'TEXT_COULD_NOT_SAVE_EDIT' | translate }} {{vm.error.Error}}
+    </div>
+  </div>
+  <div class="col-xs-12" ng-if="vm.errorMessage == 3">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="vm.error = ''">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ 'TEXT_ERROR_RETREIVING_DETAILS' |translate }} {{ 'TEXT_SERVER_CONNECTION_FAILED' | translate }} {{ 'TEXT_TRY_AGAIN' |translate
+      }}
+    </div>
+  </div>
+</div>
+<div class="form-group ecb-paperInvoice" ng-if="!(vm.error) && !vm.loading">
+  <label for="country" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+    {{ 'TEXT_PAPER_INVOICE' | translate }}
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <span class="blueLine country-blueLine"></span>
+    <div class="dropdown">
+      <button class="ebBtn ebBtn-default dropdown-toggle form-control selectCountryDropDown" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="vm.selectedMethod" name="countryDropdown">
+        <span class="dropdown-text pull-{{vm.layoutLeftDirection}}">
+        {{vm.selectedMethod}}
+        </span>
+        <span class="caret pull-{{vm.layoutRightDirection}} filter-dropdown-caret"></span>
+      </button>
+      <ul class="dropdown-menu filterDropDownBox scrollable-menu country-dropdown-menu" aria-labelledby="dropdownMenu2">
+        <li ng-repeat="invoiceMethod in vm.invoiceMethods" ng-class="{'ebComponentList-item_selected': (vm.selectedMethod == invoiceMethod.invoiceMethodName)}">
+          <a href="" ng-click="vm.updateInvoiceMethod($index)">
+            {{invoiceMethod.invoiceMethodName}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

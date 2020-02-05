@@ -1,0 +1,222 @@
+<div class="ebMetraviewContainer">
+  <!-- ToDo: Create layout header text directive. -->
+  <div class="ebBreadcrumbs ecb-navigation hidden-sm hidden-xs">
+    <div class="ebBreadcrumbs-item">
+        <a class="ebBreadcrumbs-link" ng-click="vm.showDashboard()">{{'TEXT_APPLCATION_NAME' | translate}}</a>
+        <span class="ebBreadcrumbs-arrow" ng-click="vm.showNavigationList()">
+            <i class="ebIcon ebIcon_small ebIcon_interactive ebIcon_downArrow_10px"></i>
+        </span>
+        <div class="ebBreadcrumbs-list">
+            <ul class="ebComponentList">
+                <li class="ebComponentList-item" ng-click="vm.showView(link.id, $index)" ng-repeat="link in vm.navigationLinks">
+                  <a href="#" class="ebComponentList-link" title="">{{link.name | translate}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="ebBreadcrumbs-item" ng-if="vm.isEbBreadcrumbsItem()">
+        <a href="#" class="ebBreadcrumbs-link" ng-if="vm.navigationLink || vm.isOfferStore"> {{vm.selectedNavLinkDisplay}}</a>
+        <a href="#" class="ebBreadcrumbs-link" ng-if="vm.isQuotes && !vm.isOfferStore">{{'TEXT_QUOTES' | translate }}</a>
+        <a href="#" class="ebBreadcrumbs-link" ng-if="vm.isDownloads && !vm.isOfferStore">{{'TEXT_DOWNLOADS' |translate}}</a>
+        <a href="#" class="ebBreadcrumbs-link" ng-if="vm.expandTransactionPopup && !vm.isOfferStore">{{'TEXT_TRANSACTIONS' | translate }}</a>
+    </div>
+  </div>
+  <div ng-if="vm.nodata" class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     <p>{{ 'TEXT_NO_BILLS' | translate }}.</p>
+     <p>{{ 'TEXT_TRY_AGAIN' | translate }}</p>
+  </div>
+  <h1 class="hidden-xs hidden-sm page-title" ng-if ="vm.navigationLink || vm.isOfferStore">
+    {{ vm.userDisplayName }} {{vm.selectedNavLinkDisplay}}
+  </h1>
+  <h1 class="hidden-xs hidden-sm page-title" ng-if ="vm.isWelcomeUserDisplay && !vm.isQuotes && !vm.isDownloads && !vm.expandTransactionPopup">
+    {{'TEXT_WELCOME' |translate}} {{vm.userDisplayName}}
+  </h1>
+  <h1 class="hidden-xs hidden-sm page-title" ng-if="vm.isQuotes && !vm.isOfferStore">
+    {{'TEXT_QUOTES' | translate }}
+  </h1>
+  <h1 class="hidden-xs hidden-sm page-title" ng-if="vm.isDownloads && !vm.isOfferStore">
+    {{'TEXT_DOWNLOADS' |translate}}
+  </h1>
+   <h1 class="hidden-xs hidden-sm page-title" ng-if="vm.expandTransactionPopup && !vm.isOfferStore">
+    {{'TEXT_TRANSACTIONS' |translate}}
+  </h1>
+  <!-- ToDo: Create layout bill period selector directive. -->
+  <nav class="col-xs-12 ebHorizontalBar hidden-xs hidden-sm" ng-if="vm.showBillFilterBar()"
+  ng-class="{'hidden-xs hidden-sm': vm.isOfferStore }">
+    <div ng-if="!vm.nodata">
+        <ul class="list-inline list-unstyled ecb-rtlRangeFilter" ng-if="cardState == 'expanded' && vm.widgetFilter.period != false">
+          <label class="ebLabel">
+            {{'TEXT_SELECTED_BY' | translate}}
+          </label>
+          <li>
+            <div class="ebSelect filter-select">
+              <button class="ebBtn ebBtn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span ng-if="vm.billPeriodTypeSelectedIndex == 0">{{'TEXT_BILL' | translate}}</span>
+                <span ng-if="vm.billPeriodTypeSelectedIndex == 1">{{'TEXT_DATE_RANGE' | translate}}</span>
+                <span class="caret pull-{{vm.layoutRightDirection}}"></span>
+              </button>
+              <ul class="dropdown-menu filterDropDownBox scrollable-menu" aria-labelledby="dropdownMenu2">
+              <li class="ebComponentList-item" ng-if="!vm.expandTransactionPopup" ng-class="{'ebComponentList-item_selected': (vm.billPeriodTypeSelectedIndex == 0)}">
+                  <a href="#" class="filter-desktop-dropdown" ng-click="vm.changeBillPeriodType(0)">
+                    {{'TEXT_BILL' | translate}}
+                  </a>
+                </li>
+                <li  class="ebComponentList-item" ng-if="vm.isCalendarOption()" ng-class="{'ebComponentList-item_selected': (vm.billPeriodTypeSelectedIndex == 1)}">
+                  <a href="#" class="filter-desktop-dropdown" ng-click="vm.changeBillPeriodType(1)">
+                    {{'TEXT_DATE_RANGE' | translate}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <label class="ebLabel hidden-xs" ng-if='vm.isCalendarView()'>
+            {{'TEXT_START_DATE' | translate}}
+          </label>
+          <li ng-if='vm.isCalendarView()' class="hidden-xs">
+            <datepicker button-prev="<i class='fa fa-arrow-left'></i>" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" 
+              date-format="{{ vm.localizePickDateFormat }}" date-min-limit="{{ vm.setToDefFormat(vm.minDateLimit) }}" date-max-limit="{{ vm.setToDefFormat(vm.maxDateLimit) }}">
+              <input id="dashboardStartDateInput" name="filterStartDate" type="text"
+                class="form-control ebInput ebInput_width_full textBoxHeight filterStartDateInput"
+                ng-model="vm.filterStartDate" ng-change="vm.updateEndDate()" />
+              <i ng-click="vm.selectDate('dashboardStartDateInput')"
+                class="ebIcon ebIcon_calendar ecb-calendar ecb-calendarRight"></i>
+            </datepicker>
+          </li>
+          <label class="ebLabel hidden-xs" ng-if='vm.isCalendarView()'>
+          {{'TEXT_END_DATE' | translate}}
+          </label>
+          <li ng-if='vm.isCalendarView()' class="hidden-xs">
+            <datepicker button-prev="<i class='fa fa-arrow-left'></i>" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" 
+              date-format="{{ vm.localizePickDateFormat }}" date-min-limit="{{ vm.setToDefFormat(vm.filterStartDate) }}" date-max-limit="{{ vm.setToDefFormat(vm.maxDateLimit) }}">
+              <input id="dashboardEndDateInput" name="filterEndDate" type="text"
+                class="form-control ebInput ebInput_width_full textBoxHeight filterEndDateInput"
+                ng-model="vm.filterEndDate" />
+              <i ng-click="vm.selectDate('dashboardEndDateInput')"
+                class="ebIcon ebIcon_calendar ecb-calendar ecb-calendarRight"></i>
+            </datepicker>
+          </li>
+          <li ng-if='vm.isCalendarView()' class="hidden-xs">
+            <button class="btn ebBtn ebBtn-default ecb-filterCalendarSearchBtn" ng-disabled="!vm.isDateRange()" id="filterCalendarSearchBtn" ng-click="vm.selectByDateRange()">
+              {{'TEXT_SEARCH' | translate}}
+            </button>
+          </li>
+        </ul>
+        <ul class="list-inline list-unstyled ecb-rtlBillFilter" ng-if="vm.widgetFilter.period != false">
+          <label class="ebLabel" ng-if="cardState != 'expanded'">
+            {{ 'TEXT_SELECT_BILLING_PERIOD' | translate }}
+          </label>
+          <li ng-if='(!vm.isCalendarView() || vm.billPeriodTypeSelectedIndex == 0) && vm.hasUserType'>
+            <div class="dropdown" ng-if="vm.hardClosedIntervals==false">
+              <button class="ebBtn ebBtn-default filterDropdown dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="vm.accountIntervals[vm.index]">
+                {{ vm.formatBillingPeriodInterval(vm.accountIntervals[vm.index]) }}
+                <span class="caret "></span>
+              </button>
+              <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenu3">
+                <li ng-repeat="interval in vm.accountIntervals | filter : filterInvoice" class="ebComponentList-item" ng-class="{'ebComponentList-item_selected': ($index === vm.index)}">
+                  <a href="#" ng-init="vm.selectedDateRange" ng-click="vm.changeDropdown(interval);vm.setChoiceIndex($index);" class="filter-desktop-dropdown">
+                    {{ vm.formatBillingPeriodInterval(interval) }}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="dropdown" ng-if="vm.hardClosedIntervals==true">
+              <button class="ebBtn ebBtn-default filterDropdown dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="vm.hardClosedIntervalsList[vm.index]">
+                {{ vm.formatBillingPeriodInterval(vm.hardClosedIntervalsList[vm.index]) }}
+                <span class="caret "></span>
+              </button>
+              <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenu3">
+                <li ng-repeat="interval in vm.hardClosedIntervalsList| filter:filterInvoice" class="ebComponentList-item" ng-class="{'ebComponentList-item_selected': ($index === vm.index)}">
+                  <a href="#" ng-init="vm.selectedDateRange" ng-click="vm.changeDropdown(interval);vm.setChoiceIndex($index);" class="filter-desktop-dropdown">
+                    {{ vm.formatBillingPeriodInterval(interval) }}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      <ul ng-if='vm.widgetFilter.sortable' class="list-inline list-unstyled ecb-dashboardSortKey hidden-xs hidden-sm">
+        <label class="ebLabel ecb-rtlSortBy">
+         {{'TEXT_SORT_BY' | translate}}
+        </label>
+        <li>
+          <div class="ebSelect filter-select">
+            <button class="ebBtn ebBtn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{vm.getSortKeyDisplayName(vm.selectedSortKey())}}
+              <span class="caret pull-{{vm.layoutRightDirection}}"></span>
+            </button>
+            <ul class="dropdown-menu filterDropDownBox scrollable-menu" aria-labelledby="dropdownMenu3">
+              <li ng-repeat="sortKey in vm.widgetFilter.sortKeys track by $index" class="ebComponentList-item" ng-class="{'ebComponentList-item_selected': (sortKey === vm.selectedSortKey())}">
+                <a href="#" class="filter-desktop-dropdown" ng-click="vm.setSortKey(sortKey)">
+                  {{vm.getSortKeyDisplayName(sortKey)}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <ul class="list-inline list-unstyled hidden-xs hidden-sm">
+        <li>
+          <button class="btn ebBtn ebBtn_color_darkBlue hidden">
+            <i class="ebIcon ebIcon_searchWhite rotateY"></i>
+            <span>
+              {{ 'TEXT_FILTER' | translate }}
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="btn ebBtn btn-default hidden">
+            {{ 'TEXT_CLEAR' | translate }}
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="ebIcon_filter ecb-widgetsFilterIcon pull-right hidden-xs hidden-sm" data-toggle="modal" data-target="#filterModal" ng-if="vm.isFilterIcon" ng-click="vm.filter()"></div>
+
+    <ul class ="list-inline" ng-if="vm.nodata">
+      <label class="ebLabel">
+        {{ 'TEXT_NO_BILLS' | translate }}
+      </label>
+    </ul>
+  </nav>
+  <nav class="col-xs-12 ecb-horizontalBarRoute" ng-if="vm.activeRouteBar">
+    <div>
+      <label>{{ 'TEXT_VIEWING_ACCOUNT_AS' | translate }} <strong>{{ vm.userName }}</strong>.</label>
+      <a ng-click="vm.routeToActiveUser()">{{ 'TEXT_GOTO_OWN_ACCOUNT' | translate }}</a>
+    </div>
+  </nav>
+  <!-- ToDo: Create layout card grid/list directive. -->
+  <div class="ecb-horizontalBarFix">
+    <!-- <div class="cardContainer" ng-class="(widgetOpen) ? 'card-expanded' : ''"> -->
+    <div class="cardContainer" id="dashboardContainer" ng-class="{ 'card-expanded': cardState === 'expanded'}">
+    </div>
+  </div>
+  <!-- ToDo: ??? -->
+  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 div-height">
+    <ecb-filter ng-hide="showFilter" account-id="{{ vm.user.accountId }}" index="vm.index"></ecb-filter>
+  </div>
+
+  <div ng-mouseover='vm.checkBillAdjustmentPopup($event, true)' ng-mouseleave='vm.checkBillAdjustmentPopup(false)' ng-click='vm.checkBillAdjustmentPopupMe($event, true)'>
+    <ecb-billadjustment-popup account-id="{{ vm.user.accountId }}" ng-if="vm.showBillAdjustmentPopup"></ecb-billadjustment-popup>
+  </div>
+  <div class="modal-backdrop fade in ecb-hoverPopupModal" ng-if="vm.showBillAdjustmentPopup" ng-click="vm.checkBillAdjustmentPopup(false)"></div>
+</div>
+
+<!-- Database Down Error Message Popup-->
+  <div class="modal fade ecb-modalPayPopup" tabindex="-1" id="databaseDownPopup" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content ecb-contentPaymentPopup">
+        <div class="modal-header ecb-headerPaymentPopup">
+          <h2 class="modal-title ecb-headerPaymentPopup">{{'TEXT_SORRY'| translate}}</h2>
+        </div>
+        <div class="modal-body ecb-bodyPaymentPopup">
+           <span>{{'TEXT_COULDNOT_CONNECT_DATABASE'| translate}}</span>
+        </div>
+        <div class="modal-footer ecb-footerPaymentPopup">
+          <button class="btn ebBtn ebBtn_color_darkBlue" type="button" data-dismiss="modal">{{'TEXT_OK'| translate}}</button>
+          <button class="btn ebBtn ebBtn_default" type="button" data-dismiss="modal">{{'TEXT_CANCEL'| translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,17 @@
+<div ng-controller="shellController as vm">
+  <header ng-if="vm.isAuthenticated()">
+    <ecb-system-bar
+      first-name="{{ vm.account.info.firstName }}"
+      last-name="{{ vm.account.info.lastName }}"
+      account-id="{{ vm.accountId() }}">
+    </ecb-system-bar>
+  </header>
+  <section id="content" class="content ecb-shellContainerAlignment section-zindex-style">
+    <div ui-view class="shuffle-animation"></div>
+  </section>
+  <div class="ebLoader" ng-if="false">
+    <div class="ebLoader-Holder">
+      <span class="ebLoader-Dots ebLoader-Dots_color_grey"></span>
+    </div>
+  </div>
+</div>

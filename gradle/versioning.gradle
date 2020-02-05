@@ -1,0 +1,25 @@
+ext.buildTimestamp = new Date().format('yyyy-MM-dd HH:mm:ss')
+version = new ProjectVersion("${majorVersion}".toInteger(), "${minorVersion}".toInteger(), "${revision}".toInteger(),  System.env.BUILD_NUMBER ?: "000")
+
+class ProjectVersion {
+    Integer major
+    Integer minor
+    Integer revision
+    String build
+
+    ProjectVersion(Integer major, Integer minor, Integer revision, String build) {
+        this.major = major
+        this.minor = minor
+        this.revision = revision
+        this.build = build
+    }
+
+    @Override
+    String toString() {
+        String fullVersion = "$major.$minor.$revision"
+        if(build) {
+            fullVersion += ".$build"
+        }
+        fullVersion
+    }
+}

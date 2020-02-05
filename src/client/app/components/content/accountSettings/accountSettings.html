@@ -1,0 +1,27 @@
+<div class="ecb-accountSettings">
+  <label class="ebText ecb-userSelectedTimeZone" ng-if="!vm.loading">{{ 'TEXT_TIMEZONE' | translate}}{{vm.userTimeZone}}</label>
+  <div class="ecbRelativeClass" ng-if="vm.loading">
+    <div class="ebLoader">
+      <div class="ebLoader-Holder">
+        <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+      </div>
+    </div>
+  </div>
+  <div ng-if="!vm.loading">
+    <div ng-if="vm.autoPayoff">
+      <button class="btn ebBtn btn-link ebColor_textLinkBlue ecb-userSettings-editIcon" ng-click="vm.paymentSetup(vm.accountId)">
+        <i class="fa fa-pencil ebIcon ebIcon ecb-autoPayEditIcon" aria-hidden="true"></i>{{ vm.autoPayStatus }}
+      </button>
+    </div>
+    <div ng-if="vm.paperInvoiceOff">
+      <button class="btn ebBtn btn-link ebColor_textLinkBlue ecb-userSettings-editIcon" ng-click="vm.invoiceMethod(vm.accountId)">
+        <i class="fa fa-pencil ebIcon ebIcon ecb-autoPayEditIcon" aria-hidden="true"></i>{{ 'TEXT_PAPER_INVOICE' | translate }} {{vm.invoiceMethodName}}
+      </button>
+    </div>
+    <div>
+      <button class="btn ebBtn btn-link ebColor_textLinkBlue ecb-userSettings-editIcon" ng-click="vm.securitySettings(vm.accountId)">
+        <i class="fa fa-pencil ebIcon ebIcon ecb-autoPayEditIcon" aria-hidden="true"></i>{{ 'TEXT_ACCOUNT_SECURITY_ON' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

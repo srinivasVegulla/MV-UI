@@ -1,0 +1,126 @@
+<div class="ecb-billAdjustmentPopup">
+	<div class="ebDialogBox ecb-dialogBoxBillAdjustment">
+	  <h3 class="ecb-dialogBoxHeaderText">{{bm.billAdjustmentData.header}}</h3>
+	  <div class="ebDialogBox-icon">
+	    <span class="ebIcon ebIcon_close ebIcon_interactive ecb-rtlCloseBillPopup" ng-click="bm.closePopup()"></span>
+	  </div>
+	  <div class="ebDialogBox-contentBlock ecb-dialogBoxBillBoxData">
+	    <div ng-if="bm.hoverPopupType == 'billAdjustment'" class="ebDialogBox-content eb_scrollbar ecb-billingContent">
+	      <div ng-if="bm.nodata"><p>{{ 'TEXT_NO_CHARGES' | translate }}</p></div>
+	      <div class="ecb-cardLayoutBox" ng-repeat="card in bm.dataListArray | orderBy:'dt_session':true">
+	      	<div>
+	          <div class="ebDialogBox-primaryText">
+							{{bm.currencyFormatter(card.adjustmentamountwithtax, card[bm.billAdjustmentData.currency])}}
+						</div>
+	          <div class="ebDialogBox-secondaryText">{{card.dt_session | date : "shortDate"}}</div>
+	        </div>
+	        <div>
+	          <h4>{{card.adjustmentinstancedisplayname}}</h4>
+	          <div class="ebDialogBox-secondaryText">{{card.description}}</div>
+	        </div>
+	      </div>
+	    </div>
+	    <div ng-if="bm.hoverPopupType == 'nonStandardCharges'" class="ebDialogBox-content eb_scrollbar ecb-billingContent">
+	      <div ng-if="bm.nodata"><p>{{ 'TEXT_NO_NSC_CHARGES' | translate }}</p></div>
+	      <div class="ecb-cardLayoutBox" ng-repeat="card in bm.dataListArray">
+	        <div>
+	          <div class="ebDialogBox-primaryText">
+							{{bm.currencyFormatter(card.chargeAmount, card[bm.billAdjustmentData.currency])}}
+						</div>
+	          <div class="ebDialogBox-secondaryText">{{card.issueTime | date : "shortDate"}}</div>
+	        </div>
+	        <div>
+	          <h4>{{card.description}}</h4>
+	        </div>
+	      </div>
+	    </div>
+	    <div ng-if="bm.hoverPopupType == 'PaymentsReceived'" class="ebDialogBox-content eb_scrollbar ecb-billingContent">
+	      <div ng-if="bm.nodata"><p>{{'TEXT_NO_PAYMENTS_RECEIVED'|translate}}</p></div>
+	      <div class="ecb-cardLayoutBox" ng-repeat="card in bm.dataListArray">
+	      	<div>
+	          <div class="ebDialogBox-primaryText">
+							{{bm.currencyFormatter(card.amount, card[bm.billAdjustmentData.currency])}}
+						</div>
+	          <div class="ebDialogBox-secondaryText">{{card.paymentDateString | date : "shortDate"}}</div>
+	        </div>
+	        <div>
+	          <div class="ecb-paymentsMethodName">{{card.creditCardTypeName ==='None'? card.paymentMethodName : card.creditCardTypeName}}</div>
+	          <table class="table table-noborder table-responsive table-paymentsReceived">
+	            <tbody>
+	                <tr>
+	                    <td>{{'TEXT_CARD_NO'|translate}}</td>
+	                    <td>XXXX XXXX XXXX {{card.checkOrCardNumber}}</td>
+	                </tr>
+	                <tr>
+	                    <td>{{'TEXT_TRANSACTION_ID'|translate}}</td>
+	                    <td>{{card.paymentTxnId}}</td>
+	                </tr>
+	            </tbody>
+	          </table>
+	        </div>
+	      </div>
+	    </div>
+	    <div ng-if="bm.hoverPopupType == 'PaymentsHistoryDetails'" class="ebDialogBox-content eb_scrollbar ecb-billingContent">
+	      <div ng-if="bm.nodata"><p class="ecb-noPaymentsHistory">{{'TEXT_PAYMENTS_HISTORY'|translate}}</p></div>
+	      <div class="ecb-cardLayoutBox" ng-repeat="card in bm.dataListArray">
+	      	<div>
+						<div class="ebDialogBox-primaryText">
+							{{bm.currencyFormatter(card.amount, card[bm.billAdjustmentData.currency])}}
+						</div>
+	          <div class="ebDialogBox-secondaryText">{{card.transactiondate | date : "shortDate"}}</div>
+	        </div>
+	        <div>
+	          <div class="ecb-paymentsMethodName" ng-if="!(card.paymenttype === 'ACH')">{{card.creditcardtype}}</div>
+	          <div class="ecb-paymentsMethodName" ng-if="card.paymenttype === 'ACH' ">{{card.paymenttype}}</div>
+	          <table class="table table-noborder table-responsive table-paymentsReceived">
+	            <tbody>
+	                <tr>
+	                    <td>{{'TEXT_CARD_NUMBER'|translate}}</td>
+	                    <td>XXXX XXXX XXXX {{card.accountnumber}}</td>
+	                </tr>
+	                <tr>
+	                    <td>{{'TEXT_TRANSACTION_ID'|translate}}</td>
+	                    <td>{{card.paymentinstid}}</td>
+	                </tr>
+	                <tr>
+	                    <td>{{'TEXT_STATUS'|translate}}</td>
+	                    <td><p ng-class="{'ecb-successSymbol': card.status === 'SUCCESS', 'ecb-pendingSymbol': card.status === 'PENDING', 'ecb-rejectedSymbol': card.status === 'REJECTED'}"></p>{{card.status}}</td>
+	                </tr>
+	            </tbody>
+	          </table>
+	        </div>
+	      </div>
+	    </div>
+	    <div ng-if="bm.hoverPopupType == 'MiscAdjustments'" class="ebDialogBox-content eb_scrollbar ecb-billingContent">
+	      <div ng-if="bm.nodata"><p class="ecb-noPaymentsHistory">{{'TEXT_NO_MISC_ADJUSTMENTS'|translate}}</p></div>
+	      <div class="ecb-cardLayoutBox" ng-repeat="card in bm.dataListArray">
+	      	<div>
+	          <div class="ebDialogBox-primaryText">
+							{{bm.currencyFormatter(card.amount, card[bm.billAdjustmentData.currency])}}
+						</div>
+	          <div class="ebDialogBox-secondaryText">{{card.timeestamp | date : "shortDate"}}</div>
+	        </div>
+	        <div>
+	          <div class='ecb-miscDesc'>{{card.c_invoicecomment}}</div>
+	          <table class="table table-noborder table-responsive table-paymentsReceived">
+	            <tbody>
+	                <tr>
+	                    <td>{{'TEXT_ACCOUNT_ID'|translate}}</td>
+	                    <td>{{bm.billAdjustmentData.accountId}}</td>
+	                </tr>
+	                <tr>
+	                    <td>{{'TEXT_CREDIT_TIME'|translate}}</td>
+	                    <td>{{card.c_credittime | date : "short"}}</td>
+	                </tr>
+	            </tbody>
+	          </table>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="ebDialogBox-actionBlock text-center">
+	    <button class="btn ebBtn" ng-if="bm.isViewAll" ng-click="bm.showExpandView()">{{'TEXT_VIEW_ALL' | translate}} ></button>
+	    <button class="btn ebBtn ecb-billDownloadBtn" ng-if="bm.isDownloadBtn" ng-disabled="bm.nodata" ng-csv="bm.billAdjustmentData.exportList" lazy-load="true" filename="{{bm.billAdjustmentData.filename}}" add-bom="true" charset="UTF-8" csv-header="bm.billAdjustmentData.exportListKeys" field-separator=" , "><span><i class="fa fa-download"></i></span> <span>{{'TEXT_DOWNLOAD' | translate}}</span></button>
+	  </div>
+	</div>
+</div>

@@ -1,0 +1,17 @@
+.ecb-pcaCloseImageViewAll{
+  cursor: pointer;
+  position:relative;
+  left: 5px;
+  min-width: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* Hebrew Css fixes start */
+body[dir='RTL'] .ecb-rtlPcaTitle{
+  float: right !important;
+}
+body[dir='RTL'] .ecb-pcaCloseImageViewAll{
+  float:left !important;
+}
+/* Hebrew Css fixes end */

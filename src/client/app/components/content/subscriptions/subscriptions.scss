@@ -1,0 +1,686 @@
+/* MySubscriptions Styles */
+@import "../../../../styles/_variables.scss";
+.centerTable{
+  margin:0 auto;
+}
+.widget > .content.subscription-methods > .subscription-method:hover  .hover-content-subscription{
+display: block;
+}
+.widget > .content.subscription-methods > .subscription-method  .hover-content-subscription{
+display: none;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height:100px;
+}
+.widget > .content.subscription-methods > .subscription-method  .hover-content-subscription > .overlay-subscription{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height:100px;
+margin-left: 0;
+background-color: #5c5c5c;
+z-index: 1;
+transition: background-color 3s ease;
+}
+.widget > .content.subscription-methods > .subscription-method  .hover-content-subscription > .content-area-subscription{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height:100px;
+z-index: 2;
+padding: 10px;
+margin-left: 0px;
+}
+
+.widget > .content.subscription-methods > .subscription-method:before{
+content: " ";
+display: block;
+position: absolute;
+width: 100%;
+height: 100px;
+opacity: 0.2;
+top: 0px;
+right: 0px;
+}
+.widget > .content.subscription-methods{
+height: 200px;
+overflow: hidden;
+}
+.widget > .content.subscription-methods > .subscription-method{
+border-bottom: 1px solid #adadad;
+margin-bottom: 5px;
+}
+.widget > .content.subscription-methods > .subscription-method:last-child{
+border-bottom: 0px;
+}
+.card-expanded.widget > .content.subscription-methods{
+height: initial;
+}
+.content-area-subscription > .well{
+  min-height:14px;
+}
+.content-area-subscription > .well-sm{
+  padding: 0px;
+  padding-left: 5px;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-top: 5px;
+  margin-left: 0px;
+  margin-bottom: 5px;
+  /*margin-right: 10px;*/
+}
+.ecb-subscriptionIconSpace{
+  padding-right: 5px;
+  margin-top: 2px;
+}
+.subscription-name{
+  /*padding-bottom: 5px;*/
+  font-size: 1.4rem;
+  color: white;
+  font-weight: bold;
+}
+
+.subscription-buttons{
+     width: 100%;
+    /*position: absolute;*/
+    bottom: -5px;
+    margin: 0;
+}
+.subscription-buttons > li{
+  margin: 0;
+  padding: 0;
+}
+.subscription-content{
+  width: 100%;
+}
+/* Cancel Subscription Ericsson GuideLines */
+.confirmation {
+  height: 129px;
+}
+.ecb-subscriptionConfirmationFooter
+{
+    margin-top: 1px;
+    padding: 2px 0;
+}
+.confirmation-close
+{
+        margin-top: 8px;
+}
+.confirmation-close:hover{
+  cursor: pointer;
+}
+.confirmation-content{
+    height: 100px;
+    margin: 0 8px;
+}
+.confirmation-border{
+font-size:1.6rem;
+margin-bottom: 0;
+border-bottom:1px solid #dadada;
+}
+
+.ebDialogBox-secondaryText > .subscription-name{
+    padding-bottom: 2px;
+    padding-top: 5px;
+    color: inherit;
+    font-weight:normal;
+}
+
+.cancel-subscription{
+  display: none;
+}
+.cancel-subscription.active{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  z-index: 1;
+}
+.widget.card-expanded > .content.subscription-methods > .subscription-method:last-child{
+  border-bottom: 1px solid #adadad;
+}
+.disabled {
+  color:grey;
+  text-decoration: none;
+}
+.btn-link-noborder {
+  box-shadow: none !important;
+}
+.ecb-callToCancelSubscription {
+  border: solid;
+  border-color: orange !important;
+  border-width: 1px;
+  color: orange;
+  background: white;
+  opacity: 1 !important;
+}
+.btn-link-noborder {
+  box-shadow: none !important;
+}
+.error-message {
+  color: red;
+}
+.ecb-subscriptionDatepicker {
+  padding: 0px;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  .ecb-subscriptionDatepicker {
+    left: -10%;
+   }
+}
+.ecb-subscriptionsCancelOn {
+   padding-left: 2px;
+}
+.ecb-subscriptionContent {
+  ._720kb-datepicker-calendar,
+    .ecbDatePicker {
+       z-index: 999999;
+       width: 90%;
+       height: auto;
+       position: absolute;
+       right: 0;
+   }
+   .textBoxHeight {
+       height: 25px;
+   }
+   .ecb-subscriptionCancelLabel {
+     margin-right: -4px;
+     padding: 0;
+   }
+}
+body[dir='LTR'] .ecb-subscriptionContent .ecb-calendar {
+     position: absolute;
+     right: 6px;
+     top: 4px;
+     opacity: .4;
+     cursor: pointer;
+   }
+/*Subscription Interactive Card*/
+.ecb-subscriptionCard {
+  max-width: 768px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 0 0px 3px #AA9;
+  height: 128px !important;
+  margin: 5px;
+  background-color: #ffffff;
+  border-bottom: none !important;
+  width: 99%;
+}
+.ecb-subscriptionCard:hover {
+  box-shadow: 0 0 3px 1.3px #AA9;
+}
+
+.ecb-subscriptionImage {
+  width: 13%;
+  height: 50%;
+  float: left;
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-top: 17px;
+}
+.ecb-subscriptionImageDescription {
+  text-align: center;
+  padding-top: 35px;
+}
+.ecb-subscriptionDetails {
+  height: 100%;
+  width: auto;
+  max-width: 63%;
+  margin: 1%;
+}
+.ecb-subscriptionName {
+  font-size: 1.2rem;
+  padding: 4px 0;
+  color: #333333;
+  font-weight: 700;
+  word-break: break-word;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ecb-subscriptionDescription {
+  font-size: 1.2rem;
+  padding: 4px 0;
+  overflow: hidden;
+  max-height: 48px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ecb-subscriptionCancel {
+  height: 22%;
+  margin-top: 1px;
+  padding: 2px 0;
+  position: absolute;
+  bottom: 0px;
+  width: 99.5%;
+  text-align: center;
+  background-color: #f2f2f2;
+  padding: 6px 0;
+
+  > * {
+    margin: 0 4px;
+  }
+
+  .ebInfoPopup-content_corner_bottomRight {
+    right: calc(50% - 100px);
+  }
+
+  .ebInfoPopup-content_corner_bottomRight .ebInfoPopup-arrowShadow {
+    right: 87px !important;
+  }
+  .ebInfoPopup-content_corner_bottomRight .ebInfoPopup-arrowBorder {
+    right: 89px !important;
+  }
+  .ebInfoPopup-infoIcon+.ebInfoPopup-content {
+    display:none;
+  }
+
+  .ebInfoPopup-infoIcon:hover+.ebInfoPopup-content {
+    display:block;
+  }
+}
+
+.content-area-subscription.ebDialogBox-secondaryText {
+  margin-top: 8px;
+  padding:0;
+}
+
+.ecb-subscriptionsName-tabularView {
+  font-size: 1.2rem;
+    padding-bottom: 5px;
+    font-weight: 600;
+    color: #0066b3;
+    padding-top: 9px;
+    max-height : 35px;
+}
+.ecb-subscriptionsCancel-tabularDialogue {
+  position: absolute;
+  top: 10%;
+  left: 31%;
+  display: block;
+  width: 32%;
+  right: 40%;
+  z-index: 12;
+}
+.ecb-subscriptionsCancelTabularView {
+  display: block;
+  position: relative;
+  top: 15px;
+  margin: 0 auto;
+  height: 32px;
+  white-space: pre-wrap;
+}
+.ecb-subscriptionsImage-tabularView {
+  opacity: .8;
+  padding: 10px;
+  background-color: inherit;
+  height: 100%;
+  width: auto;
+}
+.ecb-subscriptionsImage-cardView {
+  width:48px;
+}
+
+.ecb-addSubscription{
+  margin-top: 12px;
+}
+.ecb-storeHeader{
+  height: 30px;
+}
+.ecb-storeHeader .ecb-storeNav{
+  height: 25px;
+  background: #e7e7e7;
+  width: 98%;
+}
+.ecb-storeHeader div:last-child{
+  height: 25px;
+  background: #e7e7e7;
+  border: 1px solid #d8d8d8;
+  width: 2%;
+  min-width: 26px;
+  text-align: center;
+  padding-top: 3px;
+}
+.ecb-storeHeader ul{
+  list-style: none;
+  padding: 0px 0px 0px 6px;
+}
+.ecb-storeHeader ul a{
+  float: left;
+  padding: 6px;
+}
+.ecb-storeSearchBar{
+  width: 300px;
+}
+body[dir='RTL'] .ecb-storeSearchBar{
+  text-align: right;
+}
+.ecb-eligibleOffer{
+  padding: 0px;
+}
+.ecb-eligibleOfferBrief{
+  text-align: left;
+  height: 310px;
+  border: 2px solid #e7e7e7;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 2%;
+}
+body[dir="RTL"] .ecb-eligibleOfferBrief{
+  text-align: right;
+}
+.store-expanded .header{
+  border-bottom: none;
+  padding: 0px;
+}
+.ecb-subscriptionOffersContent{
+  overflow: auto;
+  clear: both;
+  padding-top: 10px;
+}
+.ecb-eligibleOfferHeader{
+  height: 60px;
+  background: #f0f0f0;
+  padding: 0px 10px;
+  width: 100%;
+  margin-top: 12px;
+  line-height: 1.2em;
+  display: table;
+  word-break: break-all;
+  direction: ltr;
+}
+.ecb-eligibleOfferHeader div{
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 20px;
+  line-height: 1.2em;
+}
+.ecb-eligibleOfferImage{
+  height: 100px;
+  text-align: center;
+  position: relative;
+}
+.ecb-eligibleOfferImage img{
+  width: auto;
+  max-width: 90%;
+  height: auto;
+  max-height: 80px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+}
+.ecb-eligibleOfferDescription{
+  padding: 5px 10px;
+  height: 52px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  line-height: 1.3em;
+  direction: ltr;
+}
+.ecb-eligibleOfferDetailsDescription{
+  height: 100px;
+  padding: 10px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+.ecb-eligibleOfferAvailability, .ecb-eligibleOfferDetailsAvailability{
+  padding: 5px 10px;
+  position: relative;
+  top: 10px;
+}
+.ecb-eligibleOfferAvailability .ecb-offerDate{
+  color: #666;
+  padding-right: 20px;
+}
+.ecb-offerEndDate{
+  color: #333;
+}
+.ecb-eligibleOfferDetailsAvailability span{
+  color: #b4b4b4;
+  padding: 0 10px;
+}
+.ecb-offerDetailsEndDate{
+  color: #fff !important;
+}
+.ecb-addSubscriptionIcon{
+  height: 40px;
+  padding: 0px 15px;
+  width: 100%;
+}
+.ecb-addSubscriptionIcon i{
+  cursor: pointer;
+}
+.ecb-addSubscriptionIcon .ecb-addSubscriptionOfferIcon{
+  padding: 10px;
+}
+.ecb-addSubscriptionIcon .ecb-addSubscriptionOfferIcon:hover{
+  background: #e7e7e7;
+}
+.ecb-addSubscriptionIcon .ebInfoPopup{
+  margin-top: 10px;
+}
+.ebBtn_medium {
+  font-size: 1.4rem;
+  padding: 0 10px;
+  height: 3.1rem;
+}
+.ecb-offersContainer {
+  text-align: center;
+  margin: 0 auto;
+}
+.ecb-eligibleOfferDetails{
+  background: #777;
+  height: 310px;
+  position: absolute;
+  top: 0px;
+  width: 96%;
+  color: #fff;
+  border-radius: 5px;
+  left: 0px;
+  text-align: left;
+  margin: 2%;
+}
+body[dir="RTL"] .ecb-eligibleOfferDetails{
+  text-align: right;
+}
+.ecb-eligibleOfferDetailsHeader{
+  width: 100%;
+  height: 40px;
+  display: table;
+  border-bottom: 1px solid #FFF;
+  font-weight: bold;
+  line-height: 1.2em;
+}
+.ecb-eligibleOfferDetailsHeader div{
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 10px;
+  font-size: 16px;
+  line-height: 1.2em;
+}
+.expanded-charges-view.close-image-view-all{
+  padding-right: 2px;
+}
+.ecb-addSubscriptionOffer{
+  text-align: center;
+  position: relative;
+  top: 50px;
+  clear: both;
+}
+.ecb-addSubscriptionOffer button:first-child{
+  margin-right: 10px;
+}
+.ecb-addSubscriptionOffer button:first-child span{
+  padding: 0 5px;
+}
+.ecb-eligibleOfferDatepicker{
+  position: relative;
+  top: 20px;
+  padding: 0 10px;
+}
+.ecb-eligibleOfferDatepicker label{
+  padding: 6px 10px;
+}
+.ecb-eligibleOfferDatepicker .ecb-subscriptionDatepicker{
+  width: 50%;
+}
+.ecb-offerLearnMore{
+  margin-top: 14px;
+  float: left;
+  padding-left: 10px;
+}
+.ecb-subscriptionsExpandMain .close-image-view-all {
+  left: 5px;
+  top: 0;
+}
+.ecb-subscriptionDatepicker {
+  margin-left: 0px !important;
+}
+
+.ecb-subscriptionCancelOn{
+  margin-bottom: 9px !important;
+}
+
+@media screen and (min-width:320px) and (max-width:374px) {
+  .expanded-charges-view.close-image-view-all {
+    padding-right: 0px;
+    left: 0px;
+  }
+  .ecb-eligibleOfferDatepicker .ecb-subscriptionDatepicker {
+    margin-left: 0px !important;
+  }
+}
+.ecb-storeSearchBar {
+    width: 200px;
+  }
+@media (max-width: 300px) {
+.ecb-storeSearchBar {
+    width: 50vw;
+  }
+}
+
+@media screen and (min-width:667px) and (max-width:767px) {
+  .ecb-storeHeader .ecb-storeNav {
+    width: 96%;
+  }
+  .expanded-charges-view.close-image-view-all {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width:768px) and (max-width:1023px) {
+  .ecb-storeHeader .ecb-storeNav {
+    width: 95%;
+  }
+  .ecb-storeHeader div:last-child {
+    width: 4%;
+    margin-right: 7px;
+  }
+}
+
+@media screen and (min-width:1024px) and (max-width:1300px) {
+  .ecb-storeHeader .ecb-storeNav{
+    width: 97%;
+  }
+}
+
+@media (min-width:320px) and (max-width:370px) {
+  .ecb-subscriptionDatepicker {
+    display:inline-block;
+    padding: 0;
+    width: 100%;
+    margin-left: 30%;
+  }
+}
+
+@media (min-width:375px) and (max-device-width : 414px) and (orientation : portrait) {
+  .ecb-subscriptionDatepicker {
+    display:inline-block;
+    padding: 0;
+    width: 100%;
+    margin-left: 36%;
+  }
+  .ecb-eligibleOfferDatepicker .ecb-subscriptionDatepicker {
+    margin-left: 0px;
+  }
+}
+
+@media screen and (min-width:375px) and (max-width:666px) {
+  .ecb-storeHeader .ecb-storeNav {
+    width: 92%;
+  }
+}
+
+.ecb-actionBarPosition{
+  margin-bottom: 1rem;
+}
+
+.ecb-subscriptionsExpandMain .confirmation-content {
+  height : 98px;
+}
+.ecb-subscriptionsExpandMain.card-expanded .confirmation-content {
+  height : 100px;
+}
+.ecb-subscriptionClose{
+  margin-left : 0 !important;
+  left : 0 !important;
+}
+
+/* Hebrew Css fixes start */
+body[dir='RTL'] .ecb-subscriptionClose{
+  float: left !important;
+  padding-left: 0px;
+}
+/* Hebrew Css fixes end */
+
+.ecb-subscriptionImages{
+  margin: 1%;
+  width: auto;
+  max-width: 31%;
+}
+.ecb-subscriptionImages img {
+  width: auto;
+  max-width: 96%;
+  height: auto;
+  max-height: 95px;
+  opacity: 0.8;
+  margin: 10px 2%;
+}
+.ecb-subscriptionNameElipses{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+@media screen and (max-width: 767px) {
+  .widget-no-content{
+    height: auto !important;
+    max-height: 273px;
+  }
+}
+
+body[dir='RTL'] .ecb-calendar {
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  opacity: .4;
+  cursor: pointer;
+}
+.ecb-subscriptionDate{
+  text-align: right;
+  padding: 10px 0;
+}
+.ecb-subscriptionDateContent{
+  padding: 0 5px;
+}

@@ -1,0 +1,66 @@
+{
+  "name": "ecb-customer-view",
+  "version": "2.0.1",
+  "description": "CustomerView",
+  "authors": [
+    "Travis Meyers",
+    "Chinmai Padalker"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-mocks": "1.5.8",
+    "sinon": "1.17.5",
+    "bardjs": "0.1.10"
+  },
+  "dependencies": {
+    "jquery": "3.4.0",
+    "angular": "1.5.8",
+    "angular-sanitize": "1.5.8",
+    "extras.angular.plus": "0.9.3",
+    "lodash": "4.17.11",
+    "moment-timezone": "0.5.23",
+    "angular-ui-router": "0.3.2",
+    "toastr": "2.1.2",
+    "bootstrap-sass": "3.3.7",
+    "angular-messages": "1.5.8",
+    "angular-local-storage": "0.3.0",
+    "Font-Awesome": "4.7.0",
+    "angular-translate": "2.15.1",
+    "angular-cookies": "1.5.8",
+    "angular-translate-storage-local": "2.15.1",
+    "angular-translate-loader-partial": "2.15.1",
+    "angular-translate-storage-cookie": "2.15.1",
+    "messageformat": "1.0.2",
+    "ng-csv": "0.3.6",
+    "angular-translate-interpolation-messageformat": "2.15.1",
+    "angular-i18n": "1.5.8",
+    "angular-dynamic-locale": "0.1.32",
+    "ngstorage": "0.3.11",
+    "angular-touch": "1.5.8",
+    "angular-aside": "1.4.0",
+    "angular-momentjs": "0.2.2",
+    "ng-idle": "1.2.2",
+    "d3": "4.13.0",
+    "angularjs-datepicker": "2.1.6",
+    "angular-ui-grid": "4.0.11",
+    "angular-load": "0.2.0"
+  },
+  "resolutions": {
+    "angular": "1.5.8",
+    "jquery": "3.4.1",
+    "sinon": "1.17.5"
+  },
+  "overrides": {
+    "Font-Awesome": {
+      "main": [
+        "css/font-awesome.css"
+      ]
+    }
+  }
+}

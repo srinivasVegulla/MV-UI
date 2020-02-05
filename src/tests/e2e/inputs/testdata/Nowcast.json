@@ -1,0 +1,22 @@
+{
+  "url": {
+    "URL": "http://10.200.166.93:8080/Metraview",
+    "Title": "ECB MetraView : Login",
+    "CurrentUrl": "http://10.200.166.93:8080/login",
+    "DashBoardURL": "http://10.200.166.93:8080/dashboard",
+    "DashBoard": "ECB MetraView : Dashboard"
+  },
+  "user": {
+    "username": "coresub3m",
+    "passwordField": "MetraTech5"
+  },
+  "widgetname": "Nowcast",
+  "name": "Included Data Transfer",
+  "decisiondate": "Oct 01, 2017 - Oct 31, 2017",
+  "nodata": "No decisions found",
+  "name1": "Storage Discount",
+  "decisiondate2": "Jul 01, 2017 - Dec 31, 2017",
+  "revenue": "Total Revenue"
+  
+   
+}

@@ -1,0 +1,191 @@
+.ecb-makePaymentButton {
+	margin-top: 12px;
+}
+.ecb-amountDueLiveWidget {
+	background: #f3a13f !important;
+	border-radius: 6px;
+	color: #FFF;
+}
+.ecb-amountDueLiveWidget .ecb-minimalWidgetHeader{
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+	background-color: #f3a13f !important;
+	padding: 0px 10px;
+}
+.ecb-amountDueLiveWidget .ecb-minimalWidgetHeader .ebBtn, .ecb-linkToBills .ebBtn {
+	font-size: 1.2rem;
+}
+.ecb-amountDueLiveWidget .ecb-minimalWidgetHeader h2 {
+	border-bottom: none;
+}
+.ecb-amountDueLiveWidget .ecb-headerText{
+	color: #FFF !important;
+}
+.ecb-amountDueLiveWidget .ebBtn {
+	color: #FFF !important;
+}
+.ecb-minimalWidgetContent {
+	background-color: #f3a13f !important;
+}
+.ecb-minimalWidgetContent .ecb-minimalPaymentDate {
+  color: #FFF;
+}
+.ecb-minimalPaymentDetails {
+  display: table;
+  width: 60%;
+  padding: 10px;
+}
+.ecb-minimalWidgetContent .ecb-minimalPaymentDate .top {
+	background: rgba(255, 255, 255, 0.2);
+	padding: 4px 0;
+}
+.ecb-minimalWidgetContent .ecb-minimalPaymentDate .top span {
+	color: #FFF;
+}
+.ecb-minimalWidgetContent .ecb-minimalPaymentDate .bottom {
+	background: rgba(255, 255, 255, 0.2);
+	margin-top: 1px;
+	padding: 4px 0;
+}
+.ecb-minimalWidgetContent .ecb-minimalPaymentDate .bottom  span {
+	color: #FFF;
+}
+.ecb-minimalWidgetContent .ecb-minimalAmountDue {
+	text-align: right;
+}
+body[dir='RTL'] .ecb-minimalAmountDue {
+	text-align: left;
+}
+.ecb-minimalWidgetContent .amount {
+	font-size: 2.4rem;
+	color: #FFF !important;
+	display: inline-flex;
+    margin-top: 5px;
+}
+.ecb-minimalWidgetContent .amount sup {
+	color: #FFF !important;
+	font-size: 60%;
+    top: .3em;
+}
+.ecb-minimalWidgetContent .nowrap-links {
+	padding-top: 0px;
+	color: #FFF;
+}
+.ecb-minimalWidgetContent .nowrap-links>li {
+	margin: 10px 0px;
+}
+.ecb-minimalWidgetContent .ecb-linkToBills {
+	text-align: right;
+	clear: both;
+    padding: 0px 10px 5px 10px;
+}
+.ecb-minimalWidgetContent .ecb-linkToBills a{
+    color: #FFF !important;
+}
+.ecb-minimalPaymentDate .payment-due-block {
+  margin: 0 0 4px 0px;
+  opacity: .8;
+}
+.ecb-minimalWidgetContent .ecb-autopayLink {
+	padding: 0px;
+}
+.ecb-pendingSymbol {
+  background: #ff0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  float: left;
+  vertical-align: bottom;
+  margin: 3px 6px 0px 0px;
+}
+.ecb-successSymbol {
+  background: #008000;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  float: left;
+  vertical-align: bottom;
+  margin: 3px 6px 0px 0px;
+}
+.ecb-rejectedSymbol {
+  background: #f00;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  float: left;
+  vertical-align: bottom;
+  margin: 3px 6px 0px 0px;
+}
+.ecb-paymentsHistoryFilter {
+	padding: 10px 10px 6px 15px;
+}
+.ecb-paymentsHistoryFilter ul{
+	margin-bottom: 0px;
+}
+.ecb-paymentsHistoryFilter ul li input{
+	margin: 0px 2px 0px 0px;
+}
+.ecb-paymentsHistoryMethodName{
+  font-size: 12px;
+  color: #8d8d8d;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: right;
+  padding-right: 7px;
+}
+.ecb-paymentsHistory .ecb-cardLayoutBoxMain .table-paymentsReceived tbody tr td:first-child{
+  min-width: 110px;
+}
+.ecb-paymentsHistoryExpandMain .expanded-charges-view.close-image-view-all {
+  left: 0px;
+  margin-left: 0px;
+}
+
+.ecb-totalPastDue{
+  position: relative;
+  color: red;
+  right: 20px;
+}
+
+.ecb-detailTotalPastDue {
+  position: relative;
+  color: red;
+  float: right;
+  padding: 10px 0px 0px 0px;
+}
+
+/* bug 2053 start*/
+	.ecb-amountDueEditIcon{
+		white-space: normal;
+    text-align: right;
+    height: auto;
+  }
+/* bug 2053 end */
+
+.ecb-paymentLinks{
+  position: relative;
+  left: 10px;
+}
+.ecb-autoPayEditIcon{
+  margin-top: -3px;
+}
+
+/* Hebrew Css fixes start */
+body[dir='RTL'] .ecb-rtlPaymentHistoryTitle{
+  float: right !important;
+}
+body[dir='RTL'] .ecb-rtlPayHistory-closeIcon{
+  float:left !important;
+}
+body[dir='RTL']  .ecb-totalPastDue{
+  position: relative;
+  color: red;
+  right: 0;
+  padding: 0 20px;
+}
+body[dir='RTL'] .ecbNoLeftMargin {
+ margin-left: 0px !important;
+ padding: 0;
+}
+/* Hebrew Css fixes end */
+

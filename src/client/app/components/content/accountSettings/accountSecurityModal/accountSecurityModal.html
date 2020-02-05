@@ -1,0 +1,17 @@
+<form name="securitySettingsForm" class="account-edit-form form-horizontal" ecb-aside-modal ng-submit="vm.save()" novalidate>
+  <div class="modal-header">
+    <h3 id="myModalLabel" class="modal-title noBorder">
+      {{ 'TEXT_SECURITY_SETTINGS' | translate }}
+    </h3>
+    <div class="pull-{{vm.layoutRightDirection}}">
+      <button type="submit" class="btn ebBtn ebBtn_color_darkBlue" ng-enabled="" ng-disabled="securitySettingsForm.$invalid && !(vm.checkForOptionNone())" tabindex="2">
+        {{ 'TEXT_SAVE' | translate }}
+      </button>
+      <button type="button" class="btn ebBtn ebBtn-default" ng-click="vm.cancel()" tabindex="3">
+        {{ 'TEXT_CANCEL' | translate }}
+      </button>
+    </div>
+  </div>
+  <div class="modal-body ecb-userSettings clearfix" ng-include="'app/components/content/accountSettings/accountSecurityModal/accountSecurity-inputs.html'">
+  </div>
+</form>

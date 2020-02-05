@@ -1,0 +1,14 @@
+{
+	"url": {
+		"URL": "https://10.200.165.8:8080/metraview",
+		"Title": "ECB MetraView : Login",
+		"CurrentUrl": "https://10.200.165.8:8080/login",
+    "DashBoardURL": "https://10.200.165.8:8080/dashboard",
+		"DashBoard": "ECB MetraView : Dashboard"
+	},
+  "user": {
+		"username": "accsub02m",
+		"passwordField": "MetraTech1"
+	}
+  
+}  

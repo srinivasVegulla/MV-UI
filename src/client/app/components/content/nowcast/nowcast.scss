@@ -1,0 +1,193 @@
+.bullet
+{
+  font: 10px sans-serif;
+}
+.bullet .marker
+{
+  stroke: #000;
+  stroke-width: 3px;
+}
+.bullet .marker.good
+{
+  stroke: Green;
+  stroke-width: 3px;
+  stroke-dasharray: 2,1;
+}
+.bullet .marker.bad
+{
+  stroke: Red;
+  stroke-width: 3px;
+  stroke-dasharray: 2,1;
+}
+.bullet .marker.past
+{
+  stroke: Blue;
+  stroke-width: 3px;
+  stroke-dasharray: 2,1;
+}
+.bullet .tick line
+{
+  stroke: #666;
+  stroke-width: .5px;
+}
+.bullet .tick.major line
+{
+  stroke: #666;
+  stroke-width: .5px;
+}
+.bullet .tick.selected
+{
+  font-weight:bolder;
+}
+.bullet .tick.expired
+{
+  text-decoration:line-through;
+}
+.bullet .tick.future
+{
+  font-style:italic;
+}
+.bullet .domain
+{
+  fill: none;
+}
+.bullet .title
+{
+  fill: #000;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  text-anchor: off;
+}
+.bullet .range.s0
+{
+  display: block;
+  position: absolute;
+}
+.bullet .subtitle
+{
+  fill: #999;
+  text-anchor: off;
+}
+.bullet .decisionDates
+{
+  fill: #000;
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+}
+.bullet .dates
+{
+  fill: #000;
+  text-anchor: off;
+}
+.bullet .tbutton
+{
+  fill:white;
+  stroke-width:1;
+  stroke:black;
+  stroke-opacity:0.05;
+}
+.bullet .notice
+{
+  fill:#000;
+  font-size: 7px;
+  text-anchor: off;
+}
+.bullet .tick
+{
+  fill:#000;
+}
+.contextmenu {
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  -khtml-border-radius:10px;
+  border-radius:10px;
+}
+.contextmenu li
+{
+  list-style-type:none;
+  padding-left: 20px;
+  padding-right: 5px;
+}
+.contextmenu li:hover
+{
+  font-weight:bolder;
+}
+.datepicker {
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  -khtml-border-radius:10px;
+  border-radius:10px;
+  overflow-y:auto;
+  overflow-x:visible;
+  max-height: 100px;
+}
+.datepicker li
+{
+  list-style-type:none;
+  padding-left: 20px;
+  padding-right: 5px;
+  white-space:nowrap;
+}
+.datepicker li:hover
+{
+  font-weight:bolder;
+}
+.svg-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 10px; /* aspect ratio */
+  vertical-align: top;
+  /*overflow: hidden;*/
+
+  fill: none;
+  max-width: 550px;
+  direction: ltr;
+}
+.svg-content-responsive {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 0;
+}#nowcast-body svg {
+  margin-top: 0px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh;
+}
+
+.ecb-nowcastName{
+  float:left;
+}
+
+.ecb-nowcastClose{
+  cursor: pointer;
+  position: relative;
+  min-width: 20px;
+  padding-left: 10px;
+  padding-right: 5px;
+}
+
+body[dir='RTL'] .ecb-nowcastName{
+  float: right;
+}
+
+body[dir='RTL'] .ecb-nowcastClose{
+  float: left !important;
+}
+
+.ecb-nowcastBody{
+  width: 100%;
+  min-height: auto;
+  height: 268px;
+}
+
+.ecb-nowcastOverflow{
+  overflow-y: scroll;
+}

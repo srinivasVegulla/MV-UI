@@ -1,0 +1,42 @@
+ecb-modal-dialog {
+    /* modals are hidden by default */
+    display: none;
+    .ecb-modalDialog {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        /* z-index must be higher than .modal-background */
+        z-index: 1000;
+        overflow: auto;
+        .ecb-modalDialogBody {
+            padding: 20px;
+            background: #fff;
+            margin: 40px;
+            box-shadow: 0px 0px 15px 1px #000;
+            border-radius: 3px;
+        }
+        .modal-header h2 {
+            padding: 0;
+            float: left;
+            border-bottom: none;
+        }
+    }
+
+    .ecb-modalDialogBackground {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #000;
+        opacity: 0.5;
+        /* z-index must be below .ecb-modalDialog and above everything else  */
+        z-index: 900;
+    }
+}
+
+body.ecb-modalDialogOpen {
+    overflow: hidden;
+}

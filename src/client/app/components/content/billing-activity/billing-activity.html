@@ -1,0 +1,31 @@
+<div class="widget">
+    <div class="header clearfix">
+        <h2 class="billing-header-name">{{'TEXT_INVOICE_TOTAL_CHARGE'| translate}}</h2>
+    </div>
+    <div class="ecbRelativeClass" ng-if="vm.loading">
+      <div class="ebLoader">
+        <div class="ebLoader-Holder">
+          <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+        </div>
+      </div>
+    </div>
+    <div class="content billing-activity">
+        <div ng-if="vm.nodata">{{'TEXT_NO_PRIOR_BILLING_ACTIVITY' | translate}}</div>
+        <div ng-show="vm.showgraph()" class="eaColumnChart-rCharts-section">
+            <div class="eaColumnChart-rCharts-columnChart">
+            </div>
+        </div>
+        <div ng-if="vm.connectionError">
+         <div class="error-ebDialogBox error-confirmation">
+            <div class="ebDialogBox-contentBlock confirmation-content">
+              <div>
+                <i ng-click="vm.clickClose()" class="fa fa-times error-close" aria-hidden="true"></i>
+              </div>
+              <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                <p class="col-xs-12">{{'TEXT_CONNECTION_ERROR' | translate}}</p>
+              </div>
+             </div>
+         </div>
+        </div>
+    </div>
+</div>

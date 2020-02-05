@@ -1,0 +1,12 @@
+spring:
+  profiles: default,dev,cloud,securitytest,demo
+  application:
+    name: metraview-ui
+  main:
+    show_banner: false
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8888
+      username: MetraViewUser
+      password: EcbExcellence001!

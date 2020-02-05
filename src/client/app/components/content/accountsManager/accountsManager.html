@@ -1,0 +1,53 @@
+<div ng-if="vm.hideWidget" class="widget ecb-accountManagerMain" ng-class="{ 'card-expanded': vm.accountsCardState === 'expanded'}" id="accountManagerMain">
+  <div class="header clearfix">
+    <h2 class="account-header-name ecb-accountsName pull-{{vm.layoutLeftDirection}}">{{'TEXT_ACCOUNT'|translate}}</h2>
+    <span class="pull-right ecb-chargesCloseImageViewAll expanded-charges-view ecb-accountsCloseViewAll" ng-show="vm.accountsClose" ng-click="vm.closeAccountsCardState()">
+      <i class="fa fa-times ebIcon ebIcon_interactive" aria-hidden="true"></i>
+    </span>
+  </div>
+  <div class="ecbRelativeClass" ng-if="vm.loading">
+    <div class="ebLoader">
+      <div class="ebLoader-Holder">
+        <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+      </div>
+    </div>
+  </div>
+  <div class="content widget-content-list ecb-widgetUserList ecb-accountManagerBody" ng-style="vm.getViewAllBodyHeight()" ng-class="{ 'widget-no-content': (vm.billManagerUsers.length <=3 ),'ecbWidgetClosed': !vm.accountsClose }" ng-if="!vm.loading">
+    <div class="ecb-userList" ng-repeat="billUsers in vm.billManagerUsers | limitTo: vm.limit" ng-click="vm.makeUserActive($index,billUsers.userName,billUsers.accountId)" ng-class="(vm.accountsClose) ? 'accountsConstantHeight col-md-4 col-sm-6 col-xs-12' : 'accountsAutoHeight col-md-12 col-sm-12 col-xs-12'">
+      <div class="ecb-userCardAccountList">
+        <p class="ecb-users">{{vm.getUserDisplayName(billUsers)}}</p>
+        <p class="ecb-userAccountId">{{'TEXT_ACCOUNT_ID'|translate}} {{billUsers.accountId}}</p>
+      </div>
+    </div>
+    <div ng-if="vm.nodata">
+        <p>{{'TEXT_NO_USER_ACCOUNTS'|translate}}</p>
+    </div>
+    <div ng-if="vm.addError" class="error-container">
+      <div ng-if="vm.capabilitiesError">
+        <div class="error-ebDialogBox error-confirmation">
+          <div class="ebDialogBox-contentBlock confirmation-content">
+            <div class="row ebDialogBox-primaryTextBox error-primaryText">
+              <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_CAPABILITIES_ERROR' | translate }}</p>
+              <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_TRY_AGAIN' | translate }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="vm.accountsError">
+        <div class="error-ebDialogBox error-confirmation">
+          <div class="ebDialogBox-contentBlock confirmation-content">
+              <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_MANAGE_ACCOUNTS_ERROR' | translate }}</p>
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_TRY_AGAIN' | translate }}</p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer clearfix" ng-if="vm.showMoreAccounts && !vm.loading">
+    <p class="ebText pull-{{vm.layoutRightDirection}}">
+      <button class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue ecb-accountsViewAll" ng-click="vm.openAccountsCardState()">{{'TEXT_VIEW_ALL'|translate}} ></button>
+    </p>
+  </div>
+</div>

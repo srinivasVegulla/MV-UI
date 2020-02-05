@@ -1,0 +1,174 @@
+<div class="sign-up-view">
+  <div class="signup-panel panel col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
+    <div class="panel-heading">
+      <h3>
+        {{ 'SIGN_UP_TITLE' | translate }}
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="ebLoader" ng-if="vm.loading">
+        <div class="ebLoader-Holder">
+          <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+        </div>
+      </div>
+      <form name="signUpForm" class="form-horizontal" ng-submit="vm.signUpClick(signUpForm)" novalidate method="POST">
+        <div class="form-group">
+          <div class="col-md-12" ng-show="vm.showError" ng-if="vm.errorMessage == 1">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              {{ 'SIGN_UP_ACCOUNT_EXISTS' | translate }}
+            </div>
+          </div>
+          <div class="col-md-12" ng-show="vm.showError" ng-if="vm.errorMessage == 2">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              {{ 'SIGN_UP_SERVER_ERRORS' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="userName" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+            {{ 'SIGN_UP_TEXT_USERNAME' | translate }}
+          </label>
+          <div class="col-xs-9 textboxSpace">
+            <span class="blueLine"></span>
+            <input name="userName" type="text" ng-minlength="{{vm.signupData.minimumLength}}" ng-maxlength="{{vm.signupData.maximumLength}}" class="form-control mvInput ebInput_width_full textBoxHeight" placeholder="{{ 'SIGN_UP_TEXT_USERNAME' | translate }}"
+              pattern="{{vm.signupData.usernamePattern}}" required ng-model="vm.signUpData.userName" ecb-set-focus="true" />
+
+            <div class="help-block"
+              ng-messages="signUpForm.userName.$error"
+              ng-if="signUpForm.userName.$invalid  && signUpForm.userName.$dirty">
+              <span ng-message="pattern" class="statusError">
+                {{ 'LOGIN_VALIDATION_PATTERN_USERNAME' | translate }}
+              </span>
+              <span ng-message="required" class="statusError">
+                {{ 'SIGN_UP_USERNAME_REQUIRED_ERROR_MSG' | translate }}
+              </span>
+              <span ng-message="maxlength" class="statusError">
+                 {{ 'TEXT_USERNAME_MAXIMUM_CHARACTERS' | translate }} {{vm.signupData.maximumLength}}
+              </span>
+              <span ng-message="minlength" class="statusError">
+                {{ 'TEXT_USERNAME_MINIMUM_CHARACTERS' | translate }} {{vm.signupData.minimumLength}}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+            {{ 'SIGN_UP_TEXT_EMAIL' | translate }}
+          </label>
+          <div class="col-xs-9 textboxSpace">
+            <span class="blueLine"></span>
+            <input name="email" type="email"
+              class="form-control mvInput ebInput_width_full textBoxHeight" placeholder="{{ 'SIGN_UP_TEXT_EMAIL_PLACEHOLDER' | translate }}" required  ng-model="vm.signUpData.email"
+              ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i"/>
+            <div class="help-block error"
+               ng-messages="signUpForm.email.$error"
+               ng-if="signUpForm.email.$touched  && signUpForm.email.$dirty">
+               <span ng-message="pattern" class="statusError">
+                {{ 'SIGN_UP_EMAIL_PATTERN_ERROR_MSG' | translate }}
+               </span>
+               <span ng-message="required" class="statusError">
+                 {{ 'SIGN_UP_EMAIL_REQUIRED_ERROR_MSG' | translate }}
+               </span>
+             </div>
+           </div>
+        </div>
+        <div class="form-group">
+         <label for="password" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+           {{ 'SIGN_UP_TEXT_PASSWORD' | translate }}
+         </label>
+         <div class="col-xs-9 textboxSpace">
+           <span class="blueLine"></span>
+           <input name="inputPassword" type="password" id="inputPassword"
+             class="form-control mvInput ebInput_width_full textBoxHeight"
+             placeholder="{{ 'SIGN_UP_TEXT_PASSWORD' | translate }}" ng-model="vm.signUpData.password" ng-paste="$event.preventDefault();"
+             ng-pattern="/^.*(?=.{7,1024})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/" autocomplete="off"
+             ng-blur="vm.checkValidity(signUpForm.inputPassword.$dirty, signUpForm.conPassword.$dirty,
+             'newPassword')"
+             ng-focus="vm.setForminput()" ng-class="{'ecbInvalidInput': (vm.isInValidInput && vm.placeHolder ===
+             'newPassword')}" required />
+             <div class="help-block" ng-messages="signUpForm.inputPassword.$error"
+               ng-if="signUpForm.inputPassword.$touched && signUpForm.inputPassword.$dirty">
+               <span ng-message="pattern" class="statusError">
+                 {{ 'SIGN_UP_PASSWORD_INCORRECT_PATTERN' | translate }}
+               </span>
+               <span ng-message="required" class="statusError">
+                 {{ 'SIGN_UP_PASSWORD_REQUIRED_ERROR_MSG' | translate }}
+               </span>
+             </div>
+             <div class="help-block"
+               ng-if="vm.placeHolder === 'newPassword' && signUpForm.inputPassword.$valid">
+               <span class="statusError"
+                 ng-if="(vm.signUpData.conPassword !== vm.signUpData.password)">
+                 {{ 'EXPIRED_VERIFY_PASSWORD' | translate }}
+               </span>
+             </div>
+           <ul class="password-details-list">
+             <p></p>
+             <li> {{ 'SIGN_UP_PASSWORD_STRENGTH_CONDITION1' | translate }}</li>
+             <li> {{ 'SIGN_UP_PASSWORD_STRENGTH_CONDITION2' | translate }}</li>
+             <li> {{ 'SIGN_UP_PASSWORD_STRENGTH_CONDITION3' | translate }}</li>
+           </ul>
+          </div>
+       </div>
+        <div class="form-group">
+         <label for="conPassword" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+           {{ 'SIGN_UP_TEXT_VERIFY_PASSWORD' | translate }}
+         </label>
+         <div class="col-xs-9 textboxSpace">
+           <span class="blueLine"></span>
+           <input name="conPassword" type="password"
+             class="form-control mvInput ebInput_width_full textBoxHeight"
+             placeholder="{{ 'SIGN_UP_TEXT_VERIFY_PASSWORD' | translate }}" ng-model="vm.signUpData.conPassword" ng-paste="$event.preventDefault();"
+             autocomplete="off" ng-blur="vm.checkValidity(signUpForm.inputPassword.$dirty,
+             signUpForm.conPassword.$dirty, 'verifyPassword')"
+             ng-focus="vm.setForminput()" ng-class="{'ecbInvalidInput': (vm.isInValidInput && vm.placeHolder ==='verifyPassword')}" required />
+            <div class="help-block" ng-messages="signUpForm.conPassword.$error"
+                 ng-if="signUpForm.conPassword.$touched && signUpForm.conPassword.$dirty">
+              <span ng-message="required" class="statusError">
+                {{ 'SIGN_UP_VERIFY_PASSWORD_REQUIRED_ERROR_MSG' | translate }}
+              </span>
+            </div>
+            <div class="help-block"
+              ng-if="vm.placeHolder === 'verifyPassword' && signUpForm.conPassword.$valid">
+              <span class="statusError"
+                ng-if="(vm.signUpData.conPassword !== vm.signUpData.password)">
+                {{ 'EXPIRED_VERIFY_PASSWORD' | translate }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" ng-if="vm.layoutLeftDirection === 'left'">
+          <div class="col-sm-12">
+            <span class="blueLine"></span>
+            <label class="col-sm-3 ebControl-label pull-right label-color">
+              {{ 'SIGN_UP_TEXT_REQUIRED_FIELD' | translate }}
+            </label>
+          </div>
+        </div>
+        <div class="ecb-requiredFeild" ng-if="vm.layoutLeftDirection === 'right'">
+          <div class="col-xs-9 textboxSpace">
+            <label>
+              {{'TEXT_REQUIRED_FIELD' | translate }}
+            </label>
+            <span class="blueLine signupBlueline"></span>
+          </div>
+        </div>
+        <div class="panel-footer noBorder">
+          <button id="submitButton" type="btn" class="btn ebBtn ebBtn_color_darkBlue"
+            ng-disabled="signUpForm.$invalid || vm.isSaving || (vm.signUpData.conPassword !== vm.signUpData.password)">
+            {{ 'SIGN_UP_INPUT_SUBMIT' | translate }}
+          </button>
+          <button type="button" class="btn ebBtn ebBtn-default" ng-click="vm.cancel()" >
+            {{ 'SIGN_UP_INPUT_CANCEL' | translate }}
+          </button>
+          <div class="sign-up-copyright ecbCopyRight">
+            {{ 'LOGIN_COPYRIGHT' | translate }}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div ng-if="vm.loading" class="ecb-widgetBackdrop"></div>
+</div>

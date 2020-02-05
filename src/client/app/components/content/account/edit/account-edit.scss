@@ -1,0 +1,94 @@
+// Account Edit Styles
+@import "../../../../../styles/_variables.scss";
+.account-edit-modal {
+  .modal-dialog {
+    .account-edit-form {
+      .form-group{
+        height: auto;
+      }
+      .ng-invalid:focus {
+        box-shadow: 0 0 2px 1px $ebColor-error;
+        border-color: $ebColor-error;
+      }
+      .ng-invalid {
+        border-color: $ebColor-error;
+      }
+      .ng-invalid:hover {
+        border-color: $ebColor-error !important;
+      }
+      .ebInput:hover {
+        border-color: $input-border-focus;
+      }
+      select:hover {
+        border-color: $input-border-focus;
+      }
+      select:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 #000;
+      }
+      .country-blueLine{
+        z-index: 1;
+      }
+      .selectCountryDropDown {
+        height: 30px;
+        font-size: 1.2rem;
+        border: 1px solid #b3b3b3;
+        box-shadow: inset 1px 1px 0 0 #ccc;
+        padding: .4rem 0.2rem;
+      }
+      .country-dropdown-menu>li>a{
+        padding: 10px 8px;
+      }
+    }
+    .modal-footer {
+      p {
+        padding-top: 0;
+      }
+    }
+    .edit-alignment:hover {
+      text-decoration: none !important;
+    }
+    .edit-alignment:visited {
+      text-decoration: none !important;
+    }
+  }
+}
+.ecb-requiredFeild {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  padding-right: 5px;
+  text-align: right;
+}
+body[dir='LTR'] .ecb-requiredFeildAdjustment{
+  right: 10px;
+}
+@media (max-width: 480px) {
+  body[dir='LTR'] .ecb-requiredFeildAdjustment{
+    right: 5px;
+  }
+  body[dir='RTL'] .ecb-requiredFeildAdjustment{
+    left: 5px;
+  }
+}
+body[dir='RTL'] .ebControlLabelRtl{
+  float: right;
+  text-align: left;
+}
+
+body[dir='RTL'] .ecb-requiredFeild {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 5px;
+  text-align: left;
+}
+body[dir='RTL'] .ecb-requiredFeildAdjustment{
+  left: 10px;
+}
+body[dir='RTL'] .ebInput_width_full{
+  text-align: right !important;
+}
+.accountLoader{
+  top: -5px;
+}

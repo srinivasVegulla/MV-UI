@@ -1,0 +1,29 @@
+{
+	"url": {
+		"URL": "https://10.200.165.8:8080/Metraview",
+		"Title": "ECB MetraView : Login",
+		"CurrentUrl": "https://10.200.165.8:8080/login",
+    "DashBoardURL": "https://10.200.165.8:8080/dashboard",
+		"DashBoard": "ECB MetraView : Dashboard"
+	},
+  "user": {
+		"username": "accsub02m",
+		"passwordField": "MetraTech2"
+	},
+   "breadscrum": "Metraview",
+   "heading": "Bills",
+   "firstwidget": "Amount Due",
+   "secondwidget": "Downloads",
+   "thirdwidget": "Payment Methods",
+   "fourthwidget": "Previous Period Balance",
+   "fifthwidget": "Billing Activity",
+    "sixthwidget": "My Subscriptions",
+    "seventhwidget": "New Charges",
+    "eigthwidget": "Billing Period Total"
+  
+  
+  
+  }
+  
+  
+  

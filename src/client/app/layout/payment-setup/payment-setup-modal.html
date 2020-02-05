@@ -1,0 +1,17 @@
+<form name="paymentSetupForm" class="payment-setup-form form-horizontal modalFormPadding" ecb-aside-modal ng-submit="vm.save()" novalidate>
+  <div class="modal-header">
+    <h3 id="myModalLabel" class="modal-title noBorder pull-{{vm.layoutLeftDirection}}">
+      {{ 'TEXT_PAYMENT_SETUP' | translate }}
+    </h3>
+    <div class="pull-{{vm.layoutRightDirection}}">
+      <button type="submit" ng-disabled="!vm.payType" class="btn ebBtn ebBtn_color_darkBlue" ng-disabled="paymentSetupForm.$invalid" tabindex="2">
+        {{ 'TEXT_SAVE' | translate }}
+      </button>
+      <button type="button" class="btn ebBtn ebBtn-default" ng-click="vm.cancel()" tabindex="3">
+        {{ 'TEXT_CANCEL' | translate }}
+      </button>
+    </div>
+  </div>
+  <div ng-include="'app/layout/payment-setup/payment-setup-inputs.html'">
+  </div>
+</form>

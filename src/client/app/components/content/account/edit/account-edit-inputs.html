@@ -1,0 +1,224 @@
+<div class="ecbRelativeClass" ng-if="vm.loading">
+  <div class="ebLoader">
+    <div class="ebLoader-Holder">
+      <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+    </div>
+  </div>
+</div>
+<div class="form-group ecb-changePasswordError" ng-if="vm.error">
+  <div class="col-xs-12" ng-if="vm.errorMessage == 1">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="vm.error = ''">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ 'TEXT_COULD_NOT_SAVE_EDIT' | translate }} {{ 'TEXT_SERVER_CONNECTION_FAILED' | translate }}
+    </div>
+  </div>
+  <div class="col-xs-12" ng-if="vm.errorMessage == 2">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="vm.error = ''">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ 'TEXT_COULD_NOT_SAVE_EDIT' | translate }} {{vm.error.message}}
+    </div>
+  </div>
+</div>
+<div ng-if="!vm.loading && !vm.error">
+<div class="form-group">
+  <label for="firstName" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+    {{ 'TEXT_FIRST_NAME' | translate }}
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <span class="blueLine"></span>
+    <input name="firstName" type="text" maxlength="40" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.accountInfo.firstName" required ecb-set-focus="true" />
+    <div class="help-block" ng-messages="accountEditForm.firstName.$error" ng-if="accountEditForm.firstName.$invalid && accountEditForm.firstName.$dirty">
+      <span ng-message="pattern" class="statusError">
+        {{ 'TEXT_FIRST_NAME_PATTERN_ERROR_MSG' | translate }}
+      </span>
+      <span ng-message="maxlength" class="statusError">
+        {{ 'TEXT_FIRST_NAME_MAXLENGTH_ERROR_MSG' | translate }}
+      </span>
+      <span ng-message="required" class="statusError">
+        {{ 'TEXT_FIRST_NAME_REQUIRED_ERROR_MSG' | translate }}
+      </span>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="middleName" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+    {{ 'TEXT_MIDDLE_INITIAL' | translate }}
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <input name="middleName" type="text" maxlength="1" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.accountInfo.middleInitial" />
+    <div class="help-block" ng-messages="accountEditForm.middleName.$error" ng-if="accountEditForm.middleName.$invalid && accountEditForm.middleName.$dirty">
+      <span ng-message="pattern" class="statusError">
+        {{ 'TEXT_MIDDLE_NAME_PATTERN_ERROR_MSG' | translate }}
+      </span>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="lastName" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+    {{ 'TEXT_LAST_NAME' | translate }}
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <span class="blueLine"></span>
+    <input name="lastName" type="text" maxlength="40" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.accountInfo.lastName" required />
+    <div class="help-block error" ng-messages="accountEditForm.lastName.$error" ng-if="accountEditForm.lastName.$invalid && accountEditForm.lastName.$dirty">
+      <span ng-message="pattern" class="statusError">
+        {{ 'TEXT_LAST_NAME_PATTERN_ERROR_MSG' | translate }}
+      </span>
+      <span ng-message="maxlength" class="statusError">
+        {{ 'TEXT_LAST_NAME_MAXLENGTH_ERROR_MSG' | translate }}
+      </span>
+      <span ng-message="required" class="statusError">
+        {{ 'TEXT_LAST_NAME_REQUIRED_ERROR_MSG' | translate }}
+      </span>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="email" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+    {{ 'TEXT_EMAIL' | translate }}
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <span class="blueLine"></span>
+    <input name="emailId" type="email" class="form-control ebInput ebInput_width_full textBoxHeight" placeholder="adisplayname@email.com" ng-model="vm.accountInfo.email" ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i" required />
+    <div class="help-block error" ng-messages="accountEditForm.emailId.$error" ng-if="accountEditForm.emailId.$invalid && accountEditForm.emailId.$dirty">
+      <span ng-message="pattern" class="statusError">
+        {{ 'TEXT_EMAIL_INVALID_ERROR_MSG' | translate }}
+      </span>
+      <span ng-message="required" class="statusError">
+        {{ 'TEXT_EMAIL_REQUIRED_ERROR_MSG' | translate }}
+      </span>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="phone" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+    {{ 'TEXT_PHONE' | translate }}
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <input name="phone" type="text" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.accountInfo.phoneNumber" ng-pattern="/([0-9\s\-]{7,})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/" />
+    <div class="help-block error" ng-messages="accountEditForm.phone.$error" ng-if="accountEditForm.phone.$invalid && accountEditForm.phone.$dirty">
+      <span ng-message="pattern" class="statusError">
+        {{ 'TEXT_PHONE_INVAL_NO_ERROR_MSG' | translate }}
+      </span>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="company" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+    {{ 'TEXT_COMPANY_NAME' | translate }}
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <input name="company" type="text" maxlength="255" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.accountInfo.company" />
+  </div>
+</div>
+<div class="form-group">
+  <label for="address1" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+    {{ 'TEXT_BILLING_ADDRESS' | translate }}
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <span class="blueLine"></span>
+    <input name="address1" type="text" maxlength="100" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.accountInfo.address1" required />
+    <div class="help-block error" ng-messages="accountEditForm.address1.$error" ng-if="accountEditForm.address1.$invalid && accountEditForm.address1.$dirty">
+      <span ng-message="maxlength" class="statusError">
+        {{ 'TEXT_BILLING_ADDRESS_MAXLENGTH_ERROR_MSG' | translate }}
+      </span>
+      <span ng-message="required" class="statusError">
+        {{ 'TEXT_BILLING_ADDRESS_REQUIRED_ERROR_MSG' | translate }}
+      </span>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="address2" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <input name="address2" type="text" maxlength="100" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.accountInfo.address2" />
+  </div>
+</div>
+<div class="form-group">
+  <label for="address3" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <input name="address3" type="text" maxlength="100" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.accountInfo.address3" />
+  </div>
+</div>
+<div class="form-group">
+  <label for="city" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+    {{ 'TEXT_CITY' | translate }}
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <span class="blueLine"></span>
+    <input name="city" type="text" maxlength="40" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.accountInfo.city" ng-pattern="/^(\D)+$/" required />
+    <div class="help-block error" ng-messages="accountEditForm.city.$error" ng-if="accountEditForm.city.$invalid && accountEditForm.city.$dirty">
+      <span ng-message="pattern" class="statusError">
+        {{ 'TEXT_CITY_PATTERN_ERROR_MSG' | translate }}
+      </span>
+      <span ng-message="maxlength" class="statusError">
+        {{ 'TEXT_CITY_MAXLENGTH_ERROR_MSG' | translate }}
+      </span>
+      <span ng-message="required" class="statusError">
+        {{ 'TEXT_CITY_REQUIRED_ERROR_MSG' | translate }}
+      </span>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="state" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+    {{ 'TEXT_STATE' | translate }}
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <input name="state" type="text" maxlength="40" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.accountInfo.state" ng-pattern="/^(\D)+$/" />
+    <div class="help-block error" ng-messages="accountEditForm.state.$error" ng-if="accountEditForm.state.$invalid && accountEditForm.state.$dirty">
+      <span ng-message="pattern" class="statusError">
+        {{ 'TEXT_STATE_PATTERN_ERROR_MSG' | translate }}
+      </span>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="zip" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+    {{ 'TEXT_ZIP_POSTAL_CODE' | translate }}
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <span class="blueLine"></span>
+    <input name="zip" type="text" maxlength="40" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.accountInfo.zip" ng-pattern="^[a-zA-Z0-9]*$" required/>
+    <div class="help-block error" ng-messages="accountEditForm.zip.$error" ng-if="accountEditForm.zip.$invalid && accountEditForm.zip.$dirty">
+      <span ng-message="pattern" class="statusError">
+        {{ 'TEXT_ZIP_OR_POSTAL_CODE_PATTERN_ERROR_MSG' | translate }}
+      </span>
+      <span ng-message="maxlength" class="statusError">
+        {{ 'TEXT_ZIP_OR_POSTAL_CODE_MAXLENGTH_ERROR_MSG' | translate }}
+      </span>
+      <span ng-message="required" class="statusError">
+        {{ 'TEXT_ZIP_OR_POSTAL_CODE_REQUIRED_ERROR_MSG' | translate }}
+      </span>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="country" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+    {{ 'TEXT_COUNTRY' | translate }}
+  </label>
+  <div class="col-sm-9 col-xs-9 ">
+    <span class="blueLine country-blueLine"></span>
+    <select name="countryDropdown" class="form-control selectCountryDropDown" ng-model="vm.selectedCountry" ng-options="country as country.enumName for country in vm.countries" ng-change="vm.updateEnumName()" required>
+    </select>
+
+    <div class="help-block error" ng-messages="accountEditForm.countryDropdown.$error" ng-if="!vm.countryDropdownIsvalid(accountEditForm) && accountEditForm.countryDropdown.$touched">
+      <span ng-message="required" class="statusError">
+        {{ 'TEXT_COUNTRY_REQUIRED_ERROR_MSG' | translate }}
+      </span>
+    </div>
+  </div>
+</div>
+<div class="ecb-requiredFeild">
+    <label class="text-right">
+      {{'TEXT_REQUIRED_FIELD' | translate }}
+    </label>
+    <span class="blueLine ecb-requiredFeildAdjustment"></span>
+</div>
+</div>

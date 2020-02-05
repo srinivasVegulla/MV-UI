@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head ng-controller="layoutController as vm">
+  <style>
+  /* Since Angular has this but needs to load, this gives us the classes early. */
+  .ng-hide, [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+  }
+  </style>
+  <title ng-bind="title"></title>
+  <link rel="shortcut icon" ng-href="/static/{{ vm.siteName() }}/branding/{{ vm.userSettings.theme.faviconName }}">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="-1">
+  <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+  <base href="/">
+  <!-- build:css styles/lib.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
+  <link rel="stylesheet" href="/bower_components/Font-Awesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="/bower_components/angular-aside/dist/css/angular-aside.css" />
+  <link rel="stylesheet" href="/bower_components/angularjs-datepicker/dist/angular-datepicker.css" />
+  <link rel="stylesheet" href="/bower_components/angular-ui-grid/ui-grid.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css styles/app.css -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/.tmp/main.css">
+  <link rel="stylesheet" href="/.tmp/layout/payment-setup/payment-setup-inputs.css">
+  <link rel="stylesheet" href="/.tmp/components/content/accountSettings/accountSettings.css">
+  <link rel="stylesheet" href="/.tmp/components/content/accountsManager/accountsManager.css">
+  <link rel="stylesheet" href="/.tmp/components/content/activityLog/activityLog.css">
+  <link rel="stylesheet" href="/.tmp/components/content/billAdjustmentPopup/billAdjustmentPopup.css">
+  <link rel="stylesheet" href="/.tmp/components/content/billing-activity/billing-activity.css">
+  <link rel="stylesheet" href="/.tmp/components/content/changePassword/changePassword.css">
+  <link rel="stylesheet" href="/.tmp/components/content/charges/charges.css">
+  <link rel="stylesheet" href="/.tmp/components/content/expiredPassword/expired-password.css">
+  <link rel="stylesheet" href="/.tmp/components/content/filter/filter.css">
+  <link rel="stylesheet" href="/.tmp/components/content/infinite-scroller/infinite-scroll.css">
+  <link rel="stylesheet" href="/.tmp/components/content/invoice/invoice.css">
+  <link rel="stylesheet" href="/.tmp/components/content/modalDialog/modalDialog.css">
+  <link rel="stylesheet" href="/.tmp/components/content/nowcast/nowcast.css">
+  <link rel="stylesheet" href="/.tmp/components/content/offer-charge-summary/offer-charge-summary.css">
+  <link rel="stylesheet" href="/.tmp/components/content/payer-subscriptions/payer-subscriptions.css">
+  <link rel="stylesheet" href="/.tmp/components/content/payment-methods/payment-methods.css">
+  <link rel="stylesheet" href="/.tmp/components/content/payments-credits-adjustments/payments-credits-adjustments.css">
+  <link rel="stylesheet" href="/.tmp/components/content/resetPassword/resetPassword.css">
+  <link rel="stylesheet" href="/.tmp/components/content/security/login.css">
+  <link rel="stylesheet" href="/.tmp/components/content/signUp/sign-up.css">
+  <link rel="stylesheet" href="/.tmp/components/content/signUp/welcome-modal.css">
+  <link rel="stylesheet" href="/.tmp/components/content/sinceLastBill/sinceLastBill.css">
+  <link rel="stylesheet" href="/.tmp/components/content/subscriptions/subscriptions.css">
+  <link rel="stylesheet" href="/.tmp/components/content/total-amount-due/total-amount-due.css">
+  <link rel="stylesheet" href="/.tmp/components/content/usage-activity/usage-activity.css">
+  <link rel="stylesheet" href="/.tmp/components/content/account/edit/account-edit.css">
+  <link rel="stylesheet" href="/.tmp/components/content/accountSettings/paperInvoiceModal/paperInvoiceModal.css">
+  <link rel="stylesheet" href="/.tmp/components/content/payments-credits-adjustments/payments-received/payments-received.css">
+  <link rel="stylesheet" href="/.tmp/components/content/total-amount-due/pay/pay-modal.css">
+  <link rel="stylesheet" href="/.tmp/components/content/translator/localeSelector/locale.selector.css">
+  <!-- endinject -->
+  <!-- endbuild -->
+  <link rel="stylesheet" href="/static/default/branding/theme.css">
+  <link rel="stylesheet" ng-href="/static/{{ vm.siteName() }}/branding/theme.css">
+</head>
+<body>
+  <div class="ecb-mainContainerAlignment container-fluid ebMainContainer">
+    <div ng-include="'app/layout/shell.html'"></div>
+  </div>
+  <!-- build:js js/lib.js -->
+  <!-- bower:js -->
+  <script src="/bower_components/jquery/dist/jquery.js"></script>
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="/bower_components/extras.angular.plus/ngplus-overlay.js"></script>
+  <script src="/bower_components/lodash/lodash.js"></script>
+  <script src="/bower_components/moment/moment.js"></script>
+  <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data-2012-2022.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="/bower_components/toastr/toastr.js"></script>
+  <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+  <script src="/bower_components/angular-messages/angular-messages.js"></script>
+  <script src="/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+  <script src="/bower_components/angular-translate/angular-translate.js"></script>
+  <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+  <script src="/bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+  <script src="/bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+  <script src="/bower_components/messageformat/messageformat.js"></script>
+  <script src="/bower_components/ng-csv/build/ng-csv.min.js"></script>
+  <script src="/bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+  <script src="/bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+  <script src="/bower_components/ngstorage/ngStorage.js"></script>
+  <script src="/bower_components/angular-touch/angular-touch.js"></script>
+  <script src="/bower_components/angular-aside/dist/js/angular-aside.js"></script>
+  <script src="/bower_components/angular-momentjs/angular-momentjs.js"></script>
+  <script src="/bower_components/ng-idle/angular-idle.js"></script>
+  <script src="/bower_components/d3/d3.js"></script>
+  <script src="/bower_components/angularjs-datepicker/dist/angular-datepicker.js"></script>
+  <script src="/bower_components/angular-ui-grid/ui-grid.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+  <script>
+    // Disables all Bootstrap transition animations.
+    $(function () {
+      $.support.transition = false;
+    });
+  </script>
+  <!-- build:js js/app.js -->
+  <!-- inject:js -->
+  <script src="/src/client/app/app.module.js"></script>
+  <script src="/src/client/app/components/content/account/account.module.js"></script>
+  <script src="/src/client/app/components/content/accountSettings/accountSettings.module.js"></script>
+  <script src="/src/client/app/components/content/accountsManager/accountsManager.module.js"></script>
+  <script src="/src/client/app/components/content/activityLog/activityLog.module.js"></script>
+  <script src="/src/client/app/components/content/asideModal/asideModal.module.js"></script>
+  <script src="/src/client/app/components/content/billAdjustmentPopup/billAdjustmentPopup.module.js"></script>
+  <script src="/src/client/app/components/content/billing-activity/billing-activity.module.js"></script>
+  <script src="/src/client/app/components/content/changePassword/changePassword.module.js"></script>
+  <script src="/src/client/app/components/content/charges/charges.module.js"></script>
+  <script src="/src/client/app/components/content/exception/exception.module.js"></script>
+  <script src="/src/client/app/components/content/expiredPassword/expiredPassword.module.js"></script>
+  <script src="/src/client/app/components/content/filter/filter.module.js"></script>
+  <script src="/src/client/app/components/content/forgotPasswordInstruction/forgotPasswordInstruction.module.js"></script>
+  <script src="/src/client/app/components/content/infinite-scroller/infinite-scroll.module.js"></script>
+  <script src="/src/client/app/components/content/invoice/invoice.module.js"></script>
+  <script src="/src/client/app/components/content/logger/logger.module.js"></script>
+  <script src="/src/client/app/components/content/modalDialog/modalDialog.module.js"></script>
+  <script src="/src/client/app/components/content/nowcast/nowcast.module.js"></script>
+  <script src="/src/client/app/components/content/offer-charge-summary/offer-charge-summary.module.js"></script>
+  <script src="/src/client/app/components/content/payer-subscriptions/payer.subscriptions.module.js"></script>
+  <script src="/src/client/app/components/content/payment-methods/payment-methods.module.js"></script>
+  <script src="/src/client/app/components/content/payments-credits-adjustments/payments-credits-adjustments.module.js"></script>
+  <script src="/src/client/app/components/content/resetPassword/resetPassword.module.js"></script>
+  <script src="/src/client/app/components/content/router/router.module.js"></script>
+  <script src="/src/client/app/components/content/security/security.module.js"></script>
+  <script src="/src/client/app/components/content/signUp/signUp.module.js"></script>
+  <script src="/src/client/app/components/content/sinceLastBill/sinceLastBill.module.js"></script>
+  <script src="/src/client/app/components/content/subscriptions/subscriptions.module.js"></script>
+  <script src="/src/client/app/components/content/total-amount-due/pay/pay.module.js"></script>
+  <script src="/src/client/app/components/content/total-amount-due/total-amount-due.module.js"></script>
+  <script src="/src/client/app/components/content/total-bill-amount/total-bill-amount.module.js"></script>
+  <script src="/src/client/app/components/content/translator/translator.module.js"></script>
+  <script src="/src/client/app/components/content/usage-activity/usage-activity.module.js"></script>
+  <script src="/src/client/app/components/layout/card/layout.card.module.js"></script>
+  <script src="/src/client/app/components/utility/utility.module.js"></script>
+  <script src="/src/client/app/core/core.module.js"></script>
+  <script src="/src/client/app/dashboard/dashboard.module.js"></script>
+  <script src="/src/client/app/layout/layout.module.js"></script>
+  <script src="/src/client/app/layout/payment-setup/payment.setup.module.js"></script>
+  <script src="/src/client/app/layout/view-selector/view-selector.module.js"></script>
+  <script src="/src/client/app/components/content/account/account.info.controller.js"></script>
+  <script src="/src/client/app/components/content/account/account.info.directive.js"></script>
+  <script src="/src/client/app/components/content/account/account.service.js"></script>
+  <script src="/src/client/app/components/content/account/edit/account.edit.modal.controller.js"></script>
+  <script src="/src/client/app/components/content/account/edit/account.edit.modal.service.js"></script>
+  <script src="/src/client/app/components/content/accountSettings/accountSecurityModal/accountSecurityModal.controller.js"></script>
+  <script src="/src/client/app/components/content/accountSettings/accountSecurityModal/accountSecurityModal.service.js"></script>
+  <script src="/src/client/app/components/content/accountSettings/accountSettings.controller.js"></script>
+  <script src="/src/client/app/components/content/accountSettings/accountSettings.directive.js"></script>
+  <script src="/src/client/app/components/content/accountSettings/accountSettings.service.js"></script>
+  <script src="/src/client/app/components/content/accountSettings/paperInvoiceModal/paperInvoiceModal.controller.js"></script>
+  <script src="/src/client/app/components/content/accountSettings/paperInvoiceModal/paperInvoiceModal.service.js"></script>
+  <script src="/src/client/app/components/content/accountsManager/accountsManager.controller.js"></script>
+  <script src="/src/client/app/components/content/accountsManager/accountsManager.directive.js"></script>
+  <script src="/src/client/app/components/content/accountsManager/accountsManager.service.js"></script>
+  <script src="/src/client/app/components/content/accountsManager/accountsManagerDropdown.directive.js"></script>
+  <script src="/src/client/app/components/content/activityLog/activityLog.controller.js"></script>
+  <script src="/src/client/app/components/content/activityLog/activityLog.directive.js"></script>
+  <script src="/src/client/app/components/content/activityLog/activityLog.service.js"></script>
+  <script src="/src/client/app/components/content/activityLog/activityLogCardFlow.directive.js"></script>
+  <script src="/src/client/app/components/content/activityLog/activityLogCardlayoutHeight.directive.js"></script>
+  <script src="/src/client/app/components/content/asideModal/asideModal.directive.js"></script>
+  <script src="/src/client/app/components/content/billAdjustmentPopup/billAdjustmentPopup.controller.js"></script>
+  <script src="/src/client/app/components/content/billAdjustmentPopup/billAdjustmentPopup.directive.js"></script>
+  <script src="/src/client/app/components/content/billing-activity/billing-activity.controller.js"></script>
+  <script src="/src/client/app/components/content/billing-activity/billing-activity.directive.js"></script>
+  <script src="/src/client/app/components/content/billing-activity/billing-activity.service.js"></script>
+  <script src="/src/client/app/components/content/changePassword/changePassword.modal.controller.js"></script>
+  <script src="/src/client/app/components/content/changePassword/changePassword.modal.service.js"></script>
+  <script src="/src/client/app/components/content/charges/charges.controller.js"></script>
+  <script src="/src/client/app/components/content/charges/charges.directive.js"></script>
+  <script src="/src/client/app/components/content/charges/charges.service.js"></script>
+  <script src="/src/client/app/components/content/exception/exception-handler.provider.js"></script>
+  <script src="/src/client/app/components/content/exception/exception.js"></script>
+  <script src="/src/client/app/components/content/expiredPassword/expiredPassword.controller.js"></script>
+  <script src="/src/client/app/components/content/expiredPassword/expiredPassword.route.js"></script>
+  <script src="/src/client/app/components/content/expiredPassword/expiredPassword.service.js"></script>
+  <script src="/src/client/app/components/content/filter/filter.controller.js"></script>
+  <script src="/src/client/app/components/content/filter/filter.directive.js"></script>
+  <script src="/src/client/app/components/content/filter/filter.service.js"></script>
+  <script src="/src/client/app/components/content/forgotPasswordInstruction/forgotPasswordInstruction.controller.js"></script>
+  <script src="/src/client/app/components/content/forgotPasswordInstruction/forgotPasswordInstruction.directive.js"></script>
+  <script src="/src/client/app/components/content/forgotPasswordInstruction/forgotPasswordInstruction.service.js"></script>
+  <script src="/src/client/app/components/content/infinite-scroller/infinite-scroll.controller.js"></script>
+  <script src="/src/client/app/components/content/infinite-scroller/infinite-scroll.directive.js"></script>
+  <script src="/src/client/app/components/content/invoice/invoice.controller.js"></script>
+  <script src="/src/client/app/components/content/invoice/invoice.directive.js"></script>
+  <script src="/src/client/app/components/content/invoice/invoice.service.js"></script>
+  <script src="/src/client/app/components/content/logger/logger.js"></script>
+  <script src="/src/client/app/components/content/modalDialog/modalDialog.directive.js"></script>
+  <script src="/src/client/app/components/content/modalDialog/modalDialog.service.js"></script>
+  <script src="/src/client/app/components/content/nowcast/bullet.js"></script>
+  <script src="/src/client/app/components/content/nowcast/nowcast.controller.js"></script>
+  <script src="/src/client/app/components/content/nowcast/nowcast.d3.controller.js"></script>
+  <script src="/src/client/app/components/content/nowcast/nowcast.directive.js"></script>
+  <script src="/src/client/app/components/content/nowcast/nowcast.service.js"></script>
+  <script src="/src/client/app/components/content/offer-charge-summary/offer-charge-summary.controller.js"></script>
+  <script src="/src/client/app/components/content/offer-charge-summary/offer-charge-summary.directive.js"></script>
+  <script src="/src/client/app/components/content/offer-charge-summary/offer-charge-summary.service.js"></script>
+  <script src="/src/client/app/components/content/payer-subscriptions/payer.subscriptions.controller.js"></script>
+  <script src="/src/client/app/components/content/payer-subscriptions/payer.subscriptions.directive.js"></script>
+  <script src="/src/client/app/components/content/payer-subscriptions/payer.subscriptions.service.js"></script>
+  <script src="/src/client/app/components/content/payment-methods/payment-methods.controller.js"></script>
+  <script src="/src/client/app/components/content/payment-methods/payment-methods.directive.js"></script>
+  <script src="/src/client/app/components/content/payment-methods/payment-methods.service.js"></script>
+  <script src="/src/client/app/components/content/payments-credits-adjustments/payments-credits-adjustments.controller.js"></script>
+  <script src="/src/client/app/components/content/payments-credits-adjustments/payments-credits-adjustments.directive.js"></script>
+  <script src="/src/client/app/components/content/payments-credits-adjustments/payments-credits-adjustments.service.js"></script>
+  <script src="/src/client/app/components/content/payments-credits-adjustments/payments-received/payments-received.controller.js"></script>
+  <script src="/src/client/app/components/content/payments-credits-adjustments/payments-received/payments-received.service.js"></script>
+  <script src="/src/client/app/components/content/resetPassword/resetPassword.controller.js"></script>
+  <script src="/src/client/app/components/content/resetPassword/resetPassword.route.js"></script>
+  <script src="/src/client/app/components/content/resetPassword/resetPassword.service.js"></script>
+  <script src="/src/client/app/components/content/router/router-helper.provider.js"></script>
+  <script src="/src/client/app/components/content/security/authentication.interceptor.service.js"></script>
+  <script src="/src/client/app/components/content/security/authentication.service.js"></script>
+  <script src="/src/client/app/components/content/security/login.controller.js"></script>
+  <script src="/src/client/app/components/content/security/security.route.js"></script>
+  <script src="/src/client/app/components/content/signUp/signUp.controller.js"></script>
+  <script src="/src/client/app/components/content/signUp/signUp.route.js"></script>
+  <script src="/src/client/app/components/content/signUp/signUp.service.js"></script>
+  <script src="/src/client/app/components/content/signUp/welcome.modal.controller.js"></script>
+  <script src="/src/client/app/components/content/signUp/welcome.modal.service.js"></script>
+  <script src="/src/client/app/components/content/sinceLastBill/sinceLastBill.controller.js"></script>
+  <script src="/src/client/app/components/content/sinceLastBill/sinceLastBill.directive.js"></script>
+  <script src="/src/client/app/components/content/sinceLastBill/sinceLastBill.service.js"></script>
+  <script src="/src/client/app/components/content/subscriptions/subscriptions.controller.js"></script>
+  <script src="/src/client/app/components/content/subscriptions/subscriptions.directive.js"></script>
+  <script src="/src/client/app/components/content/subscriptions/subscriptions.filter.js"></script>
+  <script src="/src/client/app/components/content/subscriptions/subscriptions.service.js"></script>
+  <script src="/src/client/app/components/content/total-amount-due/pay/pay.controller.js"></script>
+  <script src="/src/client/app/components/content/total-amount-due/pay/pay.directive.js"></script>
+  <script src="/src/client/app/components/content/total-amount-due/pay/pay.service.js"></script>
+  <script src="/src/client/app/components/content/total-amount-due/total-amount-due.controller.js"></script>
+  <script src="/src/client/app/components/content/total-amount-due/total-amount-due.directive.js"></script>
+  <script src="/src/client/app/components/content/total-amount-due/total-amount-due.service.js"></script>
+  <script src="/src/client/app/components/content/total-bill-amount/total-bill-amount.controller.js"></script>
+  <script src="/src/client/app/components/content/total-bill-amount/total-bill-amount.directive.js"></script>
+  <script src="/src/client/app/components/content/total-bill-amount/total-bill-amount.service.js"></script>
+  <script src="/src/client/app/components/content/translator/localeSelector/locale.selector.directive.js"></script>
+  <script src="/src/client/app/components/content/translator/localeSelector/locale.selector.service.js"></script>
+  <script src="/src/client/app/components/content/translator/translator-helper.provider.js"></script>
+  <script src="/src/client/app/components/content/usage-activity/usage-activity.controller.js"></script>
+  <script src="/src/client/app/components/content/usage-activity/usage-activity.directive.js"></script>
+  <script src="/src/client/app/components/content/usage-activity/usage-activity.service.js"></script>
+  <script src="/src/client/app/components/layout/card/layout.card.directive.js"></script>
+  <script src="/src/client/app/components/utility/utility.compareToValidator.directive.js"></script>
+  <script src="/src/client/app/components/utility/utility.currencyPrefix.filter.js"></script>
+  <script src="/src/client/app/components/utility/utility.ellipsis.filter.js"></script>
+  <script src="/src/client/app/components/utility/utility.fileDownload.directive.js"></script>
+  <script src="/src/client/app/components/utility/utility.infiniteScroll.service.js"></script>
+  <script src="/src/client/app/components/utility/utility.service.js"></script>
+  <script src="/src/client/app/components/utility/utility.setFocus.directive.js"></script>
+  <script src="/src/client/app/core/core.config.js"></script>
+  <script src="/src/client/app/core/core.constants.js"></script>
+  <script src="/src/client/app/core/core.country.service.js"></script>
+  <script src="/src/client/app/core/core.route.js"></script>
+  <script src="/src/client/app/core/core.user.service.js"></script>
+  <script src="/src/client/app/dashboard/dashboard.controller.js"></script>
+  <script src="/src/client/app/dashboard/dashboard.route.js"></script>
+  <script src="/src/client/app/layout/layout.controller.js"></script>
+  <script src="/src/client/app/layout/payment-setup/payment.setup.directive.js"></script>
+  <script src="/src/client/app/layout/payment-setup/payment.setup.modal.controller.js"></script>
+  <script src="/src/client/app/layout/payment-setup/payment.setup.modal.service.js"></script>
+  <script src="/src/client/app/layout/shell.controller.js"></script>
+  <script src="/src/client/app/layout/system-bar.controller.js"></script>
+  <script src="/src/client/app/layout/system-bar.directive.js"></script>
+  <script src="/src/client/app/layout/system-bar.service.js"></script>
+  <script src="/src/client/app/layout/view-selector/view-selector.controller.js"></script>
+  <script src="/src/client/app/layout/view-selector/view-selector.directive.js"></script>
+  <!-- endinject -->
+  <!-- inject:templates:js -->
+  <!-- endinject -->
+  <!-- endbuild -->
+</body>
+</html>

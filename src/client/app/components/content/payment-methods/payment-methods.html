@@ -1,0 +1,340 @@
+<div class="widget ecb-paymentMethodsExpandMain" ng-class="{ 'card-expanded': vm.paymentCardState === 'expanded', 'ecbCardExpanded': vm.widgetOpen}" ng-if="vm.allowPaymentMethods">
+  <div class="header clearfix">
+    <h2 class="payment-header-name pull-{{vm.layoutLeftDirection}}">{{ 'TEXT_PAYMENT_METHODS' | translate }}</h2>
+    <span class="btn ebBtn btn-sm btn-link pull-right close-image-view-all ecb-paymentsViewAllClose" ng-show="vm.paymentClose" ng-if="vm.widgetOpen" ng-click="vm.closePaymentViewAll()">
+            <i class="fa fa-times ebIcon ebIcon_interactive " aria-hidden="true"></i></span>
+    <div ng-if="(!vm.widgetOpen)" class="normal-pm-buttons">
+      <ul class="pull-right ach-cc-menu ecb-rtlAddPayment">
+        <button class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue" data-toggle="modal" ng-click="vm.addConfirmPopup()">{{'TEXT_ADD_PAYMENT_METHODS'|translate}}</button>
+      </ul>
+    </div>
+    <div class="pull-right ecb-cardTabularExpandIcons" ng-if="vm.widgetOpen">
+      <div class="pull-right text-center ecb-rtlTabularIconSet ecb-cardTabularIconSetMain">
+        <div class="ecb-cardTabularIconSet" class="col-md-12">
+          <div ng-click="vm.showTabularView()" ng-class="vm.getActiveViewStyle('table')"><i class="fa fa-table ecb-settingsHeaderIcon" aria-hidden="true"></div>
+          <div ng-click="vm.showCardView()" ng-class="vm.getActiveViewStyle('card')"><i class="fa fa-th ecb-settingsHeaderIcon" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="col-md-3 pull-right ecb-settingsMenu text-center ecb-rtlSettingsMenu" ng-click="vm.togglePaymentsTabularViewSettings()" ng-if="vm.showPaymentSettings()">
+        <span class="ebIcon_settings ecb-headerIcons"></span>
+      </div>
+    </div>
+  </div>
+  <div class="ecbRelativeClass" ng-if="vm.loading">
+    <div class="ebLoader">
+      <div class="ebLoader-Holder">
+        <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+      </div>
+    </div>
+  </div>
+<div class="ecb-offerChargeTabularView payment-method" ng-if="vm.isExpandTabularView() && !vm.loading">
+    <div class="ecb-uiGrid" ui-grid="vm.gridOptions" dir="{{vm.i18n.languageDirection}}" ui-grid-resize-columns ui-grid-auto-resize ui-grid-move-columns ui-grid-pinning ng-style="vm.getViewAllBodyHeight()"></div>
+  </div>
+  <div class="ecb-cardTabularSettings ecb-rtlCardTabularSettings" ng-if="vm.isPaymentsSettings()">
+      <div class="ecb-settingsHeader">
+        <div class="pull-{{vm.layoutLeftDirection}}">
+          <span class="ebIcon_settings ecb-headerIcons"></span>
+          <span class="ebText"><b>{{'TEXT_SETTINGS'|translate}}</b></span>
+        </div>
+        <div class="pull-{{vm.layoutRightDirection}}">
+          <button class="btn ebBtn ebBtn_color_darkBlue" ng-click="vm.applyPaymentsCancelSettings(1)" ng-disabled="vm.isAllColumnDeselected()">{{'TEXT_APPLY'| translate}}</button>
+          <button class="btn ebBtn ebBtn-default" ng-click="vm.applyPaymentsCancelSettings(0)">{{'TEXT_CANCEL'| translate}}</button>
+        </div>
+      </div>
+      <div class="ecb-settingsCheckboxHeader">
+        <div class="ebLabel pull-{{vm.layoutLeftDirection}}">{{'TEXT_SELECT'| translate}} :</div>
+        <div class="pull-{{vm.layoutLeftDirection}}"><a class="ebColor_textLinkBlue" ng-click="vm.togglePaymentsSelectAll(1)">{{'TEXT_ALL'| translate}}</a></div>
+        <div class="pull-{{vm.layoutLeftDirection}}">|</div>
+        <div class="pull-{{vm.layoutLeftDirection}}"><a class="ebColor_textLinkBlue" ng-click="vm.togglePaymentsSelectAll(0)">{{'TEXT_NONE'| translate}}</a></div>
+      </div>
+      <div class="ecb-settingsColumnList" ng-style="vm.getSettingsHeight()">
+        <ul class="list-unstyled">
+          <li ng-repeat="header in vm.unFreezeColumnsList(vm.paymentMethodsListHeader)">
+            <label>
+              <input class="ebCheckbox" type="checkbox" value="{{header}}"
+                ng-checked="vm.checkboxSelectionTemp.indexOf(header) > -1" ng-click="vm.togglePaymentsHeaderSelection(header)" ng-disabled="vm.freezeColumnsTemp.indexOf(header) > -1">
+              <span class="ebCheckbox-inputStatus"></span>
+              <span class="ebCheckbox-label">{{vm.paymentHeaderKey(header)}}</span>
+            </label>
+            <div ng-class="{ 'ecb-freezeChecked': vm.checkboxSelectionTemp.indexOf(header) == -1}" ng-click="vm.toggleFreezingColumns(header, true)"><i class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i></div>
+          </li>
+          <li ng-if="vm.showMidLine(vm.paymentMethodsListHeader)" class="ecb-freezeColumnsDivide"></li>
+          <li ng-repeat="header in vm.freezeColumns">
+            <label>
+              <input class="ebCheckbox" type="checkbox" value="{{header}}" checked="checked" disabled="disabled">
+              <span class="ebCheckbox-inputStatus"></span>
+              <span class="ebCheckbox-label">{{vm.paymentHeaderKey(header)}}</span>
+            </label>
+            <div ng-class="{ 'ecb-freeze': vm.freezeColumnsTemp.indexOf(header) > -1}" ng-click="vm.toggleFreezingColumns(header)"><i class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i></div>
+          </li>
+        </ul>
+      </div>
+  </div>
+    <div class="content widget-content-list ecb-expandPaymentsMethodBody" ng-class="{ 'widget-no-content': (vm.paymentMethods.length <= 1), 'ecbWidgetClosed': !vm.widgetOpen}" ng-if="!vm.isExpandTabularView()">
+    <div ng-if="vm.paymentMethods && !vm.loading" ng-show="!vm.addError" class="payment-method list-content ecb-subscriptionCard ecb-paymentcardWidth ecb-cardBorder pull-{{vm.layoutLeftDirection}}" ng-repeat="payment in vm.paymentMethods | orderBy: vm.getSortByColumn() | filter:vm.selectedFilters | limitTo: vm.limit" ng-class="(vm.widgetOpen) ? 'col-md-4 col-sm-6 col-xs-12' : 'col-md-12 col-sm-12 col-xs-12'" ng-mouseover="hoverCancel= true" ng-mouseleave="hoverCancel = false">
+      <div ng-show="!vm.checkIsACH(payment.nameCreditcardType)" class="content-wrapper content-table-wrapper ecb-paymentCreditCard">
+        <div class="subscription-content content-table-wrapper content-wrapper">
+            <div class="ecb-cardFeilds ebText">
+              <span><i><b>{{payment.nameCreditcardType | uppercase}}</b></i></span>
+            </div>
+            <div class="ecb-cardFeilds ebText">
+              <span class="ecb-labelText">{{'TEXT_CARD_NUMBER'|translate}}</span>
+              <span><a>{{payment.truncdAcctNum}}</a></span>
+            </div>
+            <div class="ecb-cardFeilds ebText">
+              <span class="ecb-labelText">{{'TEXT_EXPIRATION_DATE'|translate}}</span>
+              <span>{{payment.expDate}}</span>
+            </div>
+        </div>
+        <span class="{{vm.className}}" ng-show="payment.idPriority == 1">
+          <span class="ebText ebInput-statusOk">{{'TEXT_PRIMARY'|translate}}</span>
+        </span>
+        <div class="ecb-paymentOptions" ng-if="hoverCancel">
+            <ul class="list-inline text-center overlayButtons ">
+              <li ng-mouseover="vm.editPaymentMouseOver()" ng-mouseleave="vm.editPaymentMouseLeave()" class="ecb-paymentCardHoverList">
+                <button class="btn ebBtn btn-sm  ebBtn_small ecb-paymentOption" ng-disabled="payment.paymentScheduled == 'true'" ng-click="vm.editConfirmPopup(payment.idPaymentInstrument)">
+                  <i class="fa fa-pencil ebIcon"></i>
+                  <span>{{'TEXT_EDIT'|translate}}</span>
+                </button>
+              </li>
+              <li class="ecb-paymentCardHoverList">
+                <button class="btn ebBtn btn-sm  ebBtn_small ecb-paymentOption" ng-click="vm.makePayment(vm.accountId,vm.currency,payment.idPaymentInstrument)">
+                <i class="fa fa-check ebIcon" aria-hidden="true"></i>
+                <span data-toggle="modal">{{'TEXT_MAKE_PAYMENT'|translate}}</span></button>
+              </li>
+              <li class="ecb-paymentCardHoverList">
+                <button ng-click="vm.openPay($index, payment.idPaymentInstrument)" class="btn ebBtn btn-sm  ebBtn_small ecb-paymentOption"><i class="fa fa-trash-o ebIcon"></i><span>{{'TEXT_REMOVE'|translate}}</span></button>
+              </li>
+            </ul>
+        </div>
+      </div>
+      <div class="cancel-payment" ng-class="{active:vm.payItem == {{$index}}}">
+        <div class="ebDialogBox ach-confirmation">
+          <div class="ebDialogBox-contentBlock ecb-PaymentMethodConfirmation">
+            <div class="ebDialogBox-primaryText col-md-12">
+               <i class="ebIcon ebIcon_warningOrange ecb-warningIcon"></i><span> {{'TEXT_DELETE_CONFIMATION' | translate}}</span>
+            </div>
+            <div class="ebDialogBox-secondaryText ebText_alternative col-md-12">
+             <div class="col-md-12 col-xs-12" ng-if="(vm.isPaymentMethodActive[$index] == true)
+                 && (vm.activePaymentMethods == 1)">
+                 <span>{{'TEXT_REMOVE_PAYMENT_METHOD' | translate}}</span>
+              </div>
+              <div class="col-md-12 col-xs-12" ng-if="vm.cardActivePaymentScheduled[$index] == true">
+                <span>{{'TEXT_LAST_ACTIVE_SCHEDULE_ERROR' | translate }}</span>
+              </div>
+              <div class="col-md-12 col-xs-12" ng-if="vm.deletePaymentScheduled[$index] == true">
+                <span>{{'TEXT_SCHEDULE_PAYMENT_ERROR' | translate}}</span>
+              </div>
+              <div class="col-md-12 col-xs-12" ng-if="vm.deletePaymentDefaultMessage($index)">
+                <span>{{'TEXT_DELETE_PAYMENT_CONFIRMATION_MESSAGE' | translate}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="ebDialogBox-actionBlock ach-confirmation-footer">
+            <button class="ebBtn ebBtn_color_red" ng-click="vm.getDeleteCreditMethods(payment.idPaymentInstrument)">{{ 'TEXT_DELETE' | translate }}</button>
+            <button class="ebBtn" ng-click="vm.dismissDeleteErrorBox()">{{ 'TEXT_CANCEL' | translate }}</button>
+          </div>
+        </div>
+      </div>
+      <div ng-show="vm.checkIsACH(payment.nameCreditcardType)" class="content-wrapper content-table-wrapper ecb-paymentAchCard">
+        <div class="subscription-content content-table-wrapper content-wrapper">
+            <div class="ecb-achFields ebText">
+              <span class="ecb-labelText">{{'TEXT_ACH_Name'|translate}}</span>
+              <span>{{payment.bankname !=''? payment.bankname : "N/A"}}</span>
+            </div>
+            <div class="ecb-achFields ebText">
+              <span class="ecb-labelText">{{'TEXT_ACCOUNT_NUMBER'|translate}}</span>
+              <span><a>{{payment.truncdAcctNum}}</a></span>
+            </div>
+            <div class="ecb-achFields ebText">
+              <span class="ecb-labelText">{{'TEXT_ROUTING_NUMBER'|translate}}</span>
+              <span>{{payment.routingnumber}}</span>
+            </div>
+            <div class="ecb-achFields ebText">
+              <span class="ecb-labelText">{{'TEXT_ACCOUNT_TYPE'|translate}}</span>
+              <span>{{payment.accountType}}</span>
+            </div>
+        </div>
+        <span class="{{vm.className}}" ng-show="payment.idPriority == 1">
+          <span class="ebText ebInput-statusOk">{{'TEXT_PRIMARY'|translate}}</span>
+        </span>
+        <div class="ecb-paymentOptions" ng-if="hoverCancel">
+            <ul class="list-inline text-center overlayButtons ">
+              <li ng-mouseover="vm.editPaymentMouseOver()" ng-mouseleave="vm.editPaymentMouseLeave()" class="ecb-paymentCardHoverList">
+                <button class="btn ebBtn btn-sm  ebBtn_small  ecb-paymentOption" ng-disabled="payment.paymentScheduled == 'true'" ng-click="vm.editConfirmPopup(payment.idPaymentInstrument)">
+                  <i class="fa fa-pencil ebIcon"></i>
+                  <span>{{'TEXT_EDIT'|translate}}</span>
+                </button>
+              </li>
+              <li class="ecb-paymentCardHoverList">
+                <button class="btn ebBtn btn-sm  ebBtn_small  ecb-paymentOption" ng-click="vm.makePayment(vm.accountId,vm.currency,payment.idPaymentInstrument)"><span data-toggle="modal">{{'TEXT_MAKE_PAYMENT'|translate}}</span></button>
+              </li>
+              <li class="ecb-paymentCardHoverList">
+                <button class="btn ebBtn btn-sm  ebBtn_small  ecb-paymentOption" ng-click="vm.openAch($index, payment.idPaymentInstrument)" ng-disabled="payment.paymentScheduled == 'true'"><i class="fa fa-trash-o ebIcon"></i><span>{{'TEXT_REMOVE'|translate}}</span></button>
+              </li>
+            </ul>
+          </div>
+      </div>
+      <div class="cancel-payment" ng-class="{active:vm.payAch == {{$index}}}">
+        <div class="ebDialogBox ach-confirmation">
+          <div class="ebDialogBox-contentBlock ecb-PaymentMethodConfirmation">
+            <div class="ebDialogBox-primaryText col-md-12">
+               <i class="ebIcon ebIcon_warningOrange ecb-warningIcon"></i><span> {{'TEXT_DELETE_CONFIMATION' | translate}}</span>
+            </div>
+            <div class="ebDialogBox-secondaryText ebText_alternative col-md-12">
+             <div class="col-md-12 col-xs-12" ng-if="(vm.isPaymentMethodActive[$index] == true)
+                 && (vm.activePaymentMethods == 1)">
+                 <span>{{'TEXT_REMOVE_PAYMENT_METHOD' | translate}}</span>
+              </div>
+              <div class="col-md-12 col-xs-12" ng-if="vm.cardActivePaymentScheduled[$index] == true">
+                <span>{{'TEXT_LAST_ACTIVE_SCHEDULE_ERROR' | translate }}</span>
+              </div>
+              <div class="col-md-12 col-xs-12" ng-if="vm.deletePaymentScheduled[$index] == true">
+                <span>{{'TEXT_SCHEDULE_PAYMENT_ERROR' | translate}}</span>
+              </div>
+              <div class="col-md-12 col-xs-12" ng-if="vm.deletePaymentDefaultMessage($index)">
+                <span>{{'TEXT_DELETE_PAYMENT_CONFIRMATION_MESSAGE' | translate}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="ebDialogBox-actionBlock ach-confirmation-footer">
+            <button class="ebBtn ebBtn_color_red" ng-click="vm.getDeleteCreditMethods(payment.idPaymentInstrument)">{{ 'TEXT_DELETE' | translate }}</button>
+            <button class="ebBtn" ng-click="vm.dismissRemoveErrorBox()">{{ 'TEXT_CANCEL' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-if="vm.addError" class="error-container">
+      <div class="error-message">
+        <div ng-if="vm.cyberError">
+          <div class="error-ebDialogBox error-confirmation">
+            <div class="ebDialogBox-contentBlock confirmation-content">
+              <div ng-click="vm.errorClose()">
+                <i class="fa fa-times error-close" aria-hidden="true"></i>
+              </div>
+              <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_UNABLE_TO_PROCESS_REQUEST' |translate }}</p>
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_TRY_AGAIN' |translate }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="vm.cyberAddError">
+          <div class="error-ebDialogBox error-confirmation">
+            <div class="ebDialogBox-contentBlock confirmation-content">
+              <div ng-click="vm.errorClose()">
+                <i class="fa fa-times error-close" aria-hidden="true"></i>
+              </div>
+              <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_ERROR_LAUNCHING_PAGE' |translate }}</p>
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_TRY_AGAIN' |translate }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="vm.cyberSaveError">
+          <div class="error-ebDialogBox error-confirmation">
+            <div class="ebDialogBox-contentBlock confirmation-content">
+              <div ng-click="vm.errorClose()">
+                <i class="fa fa-times error-close" aria-hidden="true"></i>
+              </div>
+              <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_ERROR_SAVING_ACH' | translate}}</p>
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_ACH_TRY_AGAIN' |translate }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="vm.cyberUpdateError">
+          <div class="error-ebDialogBox error-confirmation">
+            <div class="ebDialogBox-contentBlock confirmation-content">
+              <div ng-click="vm.errorClose()">
+                <i class="fa fa-times error-close" aria-hidden="true"></i>
+              </div>
+              <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_ERROR_UPDATING_ACH' | translate}}</p>
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_ACH_TRY_AGAIN' |translate }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="vm.cyberRemoveError">
+          <div class="error-ebDialogBox error-confirmation">
+            <div class="ebDialogBox-contentBlock confirmation-content">
+              <div ng-click="vm.errorClose()">
+                <i class="fa fa-times error-close" aria-hidden="true"></i>
+              </div>
+              <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_ERROR_REMOVE_ACH' | translate}}</p>
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_ACH_TRY_AGAIN' |translate }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-if="vm.nodata">
+      <p>{{ 'TEXT_NO_PAYMENTS' |translate }}</p>
+    </div>
+  </div>
+  <div class="footer clearfix" ng-if="vm.paymentMethods.length && !vm.widgetOpen && !vm.loading">
+    <p class="ebText pull-{{vm.layoutRightDirection}}">
+      <button class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue pull-right" ng-click="vm.togglePaymentCardState()">{{'TEXT_VIEW_ALL'|translate}} ></button>
+    </p>
+  </div>
+  <div class="modal fade" id="hide-payments" ng-bind-html="vm.template" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  </div>
+
+    <!-- Cybersource Redirection Confrimation Popup-->
+    <div class="modal fade ecb-modalPaymentPopup" tabindex="-1" id="confirmPopup" role="dialog" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content ecb-contentPaymentPopup">
+          <div class="modal-header ecb-headerPaymentPopup">
+            <h2 ng-if="!vm.editPaymentConfirm" class="modal-title ecb-headerPaymentPopup">{{'TEXT_ADDING_PAYMENT'| translate}}</h2>
+            <h2 ng-if="vm.editPaymentConfirm" class="modal-title ecb-headerPaymentPopup">{{'TEXT_EDITING_PAYMENT'| translate}}</h2>
+          </div>
+          <div class="modal-body ecb-bodyPaymentPopup">
+             <span>{{'TEXT_CYBERSOURCE_POPUP'| translate}}</span>
+          </div>
+          <div class="modal-body ecb-bodyPaymentPopup">
+            <span>{{'TEXT_WISH_TO_PROCEED'| translate}}</span>
+          </div>
+          <div class="modal-footer ecb-footerPaymentPopup">
+            <button class="btn ebBtn ebBtn_color_darkBlue" type="button" data-target="#hide-payments" ng-click="vm.getCreditMethods()" ng-if="vm.addPaymentConfirm" data-dismiss="modal">{{'TEXT_PROCEED'| translate}}</button>
+            <button class="btn ebBtn ebBtn_color_darkBlue" type="button" data-target="#hide-payments" ng-click="vm.getUpdateCreditMethods(vm.idPaymentInstrument)" ng-if="vm.editPaymentConfirm" data-dismiss="modal">{{'TEXT_PROCEED'| translate}}</button>
+            <button class="btn ebBtn ebBtn_default" type="button" data-dismiss="modal">{{'TEXT_CANCEL'| translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div tabindex="-1" ng-if="vm.hideDeleteConfirmationBox" id="removePopup" role="dialog" data-backdrop="static" data-keyboard="false" class="col-lg-4 col-md-4 ecb-PaymentsdeletePopup">
+      <div class="ebDialogBox ach-confirmation">
+          <div class="ebDialogBox-contentBlock ecb-PaymentMethodConfirmation">
+            <div class="ebDialogBox-primaryText col-md-12">
+               <i class="ebIcon ebIcon_warningOrange ecb-warningIcon"></i><span> {{'TEXT_DELETE_CONFIMATION' | translate}}</span>
+            </div>
+            <div class="ebDialogBox-secondaryText ebText_alternative col-md-12">
+              <div class="col-md-12 col-xs-12" ng-if="(vm.isPaymentMethodActive[vm.index] == true)
+                 && (vm.activePaymentMethods == 1)">
+                 <span>{{'TEXT_REMOVE_PAYMENT_METHOD' | translate}}
+                 </span>
+              </div>
+              <div class="col-md-12 col-xs-12" ng-if="vm.cardActivePaymentScheduled[vm.index] == true">
+                <span>{{ 'TEXT_LAST_ACTIVE_SCHEDULE_ERROR' | translate }}</span>
+              </div>
+              <div class="col-md-12 col-xs-12" ng-if="vm.deletePaymentScheduled[vm.index] == true">
+                <span>{{'TEXT_SCHEDULE_PAYMENT_ERROR' | translate}}</span>
+              </div>
+              <div class="col-md-12 col-xs-12" ng-if="vm.deletePaymentDefaultMessage(vm.index)">
+                <span>{{'TEXT_DELETE_PAYMENT_CONFIRMATION_MESSAGE' | translate}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="ebDialogBox-actionBlock ach-confirmation-footer">
+            <button class="ebBtn ebBtn_color_red" ng-if="vm.hideDeleteConfirmationBox" ng-click="vm.getDeleteCreditMethods(vm.deleteThisCard.idPaymentInstrument)">{{ 'TEXT_DELETE' | translate }}</button>
+            <button class="ebBtn" ng-click="vm.dismissRemoveErrorBox()">{{ 'TEXT_CANCEL' | translate }}</button>
+          </div>
+        </div>
+    </div>
+    <div ng-if="vm.isTabularViewSettings" class="ecb-widgetBackdrop"></div>
+</div>

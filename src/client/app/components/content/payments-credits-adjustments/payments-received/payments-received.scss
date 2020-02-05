@@ -1,0 +1,64 @@
+.payments-received-modal-content {
+  overflow: auto !important;
+  margin-bottom: 0px !important;
+}
+.total-amount-payments-received {
+  padding: 20px 10px 10px;
+  padding-left:20px !important;
+
+  :first-child {
+    color: #A9A9A9 !important;
+  }
+
+  sup:first-of-type {
+    top: -0.3em;
+  }
+
+  .total-payment-amount {
+    font-size:200%;
+  }
+}
+.payments-received > div:first-of-type {
+  padding-bottom: 20px;
+}
+.payments-received-table.table > tbody > tr > td{
+padding: 3px 0;
+border: none !important;
+}
+@media screen and (max-width: 767px) {
+  .table-responsive {
+    border: 0;
+  }
+}
+.payments-received {
+   margin: 0 20px 20px 20px;
+   border: 1px solid #D8D8D8;
+   border-radius: 5px;
+   padding: 10px;
+}
+.creditCard {
+  content: "";
+  background-image: url("../images/creditCard.svg");
+  background-position: 47% 42%;
+  background-repeat: no-repeat;
+  background-size: 12%;
+}
+.achCard {
+  content: "";
+  background-image: url("../images/achCard.svg");
+  background-position: 47% 42%;
+  background-repeat: no-repeat;
+  background-size: 9%;
+}
+.payment-date {
+  padding-top: 40px;
+  padding-bottom: 10px;
+}
+.amount-display {
+  font-size:200%;
+
+  sup {
+    top: -0.3em;
+  }
+}
+

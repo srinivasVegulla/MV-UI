@@ -1,0 +1,117 @@
+<div class="widget ecb-payerSubscriptionsExpandMain" ng-class="{ 'card-expanded': vm.subscriptionCardState === 'expanded',
+'card-collapsed': vm.subscriptionCardState != 'expanded', 'ecbCardExpanded': vm.widgetOpen }">
+  <div class="header clearfix"><!-- Header start -->
+    <h2 class="payer-subscription-headerName pull-{{vm.layoutLeftDirection}}">{{ 'TEXT_SUBSCRIPTIONS' | translate }}</h2>
+    <span class="pull-right close-image-view-all expanded-charges-view ecb-subscriptionClose" ng-click="vm.closeSubscriptionViewAll()" ng-show="vm.widgetOpen">
+      <i class="fa fa-times ebIcon ebIcon_interactive " aria-hidden="true"></i>
+    </span>
+    <div class="pull-right ecb-cardTabularExpandIcons" ng-if="vm.widgetOpen">
+      <div class="pull-right text-center ecb-rtlTabularIconSet ecb-cardTabularIconSetMain">
+        <div class="ecb-cardTabularIconSet" class="col-md-12">
+          <div ng-click="vm.showTabularView()" ng-class="vm.getActiveViewStyle('table')"><i class="fa fa-table ecb-settingsHeaderIcon" aria-hidden="true"></div>
+          <div ng-click="vm.showCardView()" ng-class="vm.getActiveViewStyle('card')"><i class="fa fa-th ecb-settingsHeaderIcon" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="col-md-3 pull-right ecb-settingsMenu text-center ecb-rtlSettingsMenu" ng-click="vm.toggleTabularViewSettings()" ng-if="vm.isExpandTabularView()">
+        <span class="ebIcon_settings ecb-headerIcons"></span>
+      </div>
+    </div>
+  </div><!-- Header end -->
+  <div class="ecbRelativeClass" ng-if="vm.loading">
+    <div class="ebLoader">
+      <div class="ebLoader-Holder">
+        <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+      </div>
+    </div>
+  </div>
+  <div class="ecb-offerChargeTabularView subscriptionCell" ng-if="vm.isExpandTabularView() && !vm.loading">
+<div ng-if="vm.displayableSubscriptions.length > 0" class="ecb-uiGrid" ui-grid="vm.gridOptions" dir="{{vm.i18n.languageDirection}}"
+  ui-grid-resize-columns ui-grid-auto-resize ui-grid-move-columns ui-grid-pinning ng-style="vm.getViewAllBodyHeight()"></div>
+  <div ng-if="vm.displayableSubscriptions.length == 0">
+    <p class="messagePaddingViewAll">{{ 'TEXT_NO_SUBSCRIPTION' | translate }}.</p>
+  </div>
+  </div> <!-- Tabular view details  -->
+  <div class="ecb-cardTabularSettings ecb-rtlCardTabularSettings" ng-if="vm.isSettings()">
+    <div class="ecb-settingsHeader">
+      <div class="pull-{{vm.layoutLeftDirection}}">
+        <span class="ebIcon_settings ecb-headerIcons"></span>
+        <span class="ebText"><b>{{'TEXT_SETTINGS'|translate}}</b></span>
+      </div>
+      <div class="pull-{{vm.layoutRightDirection}}">
+        <button class="btn ebBtn ebBtn_color_darkBlue" ng-click="vm.applyCancelSettings(1)" ng-disabled="vm.isAllColumnDeselected()">{{'TEXT_APPLY'| translate}}</button>
+        <button class="btn ebBtn ebBtn-default" ng-click="vm.applyCancelSettings(0)">{{'TEXT_CANCEL'| translate}}</button>
+      </div>
+    </div>
+    <div class="ecb-settingsCheckboxHeader">
+      <div class="ebLabel pull-{{vm.layoutLeftDirection}}">{{'TEXT_SELECT'| translate}} :</div>
+      <div class="pull-{{vm.layoutLeftDirection}}"><a class="ebColor_textLinkBlue" ng-click="vm.toggleSelectAll(1)">{{'TEXT_ALL'| translate}}</a></div>
+      <div class="pull-{{vm.layoutLeftDirection}}">|</div>
+      <div class="pull-{{vm.layoutLeftDirection}}"><a class="ebColor_textLinkBlue" ng-click="vm.toggleSelectAll(0)">{{'TEXT_NONE'| translate}}</a></div>
+    </div>
+    <div class="ecb-settingsColumnList" ng-style="vm.getSettingsHeight()">
+      <ul class="list-unstyled">
+      <li ng-repeat="header in vm.unFreezeColumnsList(vm.displayableSubscriptionsHeader)">
+        <label>
+          <input class="ebCheckbox" type="checkbox" value="{{header}}"
+            ng-checked="vm.checkboxSelectionTemp.indexOf(header) > -1" ng-click="vm.toggleHeaderSelection(header)" ng-disabled="vm.freezeColumnsTemp.indexOf(header) > -1">
+          <span class="ebCheckbox-inputStatus"></span>
+          <span class="ebCheckbox-label">{{vm.subscriptionHeaderKey(header)}}</span>
+        </label>
+        <div ng-class="{ 'ecb-freezeChecked': vm.checkboxSelectionTemp.indexOf(header) == -1}" ng-click="vm.toggleFreezingColumns(header, true)"><i class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i></div>
+      </li>
+      <li ng-if="vm.showMidLine(vm.displayableSubscriptionsHeader)" class="ecb-freezeColumnsDivide"></li>
+      <li ng-repeat="header in vm.freezeColumns">
+        <label>
+          <input class="ebCheckbox" type="checkbox" value="{{header}}" checked="checked" disabled="disabled">
+          <span class="ebCheckbox-inputStatus"></span>
+          <span class="ebCheckbox-label">{{vm.subscriptionHeaderKey(header)}}</span>
+        </label>
+        <div ng-class="{ 'ecb-freeze': vm.freezeColumnsTemp.indexOf(header) > -1}" ng-click="vm.toggleFreezingColumns(header)"><i class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i></div>
+      </li>
+    </ul>
+    </div>
+  </div> <!-- Tabular view settings popup content ends -->
+
+  <div class="content widget-content-list ecb-subscriptionContent ecb-payerSubscriptionBody" ng-class="{'widget-no-content' : (vm.payeeSubscriptions.length <=1), 'ecbpayerSubscriptionClosed': !vm.widgetOpen}" ng-if="!vm.isExpandTabularView() && !vm.loading">
+    <div class="pull-{{vm.layoutRightDirection}} ebText ecb-asOfTodayLabel" ng-if="!vm.widgetOpen"> {{vm.dateRangeStartDate}} - {{vm.dateRangeEndDate}}</div>
+    <div ng-if="!vm.subscriptionsMessage"
+      class="list-content ecb-subscriptionCard ecb-cardBorder pull-{{vm.layoutLeftDirection}}"
+      ng-repeat="subscription in vm.payeeSubscriptions | orderBy: vm.getSortByColumn():(vm.sortOrder == 'desc' ? true : false) | filter: vm.selectedFilters | limitTo: vm.limit"
+      ng-class="(vm.widgetOpen) ? 'col-md-4 col-sm-6 col-xs-12' : 'col-md-12 col-sm-12 col-xs-12'">
+      <div class="subscription-content content-table-wrapper content-wrapper">
+      <div class="ecb-payersubscriptionImage img-responsive pull-{{vm.layoutLeftDirection}}">
+        <img
+          ng-src="{{vm.getOfferImage(subscription.productofferid)}}" />
+      </div>
+        <div class="ecb-subscriptionDetails pull-{{vm.layoutLeftDirection}}">
+          <div class="ecb-subscriptionName">{{subscription.displayname}}</div>
+          <div class="ecb-subscriptionDescription">{{subscription.subscriptiondesc | showEllipsis : 88}}</div>
+          <div class="ecb-subscriptionDate">
+              <span class="ecb-subscriptionDateContent">{{ 'TEXT_NO_OF_SUBSCRIBERS' | translate }}</span>
+              <span class="ecb-subscriptionDateContent">{{subscription.nosubscribers}}</span>
+          </div>
+        </div>
+      </div>
+    </div><!-- Subscriptions ends -->
+    <div ng-if="vm.subscriptionsMessage">
+      <p>{{ 'TEXT_NO_SUBSCRIPTION' | translate }}</p>
+    </div> <!-- No active Subscriptions message ends -->
+    <div ng-if="vm.subscriptionsError" class="error-container">
+    <div class="error-ebDialogBox error-confirmation">
+      <div class="ebDialogBox-contentBlock confirmation-content">
+        <div class="row ebDialogBox-primaryTextBox error-primaryText">
+          <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_SUBSCRIPTIONS_ERROR' | translate }}</p>
+          <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_TRY_AGAIN' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </div> <!-- Subscription error message ends -->
+  </div><!-- Widget body content ends -->
+
+  <div class="footer clearfix" ng-if="vm.payeeSubscriptions.length && !vm.widgetOpen  && !vm.loading">
+    <p class="ebText pull-{{vm.layoutRightDirection}}">
+      <button class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue btn-link-noborder pull-right" ng-click="vm.toggleSubscriptionCardState()">{{'TEXT_VIEW_ALL'|translate}} ></button>
+    </p>
+  </div><!-- Footer content ends -->
+  <div ng-if="vm.isTabularViewSettings" class="ecb-widgetBackdrop"></div> <!-- Background shadow for settings popup -->
+</div>

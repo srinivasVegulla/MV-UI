@@ -1,0 +1,17 @@
+{
+  "LOGIN_TITLE": "Empresa Ericsson e Billing Nuvem - MetraView",
+  "LOGIN_INVALID_CREDENTIALS": "nome de usuário ou senha inválida",
+  "LOGIN_INPUT_USERNAME": "Nome de usuário",
+  "LOGIN_INPUT_PASSWORD": "Senha",
+  "LOGIN_INPUT_SUBMIT": "Entrar",
+  "LOGIN_FORGOT_PASSWORD": "Você esqueceu sua senha?",
+  "LOGIN_VALIDATION_PATTERN_USERNAME": "caracteres inválidos não são permitidos.",
+  "LOGIN_VALIDATION_REQUIRED_USERNAME": "Nome de usuário é requerido.",
+  "LOGIN_VALIDATION_REQUIRED_PASSWORD": "Senha requerida.",
+  "LOGIN_ACCOUNT_LOCKED": "A sua conta está bloqueada out.Call Atendimento ao Cliente para desbloquear sua conta.",
+  "LOGIN_NO_LOGON": "A sua conta não tem permissões para esta aplicação",
+  "LOGIN_INVALID_TICKET": "Login inválido",
+  "LOGIN_UNABLE_TO_CONNECT_TO_SERVER": "Não é possível conectar ao servidor",
+  "LOGIN_SIGN_UP": "Inscrever-se",
+  "LOGIN_COPYRIGHT": "Ⓒ Empresa Ericsson e Billing Nuvem, 2016 Todos os direitos reservado"
+}

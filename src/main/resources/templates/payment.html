@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Payment</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+  body {
+    background: #fff;
+    overflow: auto;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  .spinner {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+  }
+
+  #loaderContainer{
+    width:146px;
+    height: 16px;
+    margin:auto;
+    padding-left: 30px;
+  }
+
+  .ebLoader-Dots_color_paleBlue, .ebLoader-Dots_color_paleBlue:after, .ebLoader-Dots_color_paleBlue:before {
+    background-color: #9de;
+    -webkit-animation-name: ebLoader_pulsePaleBlue;
+    -moz-animation-name: ebLoader_pulsePaleBlue;
+    -ms-animation-name: ebLoader_pulsePaleBlue;
+    animation-name: ebLoader_pulsePaleBlue;
+}
+
+.ebLoader-Dots {
+    position: relative;
+    margin: 0 20px;
+    border-radius: 2px;
+    -webkit-animation-duration: .9s;
+    -moz-animation-duration: .9s;
+    -ms-animation-duration: .9s;
+    animation-duration: .9s;
+    -webkit-animation-name: ebLoader_pulsePaleBlue;
+    -moz-animation-name: ebLoader_pulsePaleBlue;
+    -ms-animation-name: ebLoader_pulsePaleBlue;
+    animation-name: ebLoader_pulsePaleBlue;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -ms-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+.ebLoader-Dots, .ebLoader-Dots:after, .ebLoader-Dots:before {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #33badd;
+}
+
+.ebLoader-Dots:before {
+    left: -20px;
+    -webkit-animation-delay: .6s;
+    -moz-animation-delay: .6s;
+    -ms-animation-delay: .6s;
+    animation-delay: .6s;
+}
+
+.ebLoader-Dots:after, .ebLoader-Dots:before {
+    content: "";
+    position: absolute;
+    border-radius: 2px;
+    -webkit-animation-duration: .9s;
+    -moz-animation-duration: .9s;
+    -ms-animation-duration: .9s;
+    animation-duration: .9s;
+    -webkit-animation-name: ebLoader_pulsePaleBlue;
+    -moz-animation-name: ebLoader_pulsePaleBlue;
+    -ms-animation-name: ebLoader_pulsePaleBlue;
+    animation-name: ebLoader_pulsePaleBlue;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -ms-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+.ebLoader-Dots:after {
+    right: -20px;
+    -webkit-animation-delay: .3s;
+    -moz-animation-delay: .3s;
+    -ms-animation-delay: .3s;
+    animation-delay: .3s;
+}
+
+@-webkit-keyframes ebLoader_pulsePaleBlue {
+    0%,75% {
+        background-color: #9de
+    }
+
+    25% {
+        background-color: #33badd
+    }
+}
+
+@-moz-keyframes ebLoader_pulsePaleBlue {
+    0%,75% {
+        background-color: #9de
+    }
+
+    25% {
+        background-color: #33badd
+    }
+}
+
+@keyframes ebLoader_pulsePaleBlue {
+    0%,75% {
+        background-color: #9de
+    }
+
+    25% {
+        background-color: #33badd
+    }
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="spinner">
+    <div id="loaderContainer">
+       <div class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" th:inline="javascript">
+setTimeout(function() {
+  var link = [[${domainLink}]];
+  var decision = [[${status}]];
+  var message = [[${message}]];
+  var confirmationnumber = [[${confirmationnumber}]]
+  var method = [[${method}]]
+  window.location.href = link + "/dashboard?decision=" + decision + "&;message=" + message + "&;confirmationnumber=" + confirmationnumber + "&;method=" + method;
+}, 3000);
+</script>
+
+</html>

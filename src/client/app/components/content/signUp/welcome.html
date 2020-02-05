@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" ng-click="vm.cancel()"><span>&times;</span></button>
+  <h3 class="welcome-title h3-border">{{'WELCOME_MESSAGE' | translate}} <span> {{ vm.userName() }} </span></h3>
+</div>
+<div class="modal-body">
+  <div class="welcome-text"> {{'WELCOME_LABEL' | translate}} </div>
+  <div>
+    <button class="btn btn-sm btn-link ebColor_textLinkBlue edit-alignment"
+          ng-click="vm.editAccount(vm.user.accountId)">
+      <i class="fa fa-pencil ebIcon account-info-edit-icon" aria-hidden="true"></i>{{'WELCOME_EDIT_ACCOUNT' | translate }}
+    </button>
+  </div>
+  <div>
+    <button class="btn btn-sm btn-link ebColor_textLinkBlue edit-alignment"
+            ng-click="vm.getCreditMethods()">
+      <i class="fa fa-plus ebIcon payment-add-icon" aria-hidden="true"></i>{{'WELCOME_PAYMENT_METHOD' | translate }}
+    </button>
+  </div>
+</div>
+<div class="modal fade" id="test" ng-bind-html="vm.template" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>

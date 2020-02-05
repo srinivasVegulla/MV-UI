@@ -1,0 +1,339 @@
+.ecb-headerPaymentPopup{
+  border-bottom: none !important;
+  padding: 5px 10px 5px 7px !important;
+}
+
+.ecb-bodyPaymentPopup{
+  border-bottom: none !important;
+  color: #333333;
+}
+
+.ecb-footerPaymentPopup{
+  border-top: none !important;
+  text-align:center;
+  padding: 20px;
+}
+
+.ecb-modalPaymentPopup{
+  padding-right:0px !important;
+}
+
+.ecb-scheduleError{
+  padding: 0px;
+  position: relative;
+}
+
+.ecb-warningIcon{
+  margin-right:5px;
+}
+
+.ecb-warningMessage {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  padding: 0;
+  color: #f57700;
+  border: 1px solid #fcd666;
+  background-color: #fff8e6;
+}
+
+.ecb-lastActive-achScheduledPayment{
+  margin-top: -70px;
+  padding: 0px 2px;
+  margin-left: 60px;
+  width: 85%;
+  line-height: 1.6rem;
+  color: #f57700;
+  border: 1px solid #fcd666;
+  background-color: #fff8e6;
+}
+
+.ecb-lastActive-creditScheduledPayment{
+  margin-top: -45px;
+  padding: 0px 2px;
+  margin-left: 68px;
+  width: 82%;
+  line-height: 1.6rem;
+  color: #f57700;
+  border: 1px solid #fcd666;
+  background-color: #fff8e6;
+}
+
+.ecb-editDisableError{
+  float:right;
+}
+
+.cancel-payment{
+  display: none;
+}
+
+.cancel-payment.active{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  z-index: 1;
+}
+
+.ebBtn:disabled, .ebBtn:disabled:hover {
+  background: #ffffff;
+  opacity: 0.5;
+}
+
+.ecb-lastActiveCard{
+  margin:15px 0px;
+}
+
+.ecb-lastActiveAch {
+  margin: 10px 0 10px 0px;
+  width: 75%;
+}
+.ecb-cardFeilds{
+  padding: 5px 5px 5px 15px;
+}
+.ecb-cardFields span{
+  padding-right: 10px;
+}
+.ecb-achFields{
+  padding: 2px 15px 2px 15px;
+}
+.ecb-achFields span{
+  padding-right: 10px;
+}
+.ecb-paymentOptions {
+  height: 22%;
+  margin-top: 1px;
+  padding: 2px 0;
+  position: absolute;
+  bottom: 0px;
+  width: 99%;
+  text-align: center;
+  background-color: rgb(242, 242, 242);
+  padding: 6px 0;
+
+  > * {
+  margin: 0 4px;
+  }
+}
+
+.ecb-paymentCardHoverList{
+  margin-top: 4px;
+}
+.ecb-paymentDropdownBtn{
+  border: 1px solid #e2e2e2;
+}
+.ecb-paymentDropdownText{
+  width: 82%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  line-height: normal;
+  float: left;
+  text-align: right;
+}
+.ecb-paymentOption{
+  margin-bottom: 3px;
+}
+.ecb-paymentcardWidth{
+  width: 98.5%;
+}
+.ecb-paymentCreditCard {
+  content: "";
+  background-image: url("../images/creditCard.svg");
+  background-position: 87% 58%;
+  background-repeat: no-repeat;
+  background-size: 16%;
+  opacity: .9;
+}
+.ecb-paymentAchCard {
+  content: "";
+  background-image: url("../images/achCard.svg");
+  background-position: 87% 55%;
+  background-repeat: no-repeat;
+  background-size: 15%;
+  opacity: .9;
+}
+.ecb-PaymentsdeletePopup{
+  margin:75px 450px;
+}
+
+@media screen and (min-device-width : 992px) and (max-device-width : 1366px){
+  .ecb-contentPaymentPopup{
+    width: 70%;
+    left: 15%;
+  }
+  .ecb-scheduleError{
+    margin-top:5px;
+  }
+}
+
+@media screen and (min-device-width : 320px) and (max-device-width : 414px) and (orientation : portrait){
+  .ecb-scheduleError{
+    margin: 2px 0px;
+  }
+  .ecb-lastActive-creditScheduledPayment {
+    padding: 0 2px;
+    margin: -45px 0 2px 62px;
+    width: 80%;
+    line-height: 1.6rem;
+    color: #f57700;
+    border: 1px solid #fcd666;
+    background-color: #fff8e6;
+  }
+  .ecb-lastActive-achScheduledPayment{
+    margin-top: -70px;
+    padding: 0px 2px;
+    margin-left: 60px;
+    width: 80%;
+    line-height: 1.6rem;
+    color: #f57700;
+    border: 1px solid #fcd666;
+    background-color: #fff8e6;
+  }
+  .ebDialogBox-actionBlock {
+    text-align: center;
+  }
+  .ecb-paymentRemove{
+    margin-left: -70px;
+  }
+  .ecb-paymentMethod {
+    padding: 0;
+    margin-left: -5px;
+  }
+  .ecb-lastActiveCard{
+    margin: 10px 0px 10px 35px;
+    width: 80%;
+  }
+  .ecb-lastActiveAch {
+    margin: 10px 0 10px 0px;
+    width: 75%;
+  }
+  .ecb-PaymentMethodConfirmation{
+    top: 0px;
+    margin: 0 15px 0;
+    padding: 0px;
+  }
+}
+
+@media screen and (min-device-width : 568px) and (max-device-width : 736px) and (orientation : landscape){
+  .ecb-contentPaymentPopup{
+    width: 70%;
+    left: 15%;
+  }
+  .ecb-scheduleError{
+    margin-top: 10px;
+  }
+  .ecb-lastActive-creditScheduledPayment {
+    margin: -29px 0 0 84px;
+    padding: 0 2px;
+    width: 85%;
+    line-height: 1.6rem;
+    color: #f57700;
+    border: 1px solid #fcd666;
+    background-color: #fff8e6;
+  }
+  .ebDialogBox-actionBlock {
+    text-align: center;
+  }
+  .ecb-paymentRemove{
+    margin-left: -120px;
+  }
+  .ecb-PaymentMethodConfirmation{
+    top: 0px;
+    margin: 0 15px 0;
+  }
+}
+
+@media screen and (min-device-width:768px) and (max-device-width:1024px) and (orientation: portrait){
+  .ecb-contentPaymentPopup{
+    width: 70%;
+    left: 15%;
+  }
+  .ecb-scheduleError{
+    margin: 2px 0px;
+  }
+  .ecb-lastActive-creditScheduledPayment {
+    margin: -48px 0px 5px 60px;
+    padding: 0px 2px;
+    width: 82%;
+    line-height: 1.6rem;
+    color: #f57700;
+    border: 1px solid #fcd666;
+    background-color: #fff8e6;
+  }
+  .ecb-lastActive-achScheduledPayment{
+    width: 82%;
+    margin-top: -70px;
+    margin-left: 60px;
+    padding: 0 2px;
+    line-height: 1.6rem;
+    color: #f57700;
+    border: 1px solid #fcd666;
+    background-color: #fff8e6;
+  }
+  .ecb-paymentRemove{
+    margin-left: -90px;
+  }
+  .ecb-PaymentMethodConfirmation{
+    margin: 0px;
+    top: 0px;
+  }
+}
+
+@media screen and (min-device-width:1024px) and (max-device-width:1363px) and (orientation: landscape){
+  .ecb-scheduleError{
+    margin: 2px 0px;
+  }
+  .ecb-lastActive-creditScheduledPayment {
+    margin: -62px 0px 0px 65px;
+    padding: 0px 2px;
+    width: 80%;
+    line-height: 1.6rem;
+    color: #f57700;
+    border: 1px solid #fcd666;
+    background-color: #fff8e6;
+  }
+  .ecb-lastActiveCard{
+    margin: 10px 0px 10px 10px;
+    width: 75%;
+  }
+  .ecb-lastActiveAch {
+    margin: 10px 0px 10px 20px;
+    width: 75%;
+  }
+  .ecb-paymentMethod {
+    padding: 0;
+    margin-left: -5px;
+  }
+  .ecb-PaymentMethodConfirmation{
+    margin: 0px;
+    top: 0px;
+  }
+}
+
+/*Hebrew Css Fixes start*/
+body[dir='RTL'] .ecb-paymentAchCard {
+  background-image: url(../images/achCard.svg);
+  background-position: 20% 55%;
+  background-size: 15%;
+  opacity: .9;
+}
+body[dir='RTL'] .ecb-paymentCreditCard {
+  background-image: url(../images/creditCard.svg);
+  background-position: 20% 58%;
+  background-size: 16%;
+  opacity: .9;
+}
+body[dir='RTL'] .ecb-cardTabularExpandIcons{
+  float:left !important;
+}
+body[dir='RTL'] .ecb-rtlAddPayment{
+  float:left !important;
+}
+body[dir='RTL'] .ecb-paymentsViewAllClose{
+  float: left !important;
+  left: 0px;
+  padding-left: 0px;
+}
+/*Hebrew Css Fixes end*/

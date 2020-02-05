@@ -1,0 +1,50 @@
+<nav class="systemBar" ng-class="{'ecb-systemBarFixed': !vm.isNavigationPanelOpen }">
+  <div class="ebSystemBar text-center">
+    <div class="ebSystemBarLogo ecb-rtlSystemBarLogo pull-{{vm.layoutLeftDirection}}">
+        <div class="ecb-companyIogo ebIcon company-logo hidden-xs hidden-sm" alt="{{ vm.applicationName }}"></div>
+        <div class="hidden-md hidden-lg ecb-navIcon pull-{{vm.layoutLeftDirection}}" ng-click="vm.showMobileNavigationPanel()"><i class="fa fa-bars ecb-navigationHamIcon" aria-hidden="true"></i></div>
+        <div class="hidden-md hidden-lg ecb-selectedNavLink" ng-if ="vm.navigationLink()"> {{ vm.userDisplayName }}'s {{vm.selectedNavLinkDisplay}}</div>
+        <div class="hidden-md hidden-lg ecb-selectedNavLink" ng-if="vm.isQuotes">{{'TEXT_QUOTES' | translate }}</div>
+        <div class="hidden-md hidden-lg ecb-selectedNavLink" ng-if="vm.isDownloads">{{'TEXT_DOWNLOADS' |translate}}</div>
+        <div class="hidden-md hidden-lg ecb-selectedNavLink" ng-if="vm.expandTransactionPopup">{{'TEXT_TRANSACTIONS' |translate}}</div>
+    </div>
+    <div class="ebSystemBarTitle pull-{{vm.layoutLeftDirection}} ecb-rtlSystemBarTitle">
+      <h3 class="visible-md visible-lg noBorder company-title">{{ vm.applicationName }}</h3>
+    </div>
+    <div id="nav-collapse" class="collapse ebBreadcrumbs-list hidden-md hidden-lg" data-backdrop="true">
+      <ul class="ebComponentList ecb-mobileNavigation">
+        <span class="ebColor_textLinkBlue ecb-closeNavigation" ng-click="vm.closeNavigationPanel()"><i class="fa fa-times ebIcon" aria-hidden="true"></i></span>
+        <li class="ebComponentList-item" ng-click="vm.showView(link.id, $index, true)" ng-repeat="link in vm.mobileNavigationLinks">
+          <a href="#" class="ebComponentList-link" title="">{{link.name}}</a>
+        </li>
+      </ul>
+    </div>
+    <h3 class="hidden-md hidden-sm hidden-xs hidden-landscape noBorder inline-block hide-view-selector"><ecb-view-selector></ecb-view-selector></h3>
+    <div class="ebSystemBarNavBlock pull-{{vm.layoutRightDirection}} ecb-rtlSystemBarNav">
+      <ul class="ebSystemBarMenu">
+        <li ng-if="vm.showBillFilterBar()" class="hidden-lg hidden-md">
+          <a data-toggle="modal" data-target="#filterModal" class="ebText systemBar-item" href="#" ng-click="vm.handleFilter()">
+            <i class="ebIcon ebIcon_filter" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li ng-if="vm.showBillFilterBar()" class="v-separator hidden-lg hidden-md"></li>
+        <li class="hidden-xs visible-lg hidden-sm visible-md dropdown-toggle ecb-userLogo" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="ebIcon ebIcon_user" aria-hidden="true"></i>
+          <span class="ebText systemBar-item ebLightBlue">{{ vm.userDisplayName }} <span class="caret"></span></span>
+        </li>
+        <li class="visible-xs hidden-lg visible-sm hidden-md dropdown-toggle ecb-userAccountIcon" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+           <i class="ebIcon ebIcon_user" aria-hidden="true"></i><span class="caret"></span>
+        </li>
+        <ecb-accounts-manager-dropdown account-id="{{ vm.activeAccountId.accountId }}" class="dropdown-menu system-bar-dropdown" ng-class="vm.logoutVisibility ? 'ecb-userAccountDropdown' : 'ecb-userAccountDropdownNoLogout'"></ecb-accounts-manager-dropdown>
+        <li class="v-separator" ng-if="vm.logoutVisibility"></li>
+        <li class="ecb-systemBarAlignment" class="ebLightBlue" ng-if="vm.logoutVisibility">
+          <a class="ebText systemBar-item ebLightBlue" href="#" ng-click="vm.logout()">
+            <i class="ebIcon ebIcon_logout logout-icon-align" aria-hidden="true"></i>
+              <span class="hidden-xs visible-sm visible-md visible-lg ecb-logout">{{'TEXT_LOGOUT'|translate}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div ng-show="vm.isNavigationPanelOpen" class="ecb-widgetBackdrop"></div>
+</nav>

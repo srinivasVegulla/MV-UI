@@ -1,0 +1,50 @@
+<div class="widget" ng-class="{ 'card-expanded': vm.sinceLastBillCardState === 'expanded'}">
+   <div class="header clearfix ">
+	      <h2 ng-if="!vm.widgetOpen">
+	          <span>{{'TEXT_QUOTES' | translate }} &amp; {{'TEXT_TRANSACTIONS' | translate }}</span>
+		  </h2>
+		   <h2 class="ecb-transactionHeader" ng-if="vm.widgetOpen">
+	          <span>{{'TEXT_TRANSACTIONS' | translate }}</span>
+		  </h2>
+		  <span class="pull-right invoice-close-image" aria-hidden="true" ng-if="vm.widgetOpen">
+	        <i class="fa fa-times ebColor_textLinkBlue" aria-hidden="true"  ng-click="vm.closeTransactions()"></i>
+	    </span>
+	</div>
+  <div class="ecbRelativeClass" ng-if="vm.loading">
+    <div class="ebLoader">
+      <div class="ebLoader-Holder">
+        <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+      </div>
+    </div>
+  </div>
+	<div class="content widget-content-list" ng-if="!vm.widgetOpen && !vm.loading">
+		<div class="ecb-sinceLatBillTitle ecb-labelText ebLabel pull-right">
+			{{'TEXT_SINCE_LAST_BILL' | translate }} ( {{vm.showLocalizeDate(vm.sinceLastBillFromDate)}} - {{vm.showLocalizeDate(vm.sinceLastBillToDate)}} )
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ecb-sinceLastBillRow">
+			<img class="ecb-sinceLastBillImage" ng-src="./images/Quotes.svg">
+			<a class="ebColor_textLinkBlue ecb-sinceLastBillText" ng-click=vm.openInvoiceWidget()>{{'TEXT_QUOTES' | translate }} ({{vm.quotesLength}})</a>
+		</div>
+		 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ecb-sinceLastBillRow">
+			<img class="ecb-sinceLastBillImage" ng-src="./images/Transactions.svg">
+			<a class="ebColor_textLinkBlue ecb-sinceLastBillText" ng-click="vm.openTransactions()">{{'TEXT_TRANSACTIONS' | translate }} ({{vm.transactionsCount}})</a>
+		</div>
+	</div>
+
+	<!-- <div class="modal fade ecb-modalPaymentPopup" tabindex="-1" id="confirmTransactionPopup" role="dialog" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog">
+        <div class="modal-content ecb-contentPaymentPopup">
+          <div class="modal-header ecb-headerPaymentPopup">
+            <h2 class="modal-title ecb-headerPaymentPopup"><span class="ebIcon_filter ecb-widgetsFilterIcon ecb-transcationFilterIcon"></span>Select The Transcation</h2>
+          </div>
+          <div class="modal-body ecb-bodyPaymentPopup">
+             <span>Please select the transcation you want to view from the filter panel</span>
+          </div>
+          <div class="modal-footer ecb-footerPaymentPopup">
+            <button class="btn ebBtn ebBtn_color_darkBlue" type="button"  data-toggle="modal" data-target="#filterModal" data-dismiss="modal">{{'TEXT_YES'| translate}}</button>
+            <button class="btn ebBtn ebBtn_default" type="button" data-dismiss="modal">{{'TEXT_NO'| translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+</div>

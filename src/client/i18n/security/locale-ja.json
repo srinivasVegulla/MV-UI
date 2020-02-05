@@ -1,0 +1,17 @@
+{
+  "LOGIN_TITLE": "エリクソンのエンタープライズとクラウド課金 - MetraView",
+  "LOGIN_INVALID_CREDENTIALS": "ユーザー名かパスワードが無効",
+  "LOGIN_INPUT_USERNAME": "ユーザー名",
+  "LOGIN_INPUT_PASSWORD": "パスワード",
+  "LOGIN_INPUT_SUBMIT": "ログイン",
+  "LOGIN_FORGOT_PASSWORD": "パスワードをお忘れですか？",
+  "LOGIN_VALIDATION_PATTERN_USERNAME": "無効な文字は使用できません。",
+  "LOGIN_VALIDATION_REQUIRED_USERNAME": "ユーザー名が必要です。",
+  "LOGIN_VALIDATION_REQUIRED_PASSWORD": "パスワードが必要。",
+  "LOGIN_ACCOUNT_LOCKED": "あなたのアカウントは、アカウントのロックを解除するout.Callカスタマーサービスをロックされています。",
+  "LOGIN_NO_LOGON": "あなたのアカウントは、このアプリケーションのアクセス許可を持っていません",
+  "LOGIN_INVALID_TICKET": "不正なログイン",
+  "LOGIN_UNABLE_TO_CONNECT_TO_SERVER": "サーバに接続できません",
+  "LOGIN_SIGN_UP": "サインアップ",
+  "LOGIN_COPYRIGHT": "Ⓒ エリクソンのエンタープライズとクラウド課金、 2016すべての著作権は 予約済み"
+}

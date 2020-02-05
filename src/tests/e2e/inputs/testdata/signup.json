@@ -1,0 +1,41 @@
+{
+	"url": {
+		"URL": "https://10.200.165.8:8080/Metraview",
+		"Title": "ECB MetraView : Login",
+		"CurrentUrl": "https://10.200.165.8:8080/login",
+		"DashBoardURL": "https://10.200.165.8:8080/dashboard",
+		"DashBoard": "ECB MetraView : Dashboard"
+	},
+	"signuptext": "Sign Up",
+	"username": "samuelsam",
+	"emailid": "vijayalakshmi.marla1@tcs.com",
+	"password": "MetraTech1",
+	"verifypassword": "MetraTech1",
+	"edit": "Edit",
+  "oldno": "9999999999",
+  "newno": "9999999999",
+  "firstname": "James",
+  "company": "Cobalt Service N.V.N",
+  "address": "Van Stolkweg 5556",
+  "Middlename": "S",
+  "Lastname": "King",
+  "Email": "jkoch@tcs.com",
+  "state": "Andhra Pradesh",
+  "widgetname": "Account Information",
+  "updatedpopup": "Account information udpated successfully.",
+  "name": "James",
+  "surname": "King",
+  "companyname": "Cobalt Service N.V.N",
+  "address1": "Van Stolkweg 5556",
+  "address2": "Hyderabad",
+  "city": "Hyderabad",
+  "state": "Andhra Pradesh",
+  "postalcode": "45656kM",
+  "phno": "9898989898",
+  "email": "jkoch@tcs.com",
+  "cardno": "4111111111111111",
+  "cvnno": "345"
+
+
+
+}

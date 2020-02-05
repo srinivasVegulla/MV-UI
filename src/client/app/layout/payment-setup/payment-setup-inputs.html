@@ -1,0 +1,47 @@
+<div class="ecbRelativeClass" ng-if="vm.loading">
+  <div class="ebLoader">
+    <div class="ebLoader-Holder">
+      <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+    </div>
+  </div>
+</div>
+<div class="modal-body clearfix">
+  <div class="form-group ecb-Nomargin" ng-if="!vm.loading">
+    <label class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl pull-{{vm.layoutLeftDirection}}">{{ 'TEXT_PAYMENT_METHOD' | translate }}</label>
+    <div class="col-sm-9 col-xs-9">
+      <ul class="list-unstyled">
+        <li>
+          <label class="textleft">
+            <input class="ebRadioBtn ecb-RadioBtn" type="radio" ng-click="vm.setPayType('metratech.com/accountcreation/PaymentMethod/CreditOrACH')" name="isautomaticPay" ng-checked="vm.autopay" ng-disabled="vm.isDropDownDisabled()"/>
+            <span class="ebRadioBtn-inputStatus ecb-rtl ecb-radio-align"></span>
+            <span class="ebRadioBtn-label paymentSetupLabel">{{'TEXT_AUTOPAY_PRIMARY_PAYMENT' | translate }} </span>
+          </label>
+          <div class="dropdown">
+            <button class="ebBtn ebBtn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="vm.defaultPaymentMethod" ng-disabled="vm.dropDownDisabled()">
+              <span class="dropdown-text pull-{{vm.layoutLeftDirection}} ecb-alignRight">
+              {{vm.defaultPaymentMethod.nameCreditcardType || vm.defaultPaymentMethod.accountType}} {{ vm.defaultPaymentMethod.truncdAcctNum }}
+              </span>
+              <span class="caret pull-{{vm.layoutRightDirection}} filter-dropdown-caret"></span>
+            </button>
+            <ul class="dropdown-menu filterDropDownBox scrollable-menu" aria-labelledby="dropdownMenu2">
+              <li ng-repeat="y in vm.paymentMethods" ng-class="{'ebComponentList-item_selected': (vm.defaultPaymentMethod === y)}">
+                <a href="#" ng-init="vm.defaultPaymentMethod" ng-click="vm.setSelected(y)" ng-if="vm.defaultPaymentMethod">
+                  {{y.nameCreditcardType || y.accountType}} {{ y.truncdAcctNum }}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <p class="ebColor_grey_40" ng-if="!vm.dropDownDisabled()">{{ 'TEXT_AUTOPAY_DUEDATE' | translate }} {{vm.duePaymentAmount.dueDate | date: 'shortDate'}}</p>
+          <p class="ebColor_grey_40" ng-if="vm.dropDownDisabled()">{{'TEXT_ENABLE_AUTOMATICALLY_PAY' | translate }}</p>
+        </li>
+        <li>
+          <label class="textleft">
+            <input class="ebRadioBtn ecb-RadioBtn" type="radio" ng-click="vm.setPayType('metratech.com/accountcreation/PaymentMethod/CashOrCheck')" name="isautomaticPay" ng-checked="!vm.autopay" />
+            <span class="ebRadioBtn-inputStatus ecb-rtl ecb-radio-align"></span>
+            <span class="ebRadioBtn-label paymentSetupLabel">{{ 'TEXT_NO_AUTOPAY' | translate }}</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

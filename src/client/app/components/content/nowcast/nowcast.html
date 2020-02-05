@@ -1,0 +1,22 @@
+<div class="widget flex-container ecb-nowcast" style="display: flex; flex-direction: column; width: 99%;" ng-class="{ 'card-expanded': vm.nowCastCardState === 'expanded', 'ecbCardExpanded': vm.widgetOpen}" id="nowcast-widget">
+    <div class="header clearfix">
+        <h2 class="invoice-name ecb-nowcastName">{{'TEXT_NOW_CAST'|translate}}</h2>
+        <span class="pull-right ecb-nowcastClose invoice-close-image" aria-hidden="true" ng-show="vm.nowCastClose">
+            <i class="fa fa-times ebColor_textLinkBlue" aria-hidden="true"  ng-click="vm.closeNowCastViewAll()"></i>
+        </span>
+    </div>
+    <div class="ecbRelativeClass" ng-if="vm.loading">
+      <div class="ebLoader">
+        <div class="ebLoader-Holder">
+          <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+        </div>
+      </div>
+    </div>
+    <div class="content ecb-nowcastBody" ng-class="{'widget-no-content': !vm.showViewAllLink}" id="nowcast-body" ng-if="vm.nowCastCardState === 'collapsed'"></div>
+      <div class="content ecb-nowcastBody ecb-nowcastOverflow" id="nowcast-body" ng-style="vm.getViewAllBodyHeight()" ng-if="vm.nowCastCardState === 'expanded'"></div>
+      <div class="footer clearfix" ng-if="vm.showViewAllLink">
+        <p class="ebText pull-{{vm.layoutRightDirection}}">
+          <button class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue btn-link-noborder pull-right" ng-click="vm.toggleNowCastCardState()">{{'TEXT_VIEW_ALL'|translate}} ></button>
+        </p>
+    </div>
+</div>

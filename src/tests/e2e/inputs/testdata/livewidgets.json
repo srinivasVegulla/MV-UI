@@ -1,0 +1,21 @@
+{
+  "url": {
+    "URL": "https://10.200.165.8:8080/Metraview",
+    "Title": "ECB MetraView : Login",
+    "CurrentUrl": "https://10.200.165.8:8080/login",
+    "DashBoardURL": "https://10.200.165.8:8080/dashboard",
+    "DashBoard": "ECB MetraView : Dashboard"
+  },
+  "user": {
+    "username": "accsub02m",
+    "passwordField": "MetraTech1"
+  },
+  
+  "payamount": "1",
+   "amountdueamount": "$182,309.00",
+  "Newchargesamount": "0.00",
+  "Chargessubtotaltext": "Charges Sub-Total",
+  "Chargessubtotalamount": "0.00",
+  "prebilladjustmentstext": "Prebill Adjustments",
+  "prebilladjustmentsamount": "0.00"
+}

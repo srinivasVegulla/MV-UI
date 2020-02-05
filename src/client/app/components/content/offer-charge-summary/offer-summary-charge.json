@@ -1,0 +1,1829 @@
+{
+  "Report": {
+    "id": 230637663,
+    "currency": "USD",
+    "amount": 27025.25,
+    "displayAmount": 27025.25,
+    "adjustmentInfo": {
+      "preBillAdjustmentAmount": 0,
+      "preBillAdjustedAmount": 27025.25,
+      "postBillAdjustmentAmount": 0,
+      "postBillAdjustedAmount": 27025.25
+    },
+    "preAndPostBillTotalTaxAdjustmentAmount": 0,
+    "totalTax": {
+      "preBillTaxAdjustmentAmount": 0,
+      "postBillTaxAdjustmentAmount": 0,
+      "taxAmount": 0
+    },
+    "federalTax": {
+      "preBillTaxAdjustmentAmount": 0,
+      "postBillTaxAdjustmentAmount": 0,
+      "taxAmount": 0
+    },
+    "stateTax": {
+      "preBillTaxAdjustmentAmount": 0,
+      "postBillTaxAdjustmentAmount": 0,
+      "taxAmount": 0
+    },
+    "countyTax": {
+      "preBillTaxAdjustmentAmount": 0,
+      "postBillTaxAdjustmentAmount": 0,
+      "taxAmount": 0
+    },
+    "localTax": {
+      "preBillTaxAdjustmentAmount": 0,
+      "postBillTaxAdjustmentAmount": 0,
+      "taxAmount": 0
+    },
+    "otherTax": {
+      "preBillTaxAdjustmentAmount": 0,
+      "postBillTaxAdjustmentAmount": 0,
+      "taxAmount": 0
+    },
+    "impliedTax": {
+      "preBillTaxAdjustmentAmount": 0,
+      "postBillTaxAdjustmentAmount": 0,
+      "taxAmount": 0
+    },
+    "nonImpliedTax": {
+      "preBillTaxAdjustmentAmount": 0,
+      "postBillTaxAdjustmentAmount": 0,
+      "taxAmount": 0
+    },
+    "informationalTax": {
+      "preBillTaxAdjustmentAmount": 0,
+      "postBillTaxAdjustmentAmount": 0,
+      "taxAmount": 0
+    },
+    "implInfTax": {
+      "preBillTaxAdjustmentAmount": 0,
+      "postBillTaxAdjustmentAmount": 0,
+      "taxAmount": 0
+    },
+    "billableTax": {
+      "preBillTaxAdjustmentAmount": 0,
+      "postBillTaxAdjustmentAmount": 0,
+      "taxAmount": 0
+    },
+    "usageAmount": 27025.25,
+    "name": null,
+    "ownerSlice": {
+      "payerId": {
+        "accountId": 175439066,
+        "userName": null,
+        "namespace": null
+      }
+    },
+    "folderSlice": {
+      "payerId": {
+        "accountId": 175439066,
+        "userName": null,
+        "namespace": null
+      }
+    },
+    "totalDisplayAmount": 27025.25,
+    "numPreBillAdjustments": 0,
+    "numPostBillAdjustments": 0,
+    "preBillAdjustmentDisplayAmount": 0,
+    "charges": null,
+    "productOfferings": [
+      {
+        "id": 159,
+        "name": "Cloud Services",
+        "currency": null,
+        "amount": 27025.25,
+        "charges": [
+          {
+            "id": 176,
+            "currency": "USD",
+            "amount": 16869.66,
+            "displayAmount": 16869.66,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 16869.66,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 16869.66
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 16869.66,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Compute",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 4970,
+                "pcName": "MetraTech.MetraNet.Cloud/Compute"
+              },
+              "viewDisplayName": "Compute",
+              "piInstaneId": {
+                "pcId": 176,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 176,
+            "currency": "USD",
+            "amount": 16869.66,
+            "displayAmount": 16869.66,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 16869.66,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 16869.66
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 16869.66,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Compute",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 4970,
+                "pcName": "MetraTech.MetraNet.Cloud/Compute"
+              },
+              "viewDisplayName": "Compute",
+              "piInstaneId": {
+                "pcId": 176,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 176,
+            "currency": "USD",
+            "amount": 16869.66,
+            "displayAmount": 16869.66,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 16869.66,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 16869.66
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 16869.66,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Compute",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 4970,
+                "pcName": "MetraTech.MetraNet.Cloud/Compute"
+              },
+              "viewDisplayName": "Compute",
+              "piInstaneId": {
+                "pcId": 176,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 176,
+            "currency": "USD",
+            "amount": 16869.66,
+            "displayAmount": 16869.66,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 16869.66,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 16869.66
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 16869.66,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Compute",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 4970,
+                "pcName": "MetraTech.MetraNet.Cloud/Compute"
+              },
+              "viewDisplayName": "Compute",
+              "piInstaneId": {
+                "pcId": 176,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 177,
+            "currency": "USD",
+            "amount": 700.31,
+            "displayAmount": 700.31,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 700.31,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 700.31
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 700.31,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "DataTransfer",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 4996,
+                "pcName": "MetraTech.MetraNet.Cloud/DataTransfer"
+              },
+              "viewDisplayName": "Data Transfer",
+              "piInstaneId": {
+                "pcId": 177,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 175,
+            "currency": "USD",
+            "amount": 604,
+            "displayAmount": 604,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 604,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 604
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 604,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "SaaS CRM Seats",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 1408,
+                "pcName": "metratech.com/flatrecurringcharge"
+              },
+              "viewDisplayName": "Flat Recurring Charge",
+              "piInstaneId": {
+                "pcId": 175,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 178,
+            "currency": "USD",
+            "amount": 8851.28,
+            "displayAmount": 8851.28,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 8851.28,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 8851.28
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 8851.28,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Storage",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 5020,
+                "pcName": "MetraTech.MetraNet.Cloud/Storage"
+              },
+              "viewDisplayName": "Storage",
+              "piInstaneId": {
+                "pcId": 178,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 178,
+            "currency": "USD",
+            "amount": 8851.28,
+            "displayAmount": 8851.28,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 8851.28,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 8851.28
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 8851.28,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Storage",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 5020,
+                "pcName": "MetraTech.MetraNet.Cloud/Storage"
+              },
+              "viewDisplayName": "Storage",
+              "piInstaneId": {
+                "pcId": 178,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 178,
+            "currency": "USD",
+            "amount": 8851.28,
+            "displayAmount": 8851.28,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 8851.28,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 8851.28
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 8851.28,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Storage",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 5020,
+                "pcName": "MetraTech.MetraNet.Cloud/Storage"
+              },
+              "viewDisplayName": "Storage",
+              "piInstaneId": {
+                "pcId": 178,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 178,
+            "currency": "USD",
+            "amount": 8851.28,
+            "displayAmount": 8851.28,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 8851.28,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 8851.28
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 8851.28,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Storage",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 5020,
+                "pcName": "MetraTech.MetraNet.Cloud/Storage"
+              },
+              "viewDisplayName": "Storage",
+              "piInstaneId": {
+                "pcId": 178,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 178,
+            "currency": "USD",
+            "amount": 8851.28,
+            "displayAmount": 8851.28,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 8851.28,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 8851.28
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 8851.28,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Storage",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 5020,
+                "pcName": "MetraTech.MetraNet.Cloud/Storage"
+              },
+              "viewDisplayName": "Storage",
+              "piInstaneId": {
+                "pcId": 178,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 178,
+            "currency": "USD",
+            "amount": 8851.28,
+            "displayAmount": 8851.28,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 8851.28,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 8851.28
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 8851.28,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Storage",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 5020,
+                "pcName": "MetraTech.MetraNet.Cloud/Storage"
+              },
+              "viewDisplayName": "Storage",
+              "piInstaneId": {
+                "pcId": 178,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 178,
+            "currency": "USD",
+            "amount": 8851.28,
+            "displayAmount": 8851.28,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 8851.28,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 8851.28
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 8851.28,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Storage",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 5020,
+                "pcName": "MetraTech.MetraNet.Cloud/Storage"
+              },
+              "viewDisplayName": "Storage",
+              "piInstaneId": {
+                "pcId": 178,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 178,
+            "currency": "USD",
+            "amount": 8851.28,
+            "displayAmount": 8851.28,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 8851.28,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 8851.28
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 8851.28,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Storage",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 5020,
+                "pcName": "MetraTech.MetraNet.Cloud/Storage"
+              },
+              "viewDisplayName": "Storage",
+              "piInstaneId": {
+                "pcId": 178,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },{
+            "id": 178,
+            "currency": "USD",
+            "amount": 8851.28,
+            "displayAmount": 8851.28,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 8851.28,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 8851.28
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 8851.28,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Storage",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 5020,
+                "pcName": "MetraTech.MetraNet.Cloud/Storage"
+              },
+              "viewDisplayName": "Storage",
+              "piInstaneId": {
+                "pcId": 178,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 178,
+            "currency": "USD",
+            "amount": 8851.28,
+            "displayAmount": 8851.28,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 8851.28,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 8851.28
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 8851.28,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Storage",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 5020,
+                "pcName": "MetraTech.MetraNet.Cloud/Storage"
+              },
+              "viewDisplayName": "Storage",
+              "piInstaneId": {
+                "pcId": 178,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 178,
+            "currency": "USD",
+            "amount": 8851.28,
+            "displayAmount": 8851.28,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 8851.28,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 8851.28
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 8851.28,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Storage",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 5020,
+                "pcName": "MetraTech.MetraNet.Cloud/Storage"
+              },
+              "viewDisplayName": "Storage",
+              "piInstaneId": {
+                "pcId": 178,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          },
+          {
+            "id": 178,
+            "currency": "USD",
+            "amount": 8851.28,
+            "displayAmount": 8851.28,
+            "adjustmentInfo": {
+              "preBillAdjustmentAmount": 0,
+              "preBillAdjustedAmount": 8851.28,
+              "postBillAdjustmentAmount": 0,
+              "postBillAdjustedAmount": 8851.28
+            },
+            "preAndPostBillTotalTaxAdjustmentAmount": 0,
+            "totalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "federalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "stateTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "countyTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "localTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "otherTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "impliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "nonImpliedTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "informationalTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "implInfTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "billableTax": {
+              "preBillTaxAdjustmentAmount": 0,
+              "postBillTaxAdjustmentAmount": 0,
+              "taxAmount": 0
+            },
+            "usageAmount": 0,
+            "name": null,
+            "ownerSlice": null,
+            "folderSlice": null,
+            "totalDisplayAmount": 8851.28,
+            "numPreBillAdjustments": 0,
+            "numPostBillAdjustments": 0,
+            "preBillAdjustmentDisplayAmount": 0,
+            "charges": null,
+            "productOfferings": null,
+            "hierarchyPath": null,
+            "displayName": "Storage",
+            "subCharges": null,
+            "productSlice": {
+              "viewId": {
+                "pcId": 5020,
+                "pcName": "MetraTech.MetraNet.Cloud/Storage"
+              },
+              "viewDisplayName": "Storage",
+              "piInstaneId": {
+                "pcId": 178,
+                "pcName": null
+              },
+              "poInstanceId": {
+                "pcId": 159,
+                "pcName": null
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "hierarchyPath": null
+  }
+}

@@ -1,0 +1,218 @@
+<div class="widget ecb-paymentCreditsExpandMain" ng-class="{ 'card-expanded': vm.pcaCardState === 'expanded','ecbCardExpanded': vm.widgetOpen}">
+  <div class="header clearfix">
+    <h2 class="paymentsCredits-header-name" ng-if="!vm.widgetOpen">{{'TEXT_PAYMENTS_CREDITS_AND_ADJUSTMENTS'|translate}}</h2>
+    <h2 class="pull-{{vm.layoutLeftDirection}} ecb-rtlPcaTitle" ng-if="vm.postBillWidgetOpen()">{{'TEXT_ADJUSTMENT_DETAILS'|translate}}</h2>
+    <h2 class="pull-{{vm.layoutLeftDirection}} ecb-rtlPcaTitle" ng-if="vm.isPaymentsReceivedWidgetOpen()">{{'TEXT_PAYMENTS_RECEIVED'|translate}}</h2>
+    <span class="pull-{{vm.layoutRightDirection}} ecb-pcaCloseImageViewAll expanded-charges-view" ng-click="vm.pcaExpandedStateclose()" ng-show="vm.widgetOpen">
+      <i class="fa fa-times ebIcon ebIcon_interactive ebColor_textLinkBlue ebCloseIcon" aria-hidden="true"></i>
+    </span>
+    <div class="pull-{{vm.layoutRightDirection}} ecb-cardTabularDownloadMain visible-xs" ng-if="vm.pcaWidgetOpen" ng-csv="vm.exportableAdjustments"
+      lazy-load="true" filename="PostBillAdjustments.csv" add-bom="true" charset="UTF-8" csv-header="vm.exportableAdjustmentsDisplayKeys" field-separator=" , ">
+      <div class="ecb-cardTabularDownload">
+        <i class="fa fa-download ecb-settingsHeaderIcon" aria-hidden="true">
+      </div>
+    </div>
+    <div class="pull-{{vm.layoutRightDirection}} ecb-cardTabularExpandIcons" ng-if="vm.widgetOpen">
+      <div class="pull-{{vm.layoutRightDirection}} ecb-cardTabularDownloadMain" ng-if="vm.pcaWidgetOpen" ng-csv="vm.exportableAdjustments" lazy-load="true" filename="PostBillAdjustments.csv" add-bom="true" charset="UTF-8" csv-header="vm.exportableAdjustmentsDisplayKeys" field-separator=" , ">
+          <div class="ecb-cardTabularDownload"><i class="fa fa-download ecb-settingsHeaderIcon" aria-hidden="true"></div>
+      </div>
+      <div class="pull-{{vm.layoutRightDirection}} text-center ecb-rtlTabularIconSet ecb-cardTabularIconSetMain">
+        <div class="ecb-cardTabularIconSet" class="col-md-12">
+          <div ng-click="vm.showPcaChargesTabularCardView('table')" ng-class="vm.getPcaActiveViewStyle('table')"><i class="fa fa-table ecb-settingsHeaderIcon" aria-hidden="true"></div>
+          <div ng-click="vm.showPcaChargesTabularCardView('card')" ng-class="vm.getPcaActiveViewStyle('card')"><i class="fa fa-th ecb-settingsHeaderIcon" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="pull-{{vm.layoutRightDirection}} ecb-settingsMenu text-center ecb-rtlSettingsMenu" ng-click="vm.togglePcaTabularViewSettings()" ng-if="vm.showPcaChargesSettings()">
+        <span class="ebIcon_settings ecb-headerIcons"></span>
+      </div>
+    </div>
+  </div>
+  <div class="ecbRelativeClass" ng-if="vm.loading">
+    <div class="ebLoader">
+      <div class="ebLoader-Holder">
+        <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+      </div>
+    </div>
+  </div>
+  <div class="content payments" ng-if="vm.paymentsCreditAdjustmentData() && !vm.loading" id="hide-previous-period-balance" ng-class="vm.pcaFlexdirection()">
+    <div class="amount-tile">
+      <span class="ebText">
+          <sup class="currency-symbol">{{vm.getCurrencySign(vm.previousbalance.currency)}}</sup>
+          {{vm.currencyFormatter(vm.previousbalance.balanceForward, vm.previousbalance.currency, false)}}
+      </span>
+    </div>
+    <table class="table table-noborder pay-adj-table">
+      <tbody>
+        <tr>
+          <td>{{'TEXT_PREVIOUS_BALANCE'|translate}}</td>
+          <td>{{vm.currencyFormatter(vm.previousbalance.previousBalance, vm.previousbalance.currency, false)}}</td>
+        </tr>
+        <tr class="pre-bill" ng-if="!vm.onDemandInterval">
+          <td>
+            <button class="btn ebBtn btn-link ebColor_textLinkBlue ecb-disabledButton pull-right" ng-disabled="!vm.exportToCSV" ng-click='vm.showBillAdjustmentPopup($event, true)' ng-mouseover="vm.showHideBillPopup(true, $event, 'adjust')" ng-mouseleave='vm.showHideBillPopup(false)'>
+            {{'TEXT_POSTBILL_ADJUSTMENTS'|translate}}
+            </button>
+          </td>
+          <td>
+            <span ng-disabled="!vm.exportToCSV">{{vm.currencyFormatter(vm.invoiceResp.totalpostBillAdjustments, vm.previousbalance.currency, false)}}</span>
+          </td>
+        </tr>
+        <tr>
+          <td ng-if="!vm.totalPaymentsReceived">{{'TEXT_PAYMENTS_RECEIVED'|translate}}</td>
+          <td ng-if="vm.totalPaymentsReceived"><a href="" class="ebBtn btn-link ebColor_textLinkBlue total-payment-link pull-right" ng-click='vm.showPaymentsReceivedPopup($event, true)' ng-mouseover="vm.showHideBillPopup(true, $event, 'payRcvd')" ng-mouseleave='vm.showHideBillPopup(false)'>{{'TEXT_PAYMENTS_RECEIVED'|translate}}</a></td>
+          <td ng-if="!vm.totalPaymentsReceived">{{vm.currencyFormatter(vm.invoiceResp.totalPayment, vm.previousbalance.currency, false)}}</td>
+          <td ng-if="vm.totalPaymentsReceived" class="total-payment">
+              {{vm.currencyFormatter(vm.invoiceResp.totalPayment, vm.previousbalance.currency, false)}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="ecb-cardTabularSettings ecb-rtlCardTabularSettings" ng-if="vm.isPcaSettings()">
+    <div class="ecb-settingsHeader">
+      <div class="pull-{{vm.layoutLeftDirection}}">
+        <span class="ebIcon_settings ecb-headerIcons"></span>
+        <span class="ebText"><b>{{'TEXT_SETTINGS'|translate}}</b></span>
+      </div>
+      <div class="pull-{{vm.layoutRightDirection}}">
+        <button class="btn ebBtn ebBtn_color_darkBlue" ng-click="vm.applyPcaCancelSettings(1)" ng-disabled="vm.isAllColumnDeselected()">{{'TEXT_APPLY'| translate}}</button>
+        <button class="btn ebBtn ebBtn-default" ng-click="vm.applyPcaCancelSettings(0)">{{'TEXT_CANCEL'| translate}}</button>
+      </div>
+    </div>
+    <div class="ecb-settingsCheckboxHeader">
+      <div class="ebLabel pull-{{vm.layoutLeftDirection}}">{{'TEXT_SELECT'| translate}} :</div>
+      <div class="pull-{{vm.layoutLeftDirection}}"><a class="ebColor_textLinkBlue" ng-click="vm.togglePcaSelectAll(1)">{{'TEXT_ALL'| translate}}</a></div>
+      <div class="pull-{{vm.layoutLeftDirection}}">|</div>
+      <div class="pull-{{vm.layoutLeftDirection}}"><a class="ebColor_textLinkBlue" ng-click="vm.togglePcaSelectAll(0)">{{'TEXT_NONE'| translate}}</a></div>
+    </div>
+    <div class="ecb-settingsColumnList" ng-style="vm.getSettingsHeight()">
+      <ul class="list-unstyled" ng-if="vm.isPcaExpandTabularView()">
+        <li ng-repeat="header in vm.unFreezeColumnsList(vm.displayableAdjustmentsHeader)">
+          <label>
+            <input class="ebCheckbox" type="checkbox" value="{{header}}"
+              ng-checked="vm.checkboxSelectionTemp.indexOf(header) > -1" ng-click="vm.togglePcaHeaderSelection(header)" ng-disabled="vm.freezeColumnsTemp.indexOf(header) > -1">
+            <span class="ebCheckbox-inputStatus"></span>
+            <span class="ebCheckbox-label">{{vm.getAdjustmentDetailsHeaderKey(header)}}</span>
+          </label>
+          <div ng-class="{ 'ecb-freezeChecked': vm.checkboxSelectionTemp.indexOf(header) == -1}" ng-click="vm.toggleFreezingColumns(header, true)"><i class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i></div>
+        </li>
+        <li ng-if="vm.showMidLine(vm.displayableAdjustmentsHeader)" class="ecb-freezeColumnsDivide"></li>
+        <li ng-repeat="header in vm.freezeColumns">
+          <label>
+            <input class="ebCheckbox" type="checkbox" value="{{header}}" checked="checked" disabled="disabled">
+            <span class="ebCheckbox-inputStatus"></span>
+            <span class="ebCheckbox-label">{{vm.getAdjustmentDetailsHeaderKey(header)}}</span>
+          </label>
+          <div ng-class="{ 'ecb-freeze': vm.freezeColumnsTemp.indexOf(header) > -1}" ng-click="vm.toggleFreezingColumns(header)"><i class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i></div>
+        </li>
+      </ul>
+      <ul class="list-unstyled" ng-if="vm.isPaymentsReceivedExpandTabularView()">
+        <li ng-repeat="header in vm.unFreezeColumnsList(vm.displayablePayReceivedHeader)">
+          <label>
+            <input class="ebCheckbox" type="checkbox" value="{{header}}"
+              ng-checked="vm.checkboxSelectionTemp.indexOf(header) > -1" ng-click="vm.togglePcaHeaderSelection(header)" ng-disabled="vm.freezeColumnsTemp.indexOf(header) > -1">
+            <span class="ebCheckbox-inputStatus"></span>
+            <span class="ebCheckbox-label">{{vm.getPaymentReceivedHeaderKey(header)}}</span>
+          </label>
+          <div ng-class="{ 'ecb-freezeChecked': vm.checkboxSelectionTemp.indexOf(header) == -1}" ng-click="vm.toggleFreezingColumns(header, true)"><i class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i></div>
+        </li>
+        <li ng-if="vm.showMidLine(vm.displayablePayReceivedHeader)" class="ecb-freezeColumnsDivide"></li>
+        <li ng-repeat="header in vm.freezeColumns">
+          <label>
+            <input class="ebCheckbox" type="checkbox" value="{{header}}" checked="checked" disabled="disabled">
+            <span class="ebCheckbox-inputStatus"></span>
+            <span class="ebCheckbox-label">{{vm.getPaymentReceivedHeaderKey(header)}}</span>
+          </label>
+          <div ng-class="{ 'ecb-freeze': vm.freezeColumnsTemp.indexOf(header) > -1}" ng-click="vm.toggleFreezingColumns(header)"><i class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div ng-if="vm.pcaError()" class="error-container">
+      <div class="error-message">
+          <div class="error-ebDialogBox error-confirmation">
+            <div class="ebDialogBox-contentBlock confirmation-content">
+              <div ng-click="vm.exportError = false">
+                <i class="fa fa-times error-close" aria-hidden="true"></i>
+              </div>
+              <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_UNABLE_TO_DOWNLOAD' | translate }}</p>
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_TRY_AGAIN' | translate }}</p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="content payments" ng-if="vm.nodata">
+    <p>{{'TEXT_NO_PAY_CREDIT_ADJ' | translate }}</p>
+  </div>
+  <div class="content chargeSummary-cardView ecb-pcaExpanded ecb-expandBody" ng-if="vm.isPcaExpandCardView() && !vm.loading">
+    <div class="ebNotification ebNotification_color_paleBlue" ng-if="vm.displayableAdjustments.length == 0">
+      <div class="ebNotification-content">
+        <span class="ebNotification-label">{{'TEXT_NO_TRANSACTION' | translate }}</span>
+      </div>
+    </div>
+    <div ng-if="vm.displayableAdjustments.length > 0">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ecb-cardPadding" ng-repeat="card in vm.displayableAdjustments | orderBy: vm.getSortByColumn('dt_session'):(vm.sortOrder == 'desc' ? true : false) | filter:vm.selectedFilters track by $index" index={{$index}} class="ecb-cardLayout" ecb-ellipsis>
+      <div class="ecb-cardLayoutBoxMain">
+
+        <table class="ebTable ebTable_striped ebTable_fullW">
+          <tbody>
+            <tr ng-repeat="(key, value) in card" ng-if="key.indexOf('hidden_') == -1">
+              <td class="ecb-cardLayoutLabel ebDialogBox-secondaryText">{{vm.getAdjustmentDetailsHeaderKey(key)}}</td>
+              <td class="ebText" >
+                <span ng-if="vm.adjustConfigs[key].IsCurrency">{{value | currencyFilter:this}}</span>
+                <span ng-if="!vm.adjustConfigs[key].IsCurrency">{{value}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+    <div class="content chargeSummary-cardView ecb-pcaExpanded ecb-expandBody" ng-if="vm.isPaymentsReceivedExpandCardView() && !vm.loading">
+      <div class="ebNotification ebNotification_color_paleBlue" ng-if="vm.displayablePayReceived.length == 0">
+        <div class="ebNotification-content">
+          <span class="ebNotification-label">{{'TEXT_NO_TRANSACTION' | translate }}</span>
+        </div>
+      </div>
+      <div ng-if="vm.displayablePayReceived.length > 0">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ecb-cardPadding" ng-repeat="card in vm.displayablePayReceived | orderBy: vm.getSortByColumn('paymentDateString'):(vm.sortOrder == 'desc' ? true : false) | filter:vm.selectedFilters track by $index" index={{$index}} class="ecb-cardLayout" ecb-ellipsis>
+      <div class="ecb-cardLayoutBoxMain">
+
+        <table class="ebTable ebTable_striped ebTable_fullW">
+          <tbody>
+            <tr ng-repeat="(key, value) in card" ng-if="key.indexOf('hidden_') == -1">
+              <td class="ecb-cardLayoutLabel ebDialogBox-secondaryText">{{vm.getPaymentReceivedHeaderKey(key)}}</td>
+              <td class="ebText" >
+                <span ng-if="vm.payReceivedConfigs[key].IsCurrency">{{value | currencyFilter:this}}</span>
+                <span ng-if="!vm.payReceivedConfigs[key].IsCurrency">{{value}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+  </div>
+    <div class="content ecb-offerChargeTabularView" ng-if="vm.isPcaExpandTabularView() && !vm.loading">
+      <div ng-if="vm.displayableAdjustments.length > 0" class="ecb-uiGrid" ui-grid="vm.gridOptions" dir="{{vm.i18n.languageDirection}}" ui-grid-resize-columns ui-grid-auto-resize ui-grid-move-columns ui-grid-pinning ng-style="vm.getViewAllBodyHeight()">
+      </div>
+       <div class="ebNotification ebNotification_color_paleBlue" ng-if="vm.displayableAdjustments.length == 0">
+        <div class="ebNotification-content">
+          <span class="ebNotification-label">{{'TEXT_NO_TRANSACTION' | translate }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="content ecb-offerChargeTabularView" ng-if="vm.isPaymentsReceivedExpandTabularView()&& !vm.loading">
+      <div ng-if="vm.displayablePayReceived.length > 0" class="ecb-uiGrid" ui-grid="vm.paymentGridOptions" dir="{{vm.i18n.languageDirection}}" ui-grid-resize-columns ui-grid-auto-resize ui-grid-move-columns ui-grid-pinning ng-style="vm.getViewAllBodyHeight()">
+      </div>
+      <div class="ebNotification ebNotification_color_paleBlue" ng-if="vm.displayablePayReceived.length == 0">
+        <div class="ebNotification-content">
+          <span class="ebNotification-label">{{'TEXT_NO_TRANSACTION' | translate }}</span>
+        </div>
+      </div>
+    </div>
+  <div ng-if="vm.isTabularViewSettings" class="ecb-widgetBackdrop"></div>
+</div>

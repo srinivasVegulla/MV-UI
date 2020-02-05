@@ -1,0 +1,62 @@
+<div class="widget">
+  <div class="ecbRelativeClass accountLoader" ng-if="vm.loading">
+    <div class="ebLoader">
+      <div class="ebLoader-Holder">
+        <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+      </div>
+    </div>
+  </div>
+  <div ng-if="!!vm.account.info === true && !vm.loading">
+    <address>
+      <span class="ebText">
+        {{ vm.account.info.firstName }}
+        {{ vm.account.info.middleInitial }}
+        {{ vm.account.info.lastName }}
+      </span>
+      <span ng-if="vm.account.info.company" class="accountInfo()-info-pipe-color">
+        <span class="ebColor_grey_40"> | </span>
+      </span>
+      <span class="ebText">
+        {{ vm.account.info.company }}
+      </span>
+    </address>
+    <address>
+      <label class="ebLabel">
+        {{ 'TEXT_ACCOUNT_NUMBER' | translate }}
+      </label>
+      <span class="ebText">
+        {{ vm.account.info.idAcc }}
+      </span>
+    </address>
+    <address>
+      <span class="ebText">
+        {{ vm.formattedAddress() }}
+      </span>
+    </address>
+    <address>
+      <span class="ebText">
+        {{ vm.formattedLocation() }}
+      </span>
+    </address>
+    <address>
+      <span class="ebText digits ebColor_darkBlue" ng-if="vm.account.info.phoneNumber">
+        <label class="ebLabel">
+          {{ 'TEXT_PHONE' | translate }}
+        </label>
+        <a ng-href="tel:{{ vm.account.info.phoneNumber }}" class="ebBtn btn-link ebColor_textLinkBlue">
+          {{ vm.account.info.phoneNumber }}
+        </a>
+      </span>
+    </address>
+    <address>
+      <span class="ebText">
+        <a href="mailto:{{ vm.account.info.email }}" class="ebBtn btn-link ebColor_textLinkBlue">
+          {{ vm.account.info.email }}
+        </a>
+      </span>
+    </address>
+  </div>
+  <p ng-if="!!vm.account.info === false">
+    No account details found.
+  </p>
+</div>

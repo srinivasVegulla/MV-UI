@@ -1,0 +1,254 @@
+// Bill Adjustment Popup Styles
+
+@import "../../../../styles/_variables.scss";
+
+.ecb-billAdjustmentPopup{
+	position : absolute;
+  z-index : 99999;
+}
+.ecb-dialogBoxBillAdjustment{
+	width: 310px;
+	border-bottom: 0px;
+	border-radius: 2px;
+	min-width : 220px;
+  box-shadow: 0px 1px 10px #babcbf;
+}
+h3.ecb-dialogBoxHeaderText{
+  border-bottom: 1px solid #c5bfbf;
+  margin: 0;
+  padding-left: 5px;
+}
+.ecb-billingContent{
+	padding :0;
+}
+.ecb-dialogBoxBillBoxData{
+	margin : 0;
+  padding : 0;
+}
+.ecb-cardLayoutLabel{
+  min-width: 90px;
+  text-align: right;
+  font-size: 1rem;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px){
+  .ecb-billAdjustmentPopup{
+    left : 50% !important;
+    margin-left: -155px;
+  }
+}
+
+// Card layout starts here
+
+.ecb-cardLayoutBox{
+  display: table;
+  border-bottom: 1px solid #eee;
+  min-height : 70px;
+  width : 308px;
+  table-layout : fixed;
+}
+.ecb-cardLayoutBox > div:last-child{
+  vertical-align: middle;
+  display: table-cell;
+  padding: 15px 10px;
+}
+.ecb-cardLayoutBox > div:first-child{
+  width: 35%;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  background : #2d74a9;
+}
+.ecb-cardLayoutBox h4 {
+	margin-bottom : 6px;
+	padding : 0;
+	border-bottom : none;
+	line-height : 1.2rem;
+  font-weight : 500;
+}
+.ecb-billDownloadBtn span{
+	margin : 0 2px;
+}
+.ecb-cardLayoutBox .ebDialogBox-primaryText{
+	margin-bottom : 0;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.2rem;
+}
+
+.ecb-cardLayoutBox .ebDialogBox-secondaryText{
+	line-height : 1rem;
+  margin-top : 4px;
+  font-size : 1rem;
+  color : #eae5e5;
+}
+.ecb-paymentsMethodName{
+  font-size: 14px;
+  color: #8d8d8d;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: right;
+  padding-right: 7px;
+}
+.table-paymentsReceived tbody tr td:first-child{
+  width: 80px;
+  text-align: right;
+  font-size: 10px;
+  color: #8d8d8d;
+  padding: 2px 5px;
+  border: none;
+}
+.table-paymentsReceived tbody tr td:last-child{
+  text-align: left;
+  font-size: 11px;
+  border: none;
+  padding: 2px 4px;
+  word-wrap : break-word;
+}
+.ecb-payReceviedCardDetail{
+  height : 53px;
+  overflow : hidden;
+}
+.ecb-cardLayoutBoxMain .table-paymentsReceived tbody tr td:first-child{
+  width : 80px;
+}
+.ecb-cardLayoutBox table{
+  margin-bottom : 0;
+  table-layout : fixed;
+}
+
+// Card layout ends here
+// viewAll card layout starts here
+.ecb-cardLayoutBoxMain {
+  padding: 10px 0;
+  height: 100%;
+  box-shadow: 2px 2px 2px 2px #ccc;
+}
+.ecb-cardLayoutBoxMain .ecb-cardLayoutBox{
+  height : 100px;
+  display : table;
+  margin : 10px 5px 0;
+  min-width : 1px;
+  box-shadow : 0px 0px 9px 1px #e6e5e5;
+  border-bottom : none;
+}
+.ecb-cardLayoutBoxMain > div{
+  width : 97%;
+}
+.ecb-cardLayoutBoxMain .ecb-cardLayoutBox > div:first-child{
+  height : 98px;;
+}
+.ecb-cardLayoutBoxMain .ecb-cardLayoutBox > div:last-child .ebDialogBox-secondaryText,
+.ecb-cardLayoutBoxMain .ecb-cardLayoutBox > div:last-child h4
+{
+  max-height : 24px;
+  overflow : hidden;
+  text-overflow : ellipsis;
+}
+.ecb-cardLayoutBoxMain .ecb-cardDetailHandlerExpand{
+  position: absolute;
+  bottom: 0px;
+  text-align: center;
+  width: 100% !important;
+  padding : 3px 0;
+}
+.ecb-cardLayoutBoxMain .ecb-cardLayoutBottomBox{
+  margin: 0 5px;
+  overflow: auto;
+  overflow-x: hidden;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  background : #fff;
+}
+.ecb-cardLayoutBoxMain .ecb-cardDetailHandlerCollapse{
+  text-align: center;
+  margin: 0 5px;
+  border: 1px solid #eee;
+  padding: 3px 0;
+  background : #fff;
+}
+.ecb-cardLayoutBoxMain .ecb-cardLayoutBottomBox table td{
+  word-wrap: break-word;
+}
+.ecb-cardLayoutBoxMain .ecb-cardDetailHandlerCollapse i, .ecb-cardDetailHandlerExpand i{
+  cursor : pointer;
+}
+.ecb-cardLayoutBottomBox, .ecb-cardDetailHandlerCollapse{
+  display : none;
+}
+.ecb-cardLayoutExpand .ecb-cardLayoutBox {
+  background: #e2e2e2 !important;
+}
+.ecb-cardLayoutExpand .ecb-cardLayoutBottomBox{
+  box-shadow : 0 2px 6px 1px #ccc;
+}
+.ecb-cardLayoutExpand .ecb-cardLayoutBox {
+  border: 1px solid #858585 !important;
+}
+.ecb-cardLayoutExpand .ecb-cardDetailHandlerCollapse{
+  border-top: 1px solid #dadada!important;
+  box-shadow: 0 4px 9px 1px #e6e4e4;
+}
+.ecb-cardLayoutExpand .ecb-cardLayoutBox {
+  border-bottom: 1px solid #dadada !important;
+}
+.ecb-cardDetailHandlerExpand i, .ecb-cardDetailHandlerCollapse i{
+  padding: 2px;
+  border: 1px solid #fff;
+  border-radius: 18px;
+  width: 18px;
+  height: 18px;
+}
+.ecb-cardDetailHandlerExpand i:hover, .ecb-cardDetailHandlerCollapse i:hover,
+.ecb-cardDetailHandlerExpand i:active, .ecb-cardDetailHandlerCollapse i:active{
+  border: 1px solid #00a9d4;
+}
+.ecb-cardLayoutExpand .ecb-cardLayoutBox{
+  background: #2d74a9!important;
+  color: #fff!important;
+  box-shadow: 0px 0px 9px 1px #ccc;
+}
+.ecb-cardLayoutExpand .ecb-cardLayoutBox tbody tr td:first-child{
+  color : #eae5e5 !important;
+}
+.ecb-cardLayoutExpand .ecb-paymentsMethodName, .ecb-cardLayoutExpand .ecb-paymentsHistoryMethodName{
+  color : #f2f2f2;
+}
+.ecb-cardLayoutExpand .ecb-cardLayoutBox h4{
+  color : #fff !important;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px){
+  .ecb-cardLayoutBoxMain .ecb-cardLayoutBox{
+    margin-top : 0 !important;
+    border-top : none;
+  }
+}
+.ecb-expandFooter {
+  width: 100%;
+  bottom: 0;
+  background-color: #d3d3d3;
+  padding: 1px 0;
+  display:table;
+}
+.ecb-noPaymentsHistory {
+  padding-left: 6px;
+}
+.ebDialogBox-content sup {
+  vertical-align: super;
+}
+// viewAll card layout ends here
+.ecb-miscDesc{
+  max-height : 25px;
+  overflow : hidden
+}
+
+/*Hebrew Css Fixes start*/
+body[dir='RTL'] .ecb-billAdjustmentPopup{
+  position : absolute;
+  z-index : 99999;
+}
+body[dir='RTL'] .ecb-rtlCloseBillPopup{
+  float: left;
+}
+/*Hebrew Css Fixes End*/

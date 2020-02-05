@@ -1,0 +1,467 @@
+.payment-modal-cancel {
+    margin-left: 10px;
+}
+
+.payment-modal-form {
+    padding-top: 20px;
+}
+
+.payment-modal-pay {
+    padding-top: 5px;
+    font-weight: normal;
+}
+
+.payment-modal-currency {
+    background-color: #adadad;
+    color: #fff;
+    width: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.payment-modal-methods>a {
+    font-size: 11px;
+    text-decoration: none !important;
+}
+
+.payment-modal-footer {
+    border: none;
+}
+
+.payment-modal-clear {
+    clear: both;
+}
+
+.payment-modal-confirm-footer {
+    border: none;
+    background-color: inherit;
+    margin-top: 40px;
+    padding: 5px;
+}
+
+.payment-modal-ok {
+    margin-right: 45%;
+}
+
+/*.spinner > img {
+  width: 38px;
+  margin-top: 10rem;
+}*/
+
+.payment-modal-form>form>.form-group>div {
+    padding: 0;
+}
+
+.payment-modal-box {
+    padding: 0px;
+}
+
+.form-group.review-message {
+    text-align: left;
+    height: 15px;
+}
+
+.ecb-saveFutureUse {
+    vertical-align: bottom !important;
+}
+
+.ecb-saveFutureLabel {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+.ecb-invoiceTableContainer{
+  width: calc(100% - 60px);
+  margin: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+@media(max-width: 767px) {
+    .payment-review-form>.form-group>label {
+        padding-top: 0 !important;
+    }
+    label.text-left {
+        text-align: left !important;
+    }
+}
+
+@media(max-width: 480px) {
+    .payment-modal-form>form>.form-group>label {
+        padding: 0 7px 0 0;
+        text-align: right;
+        padding-top: 0;
+    }
+    .payment-review-form>.form-group>label {
+        padding-top: 0;
+    }
+}
+
+@media(min-width: 480px) {
+    .payment-modal-form>form>.form-group>label {
+        padding-top: 4px;
+    }
+}
+
+.payment-modal-due {
+    padding-right: 0px;
+}
+
+.payment-modal-header {
+    margin-right: 0px !important;
+}
+
+.modal-header button {
+    margin: 7px 4px;
+}
+
+.modal-header .close {
+    margin-top: 9px;
+}
+
+.modal-header .close:active {
+    color: #0063B0;
+}
+
+.pay-modal-error {
+    padding: 15px;
+}
+
+/* Spinner */
+
+.spinner {
+    position: absolute;
+    top: 40%;
+}
+
+#loaderContainer {
+    width: 146px;
+    height: 16px;
+    margin: auto;
+    padding-left: 30px;
+}
+
+.ecb-terms {
+    padding: 20px 25px 10px 30px;
+}
+
+.ecb-termscheckbox {
+    margin: 0px 10px !important;
+}
+
+.ecb-terms p {
+    margin-bottom: 8px;
+}
+
+.ecb-terms-inputBox {
+    margin-top: 30px;
+    margin-left: -10px;
+}
+
+.dropdown-text {
+    width: 93%;
+}
+
+._720kb-datepicker-calendar-header:nth-child(2n+1),
+._720kb-datepicker-calendar-header {
+    background-color: #ccc !important;
+}
+
+._720kb-datepicker-calendar-day._720kb-datepicker-active,
+._720kb-datepicker-calendar-day:hover {
+    background-color: #0d5ba4 !important;
+    color: white;
+    border-radius: 5px;
+}
+
+body[dir='LTR'] .ecb-calendar {
+    position: absolute;
+    right: 5px;
+    top: 6px;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+@media screen and (min-device-width: 992px) and (max-device-width: 1366px) {
+    .ecb-amountPaymentLabel {
+        margin-right: 5%;
+        padding-right: 5%;
+    }
+    .ecb-paymentLabel {
+        margin-right: 3%;
+        padding-right: 5%;
+    }
+    .ecb-paymentReviewLabel {
+        text-align: right !important;
+        padding-right: 7%;
+    }
+    .ecb-paymentConfirmLabel {
+        text-align: right !important;
+        padding-right: 9%;
+    }
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 414px) and (orientation: portrait) {
+    .spinner {
+        position: absolute;
+        top: 35%;
+        left: 25%;
+    }
+    ._720kb-datepicker-calendar-days-header,
+    ._720kb-datepicker-calendar-body,
+    ._720kb-datepicker-calendar-header {
+        width: 93%;
+    }
+    ._720kb-datepicker-calendar-days-header,
+    ._720kb-datepicker-calendar-body,
+    ._720kb-datepicker-calendar-header {
+        width: 93%;
+    }
+    ._720kb-datepicker-calendar-days-header,
+    ._720kb-datepicker-calendar-body,
+    ._720kb-datepicker-calendar-header {
+        width: 93%;
+    }
+    .ecb-paymentConfirmLabel {
+        margin-top: -4px;
+    }
+    .ecb-confirm {
+        min-width: 320px;
+        word-wrap: break-word;
+    }
+    .ecb-saveCheck {
+        margin-top: 5px;
+        height: 10%;
+        position: relative;
+        left: 26%;
+    }
+    body[dir='RTL'] .payment-modal-box {
+        position: relative;
+        right: 0px !important;
+    }
+    .ecb-formResponsive {
+        margin-left: 1% !important;
+        margin-bottom: 10%;
+    }
+    .ecb-amountAlignment {
+        margin-left: 4%;
+    }
+}
+
+@media screen and (min-device-width: 568px) and (max-device-width: 736px) and (orientation: landscape) {
+    .spinner {
+        position: absolute;
+        top: 60%;
+        left: 35%;
+    }
+    .ecb-amountPaymentLable {
+        padding-right: 13%;
+    }
+    .ecb-paymentReviewLabel {
+        margin-left: -100px;
+        margin-top: -4px;
+    }
+    .ecb-paymentConfirmLabel {
+        margin-top: -4px;
+        padding-right: 8%;
+    }
+    .ecb-saveCheck {
+        margin-top: 5px;
+        height: 10%;
+        position: relative;
+        left: 28%;
+    }
+    .ecb-formResponsive {
+        margin-left: 1% !important;
+        margin-bottom: 6%;
+    }
+    .ecb-amountAlignment {
+        margin-left: 2%;
+    }
+}
+
+@media screen and (min-device-width:768px) and (max-device-height:1024px) and (orientation: portrait) {
+    .spinner {
+        position: absolute;
+        top: 25%;
+        left: 30%;
+    }
+    .ecb-paymentConfirmLabel {
+        margin-top: -4px;
+        text-align: right !important;
+        padding-right: 9%;
+    }
+    .ecb-saveCheck {
+        margin-top: 5px;
+        height: 10%;
+        position: relative;
+        left: 28%;
+    }
+}
+
+@media screen and (min-device-width:1024px) and (max-device-height: 768px) and (orientation: landscape) {
+    .spinner {
+        position: absolute;
+        top: 30%;
+    }
+    .ecb-saveCheck {
+        margin-top: 5px !important;
+    }
+}
+
+[type="checkbox"] {
+    vertical-align: text-top;
+}
+
+.ecb-saveCheck {
+    margin-top: 5px;
+}
+
+.ecb-payUsing {
+    height: 45px !important;
+}
+
+.ecb-calendarCheck {
+    display: none;
+}
+
+.ecb-disclaimerError {
+    margin: 4% 4% 0% 4%;
+}
+
+.ecb-fullWidth {
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+    .ecb-aside-modal .ecb-paymodal .modal-body .form-group label {
+        padding-top: 10px;
+        text-align: right;
+    }
+    body[dir='RTL'] .ecb-aside-modal .ecb-paymodal .modal-body .form-group label {
+        padding-top: 10px;
+        text-align: left;
+    }
+}
+
+body[dir='RTL'] .payment-modal-currency {
+    transform: rotate(180deg);
+    position: relative;
+    left: -1px;
+}
+
+body[dir='RTL'] .ecb-rtlAmountDue {
+    text-align: right;
+}
+
+body[dir='RTL'] .payment-modal-box {
+    position: relative;
+    right: 20px;
+}
+
+body[dir='RTL'] .ecb-calendarRight {
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+body[dir='RTL'] .ecbRtlTextAlignRight {
+    text-align: right;
+}
+
+body[dir='RTL'] .ecbWidth {
+    width: 100%;
+}
+
+body[dir='RTL'] .ecbRtlTextAlignLeft {
+    text-align: left !important;
+}
+
+body[dir='RTL'] .ecb-invoiceDollarSymbol {
+    background-color: #adadad;
+    color: #fff;
+    width: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 0px 5px 5px 0px;
+    position: absolute;
+}
+
+body[dir='RTL'] .ecb-invoiceAmountDue {
+    min-width: 40px;
+    width: 80%;
+    margin-left: 18px;
+    margin-right: 18px;
+}
+
+body[dir='RTL'] .ecb-invoiceReviewTable {
+    width: 50%;
+    position: relative;
+    right: 20px;
+    float: right;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+body[dir='RTL'] .ecb-confirmLabelAlign {
+    text-align: right !important;
+}
+
+.ecb-invoiceTable {
+    width: 100%;
+    position: relative;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.ecb-invoiceTable>thead>tr>td {
+    border: none;
+    color: #adadad;
+}
+
+.ecb-invoiceTablePad>tbody>tr>td,
+.ecb-invoiceTablePad>tbody>tr>th,
+.ecb-invoiceTablePad>tfoot>tr>td,
+.ecb-invoiceTablePad>tfoot>tr>th,
+.ecb-invoiceTablePad>thead>tr>td,
+.ecb-invoiceTablePad>thead>tr>th {
+    padding: 8px !important;
+}
+
+.ecb-invoiceAmountDue {
+    min-width: 40px;
+    width: 80%;
+    margin-left: 18px;
+}
+
+.ecb-invoiceDollarSymbol {
+    background-color: #adadad;
+    color: #fff;
+    width: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 5px 0px 0px 5px;
+    position: absolute;
+}
+
+.ecb-invoiceConfirmTable {
+    width: 50%;
+    position: relative;
+    left: 30px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.ecb-invoiceReviewTable {
+    width: 50%;
+    position: relative;
+    left: 10px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.ecb-invoiceLabel {
+    margin-left: 20px;
+}

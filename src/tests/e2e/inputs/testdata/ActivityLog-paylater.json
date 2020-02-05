@@ -1,0 +1,42 @@
+{
+	"url": {
+		"URL": "https://10.200.165.8:8080/metraview",
+		"Title": "ECB MetraView : Login",
+		"CurrentUrl": "https://10.200.165.8:8080/login",
+		"DashBoardURL": "https://10.200.165.8:8080/dashboard",
+		"DashBoard": "ECB MetraView : Dashboard"
+	},
+	"user": {
+		"username": "accsub02m",
+		"passwordField": "MetraTech2"
+	},
+	
+	"TotalAmount": "282,201.97",
+	 "futuredate": "15",
+	"Schedule": "Schedule Now",
+	"Review": "Review payment details.",
+	"TodayDate": "12/05/2016",
+	"NewMethod": "New Payment Method",
+	"SaveforFutureUse": "Save for Future Use",
+	"AddNowandPayNow": "Add Now and Pay Now",
+	"CardNo": "4111111111111111",
+	"Country": "A",
+	"CVN": "123",
+	"expdate": "06",
+	"expyear": "2023",
+	"Payment Confirmation": "Payment Confirmation",
+	"ProcessedMessage": "Your Payment has been Processed.",
+	"Amount": "1$",
+  "ActivityLog": {
+  
+   "today": "Today",
+   "Amountpaidstatus": "Credit card debit succeeded",
+   "Scheduledpayment": "Successfully scheduled electronic payment",
+   "Updatedaccount": "Account Update",
+   "addedcard": "Successfully added credit card"
+ 
+ 
+ }
+
+
+}

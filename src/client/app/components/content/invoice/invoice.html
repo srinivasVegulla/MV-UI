@@ -1,0 +1,306 @@
+<div class="widget ecb-invoiceExpandMain" ng-class="{ 'card-expanded': vm.invoiceCardState === 'expanded', 'ecbCardExpanded': vm.widgetOpen}">
+  <div class="header clearfix">
+    <h2 class="invoice-name" ng-if="!vm.widgetOpen">{{'TEXT_DOWNLOADS' | translate}} </h2>
+    <span class="pull-right invoice-close-image ecb-rtlInvoiceCloseIcon" aria-hidden="true" ng-show="vm.invoiceClose">
+        <i class="fa fa-times ebColor_textLinkBlue" aria-hidden="true"  ng-click="vm.closeInvoiceViewAll()"></i>
+    </span>
+      <ul ng-if="vm.widgetOpen" class="list-unstyled list-inline">
+        <li ng-repeat = "card in vm.cardsAvailable">
+          <label class="ecb-invoiceCheckbox">
+            <input class="ebCheckbox" type="checkbox" value="{{card}}"
+              ng-checked="vm.checkboxSelection(card)" ng-click="vm.toggleCardsSelection(card)">
+            <span class="ebCheckbox-inputStatus ecb-rtl"></span>
+            <span class="ebCheckbox-label">{{vm.bilPeriodCards[card].localeResourceKey | translate}}</span>
+          </label>
+        </li>
+      </ul>
+  </div>
+  <div class="ecbRelativeClass" ng-if="vm.loading">
+    <div class="ebLoader">
+      <div class="ebLoader-Holder">
+        <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+      </div>
+    </div>
+  </div>
+  <div class="content" ng-if="!vm.widgetOpen && !vm.loading">
+    <div class="content contentRow">
+      <div class="ecb-invoiceContentrowColumn1">
+          <img class="ecb-invoiceIEstyle" ng-src="./images/statements.svg">
+      </div>
+      <div class="ecb-invoiceContentrowColumn2">
+          <p class="ecb-invoiceHeader" >{{'TEXT_DOWNLOAD_STATEMENTS'|translate}}</p>
+          <p ng-if="!vm.statementsLength">{{ 'TEXT_NO_STATEMENTS' | translate }}</p>
+              <div class="invoice-period invoice-downloads">
+                <table class="table table-noborder table-condensed ecb-invoiceSpace" ng-if="vm.statementsLength">
+                  <tbody>
+                    <tr ng-repeat="invoice in vm.listOfStatements|limitTo:2" class="invoice-copy">
+                      <td class="ecb-invoiceWordsbreak" ng-click="vm.savePDF(invoice.fileName)"><a class="invoice-filelink">{{ invoice.fileName }} <i class="fa fa-download ecb-invoiceDownload" aria-hidden="true"></i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+              </table>
+            </div>
+      </div>
+      <div class="ecb-invoiceContentrowColumn3">
+        <p class="ebText pull-{{vm.layoutRightDirection}} invoice-count" ng-if="vm.countOfOne(vm.statementsLength)"> 1 {{'TEXT_OF'|translate}} {{vm.statementsLength}}</p>
+        <p class="ebText pull-{{vm.layoutRightDirection}}" ng-if="vm.countOfTwo(vm.statementsLength)"> 2 {{'TEXT_OF'|translate}} {{vm.statementsLength}}</p>
+      </div>
+    </div>
+    <div class="content contentRow">
+      <div class="ecb-invoiceContentrowColumn1">
+         <img class="ecb-invoiceIEstyle" ng-src="./images/invoices.svg">
+      </div>
+      <div class="ecb-invoiceContentrowColumn2">
+        <p class="ecb-invoiceHeader" >{{ 'TEXT_DOWNLOAD_INVOICES' | translate}}</p>
+        <p ng-if="!vm.invoicesLength">{{ 'TEXT_NO_INVOICE' | translate }}</p>
+          <div class="invoice-period invoice-downloads" >
+            <table class="table table-noborder table-condensed ecb-invoiceSpace" ng-if="vm.invoicesLength">
+              <tbody>
+                <tr ng-repeat="invoice in vm.listOfInvoices|limitTo:2" class="invoice-copy" >
+                  <td class="ecb-invoiceWordsbreak" ng-click="vm.savePDF(invoice.fileName)">
+                    <a class="invoice-filelink">{{invoice.fileName}} <i class="fa fa-download ecb-invoiceDownload" aria-hidden="true"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+      <div class="ecb-invoiceContentrowColumn3">
+        <p class="ebText pull-{{vm.layoutRightDirection}} invoice-count" ng-if="vm.countOfOne(vm.invoicesLength)"> 1 {{'TEXT_OF'|translate}} {{vm.invoicesLength}}</p>
+        <p class="ebText pull-{{vm.layoutRightDirection}}" ng-if="vm.countOfTwo(vm.invoicesLength)"> 2 {{'TEXT_OF'|translate}} {{vm.invoicesLength}}</p>
+      </div>
+    </div>
+    <div class="content contentRow">
+      <div class="ecb-invoiceContentrowColumn1">
+        <img class="ecb-invoiceIEstyle" ng-src="./images/creditNotes.svg">
+      </div>
+      <div class="ecb-invoiceContentrowColumn2">
+        <p class="ecb-invoiceHeader" >{{'TEXT_DOWNLOAD_CREDIT_NOTES'|translate}}</p>
+        <p ng-if="!vm.creditNotesLength">{{ 'TEXT_NO_CREDIT_NOTES' | translate }}</p>
+          <div class="invoice-period invoice-downloads">
+            <table class="table table-noborder table-condensed ecb-invoiceSpace" ng-if="vm.creditNotesLength">
+              <tbody>
+                <tr ng-repeat="invoice in vm.listOfCreditNotes|limitTo:2" class="invoice-copy"  >
+                  <td ng-if="!vm.ecbARCheck" class="ecb-invoiceWordsbreak" ng-click="vm.saveCreditNotePDF(invoice.fileName)"><a class="invoice-filelink">{{invoice.fileName }} <i class="fa fa-download ecb-invoiceDownload" aria-hidden="true"></i></a>
+                  </td>
+                  <td ng-if="vm.ecbARCheck" class="ecb-invoiceWordsbreak" ng-click="vm.saveDebitNotePDF(invoice.FullPath,invoice.FileName)"><a class="invoice-filelink">{{invoice.FileName }} <i class="fa fa-download ecb-invoiceDownload" aria-hidden="true"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+      <div class="ecb-invoiceContentrowColumn3">
+        <p class="ebText pull-{{vm.layoutRightDirection}} invoice-count" ng-if="vm.countOfOne(vm.creditNotesLength)"> 1 {{'TEXT_OF'|translate}} {{vm.creditNotesLength}}</p>
+        <p class="ebText pull-{{vm.layoutRightDirection}}" ng-if="vm.countOfTwo(vm.creditNotesLength)"> 2 {{'TEXT_OF'|translate}} {{vm.creditNotesLength}}</p>
+      </div>
+    </div>
+    <div class="content contentRow" ng-if="vm.ecbARCheck">
+        <div class="ecb-invoiceContentrowColumn1">
+          <img class="ecb-invoiceIEstyle" ng-src="./images/creditNotes.svg">
+        </div>
+        <div class="ecb-invoiceContentrowColumn2">
+          <p class="ecb-invoiceHeader" >{{'TEXT_DOWNLOAD_DEBIT_NOTES' | translate }}</p>
+          <p ng-if="!vm.debitNotesLength">{{'TEXT_NO_DEBIT_NOTES' | translate }}</p>
+            <div class="invoice-period invoice-downloads">
+              <table class="table table-noborder table-condensed ecb-invoiceSpace" ng-if="vm.debitNotesLength">
+                <tbody>
+                  <tr ng-repeat="invoice in vm.listOfDebitNotes|limitTo:2" class="invoice-copy"  >
+                    <td class="ecb-invoiceWordsbreak" ng-click="vm.saveDebitNotePDF(invoice.FullPath,invoice.FileName)"><a class="invoice-filelink">{{invoice.FileName }} <i class="fa fa-download ecb-invoiceDownload" aria-hidden="true"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+        <div class="ecb-invoiceContentrowColumn3">
+          <p class="ebText pull-{{vm.layoutRightDirection}} invoice-count" ng-if="vm.countOfOne(vm.debitNotesLength)"> 1 {{'TEXT_OF'|translate}} {{vm.debitNotesLength}}</p>
+          <p class="ebText pull-{{vm.layoutRightDirection}}" ng-if="vm.countOfTwo(vm.debitNotesLength)"> 2 {{'TEXT_OF'|translate}} {{vm.debitNotesLength}}</p>
+        </div>
+      </div>
+  </div>
+  <div class="footer clearfix" ng-if="vm.showViewAll(vm.statementsLength,vm.invoicesLength, vm.creditNotesLength)">
+      <p class="ebText pull-{{vm.layoutRightDirection}} invoice-footer"><buuton class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue btn-link-noborder" ng-click="vm.toggleInvoiceCardState()">{{'TEXT_VIEW_ALL'|translate}}> </button></p>
+  </div>
+  <div class="content widget-content-list ecb-invoiceExpandBody">
+    <div ng-if="vm.widgetOpen && !vm.loading">
+      <div class="content ecb-invoiceRow" ng-if="vm.isCardVisible('statements')">
+        <div class="ebAccordion-header" ng-click="showStatements = !showStatements">
+          <div class="ebAccordion-button">
+            <i ng-if="showStatements" class="ebIcon ebIcon_small ebIcon_rightArrow_10px ng-scope"></i>
+            <i ng-if="!showStatements" class="ebIcon ebIcon_small ebIcon_downArrow_10px ng-scope"></i>
+          </div>
+          <div class="ebAccordion-title">
+             {{'TEXT_DOWNLOAD_STATEMENTS'|translate}}
+          </div>
+        </div>
+        <div>
+          <p ng-if="!vm.statementsLength" ng-show="!showStatements">{{ 'TEXT_NO_STATEMENTS' | translate }}</p>
+          <ul class="list-unstyled" ng-if="vm.statementsLength" ng-show="!showStatements">
+            <li ng-repeat="invoice in vm.listOfStatements | orderBy: vm.getSortByColumn()" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ecb-invoiceContainer pull-{{vm.layoutLeftDirection}}">
+              <div class="ecb-invoiceCard">
+                  <div class="ecb-invoicesCardsTop">
+                    <div class="ecb-invoiceImage pull-{{vm.layoutLeftDirection}}">
+                      <img ng-src="./images/statements.svg">
+                    </div>
+                    <div class="ecb-invoiceText pull-{{vm.layoutLeftDirection}}">
+                      <p class="ecb-invoiceWordsbreak"><span class="ecb-invoiceFileName">{{invoice.fileName}}</span></p>
+                      <p><span class="ecb-invoiceDate ecb-labelText">{{ 'TEXT_DATE' | translate }}</span>{{(vm.invoicesIntervalData.startDate | date:'shortDate') }}
+                          {{'-' + (vm.invoicesIntervalData.endDate |date:'shortDate')}}</p>
+                    </div>
+                  </div>
+                  <div class="ecb-invoicesCardsBottom pull-{{vm.layoutRightDirection}}">
+                     <span class="ebColor_textLinkBlue" ng-click="vm.savePDF(invoice.fileName)"><i class="fa fa-download ecb-invoiceDownload" aria-hidden="true"></i>{{ 'TEXT_DOWNLOAD' | translate }}</span>
+                  </div>
+                </div>
+            </li>
+          </ul>
+          </div>
+      </div>
+      <div class="content ecb-invoiceRow" ng-if="vm.isCardVisible('invoicesText')">
+        <div class="ebAccordion-header" ng-click="showInvoices = !showInvoices">
+            <div class="ebAccordion-button">
+                <i ng-if="showInvoices" class="ebIcon ebIcon_small ebIcon_rightArrow_10px ng-scope"></i>
+                <i ng-if="!showInvoices" class="ebIcon ebIcon_small ebIcon_downArrow_10px ng-scope"></i>
+              </div>
+              <div class="ebAccordion-title">
+                  {{ 'TEXT_DOWNLOAD_INVOICES' | translate}}
+              </div>
+        </div>
+        <div>
+          <p ng-if="!vm.invoicesLength" ng-show="!showInvoices">{{ 'TEXT_NO_INVOICE' | translate }}</p>
+            <ul class="list-unstyled" ng-if="vm.invoicesLength" ng-show="!showInvoices">
+              <li ng-repeat="invoice in vm.listOfInvoices | orderBy: vm.getSortByColumn()" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ecb-invoiceContainer pull-{{vm.layoutLeftDirection}}">
+                <div class="ecb-invoiceCard">
+                  <div class="ecb-invoicesCardsTop">
+                    <div class="ecb-invoiceImage pull-{{vm.layoutLeftDirection}}">
+                      <img ng-src="./images/invoices.svg">
+                    </div>
+                    <div class="ecb-invoiceText pull-{{vm.layoutLeftDirection}}">
+                      <p class="ecb-invoiceWordsbreak"><span class="ecb-invoiceFileName">{{  invoice.fileName}}</span></p>
+                      <p><span class="ecb-invoiceDate ecb-labelText">{{ 'TEXT_DATE' | translate }}</span>{{(vm.invoicesIntervalData.startDate | date:'shortDate') }}
+                          {{'-' + (vm.invoicesIntervalData.endDate |date:'shortDate')}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="ecb-invoicesCardsBottom pull-{{vm.layoutRightDirection}}">
+                     <span class="ebColor_textLinkBlue" ng-click="vm.savePDF(invoice.fileName)"><i class="fa fa-download ecb-invoiceDownload ecb-invoiceDownload" aria-hidden="true"></i>{{ 'TEXT_DOWNLOAD' | translate }}</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+      </div>
+      <div class="content ecb-invoiceRow" ng-if="vm.isCardVisible('creditNotes')">
+        <div class="ebAccordion-header" ng-click="showCreditNotes = !showCreditNotes">
+          <div class="ebAccordion-button">
+            <i ng-if="showCreditNotes" class="ebIcon ebIcon_small ebIcon_rightArrow_10px ng-scope"></i>
+            <i ng-if="!showCreditNotes" class="ebIcon ebIcon_small ebIcon_downArrow_10px ng-scope"></i>
+          </div>
+          <div class="ebAccordion-title">
+            {{'TEXT_DOWNLOAD_CREDIT_NOTES'|translate}}
+          </div>
+        </div>
+        <div>
+          <p ng-if="!vm.creditNotesLength" ng-show="!showCreditNotes">{{ 'TEXT_NO_CREDIT_NOTES' | translate }}
+          </p>
+            <ul class="list-unstyled" ng-if="vm.creditNotesLength" ng-show="!showCreditNotes">
+              <li ng-repeat="invoice in vm.listOfCreditNotes | orderBy: vm.getSortByColumn()" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ecb-invoiceContainer pull-{{vm.layoutLeftDirection}}">
+                <div class="ecb-invoiceCard">
+                  <div class="ecb-invoicesCardsTop">
+                    <div class="ecb-invoiceImage pull-{{vm.layoutLeftDirection}}">
+                      <img ng-src="./images/creditNotes.svg">
+                    </div>
+                    <div ng-if="!vm.showCreditNotes && !vm.ecbARCheck" class="ecb-invoiceText pull-{{vm.layoutLeftDirection}}">
+                      <p class="ecb-invoiceWordsbreak"><span class="ecb-invoiceFileName">{{  invoice.fileName}}</span></p>
+                      <p><span class="ecb-invoiceDate ecb-labelText">{{ 'TEXT_DATE' | translate }} :</span>{{vm.getInvoiceDate(invoice.creationDate)}}
+                      </p>
+                    </div>
+                    <div ng-if="!vm.showCreditNotes && vm.ecbARCheck" class="ecb-invoiceText pull-{{vm.layoutLeftDirection}}">
+                        <p class="ecb-invoiceWordsbreak"><span class="ecb-invoiceFileName">{{  invoice.FileName}}</span></p>
+                        <p><span class="ecb-invoiceDate ecb-labelText">{{ 'TEXT_DATE' | translate }} :</span>{{vm.getInvoiceDate(invoice.Dt_create)}}
+                        </p>
+                      </div>
+                  </div>
+                  <div ng-if="!vm.ecbARCheck" class="ecb-invoicesCardsBottom pull-{{vm.layoutRightDirection}}">
+                     <span class="ebColor_textLinkBlue" ng-click="vm.saveCreditNotePDF(invoice.fileName)"><i class="fa fa-download ecb-invoiceDownload" aria-hidden="true"></i>{{ 'TEXT_DOWNLOAD' | translate }}</span>
+                  </div>
+                  <div ng-if="vm.ecbARCheck" class="ecb-invoicesCardsBottom pull-{{vm.layoutRightDirection}}">
+                      <span class="ebColor_textLinkBlue" ng-click="vm.saveDebitNotePDF(invoice.FullPath,invoice.FileName)"><i class="fa fa-download ecb-invoiceDownload" aria-hidden="true"></i>{{ 'TEXT_DOWNLOAD' | translate }}</span>
+                   </div>
+                </div>
+              </li>
+            </ul>
+            </div>
+      </div>
+      <div class="content ecb-invoiceRow" ng-if="vm.isCardVisible('debitNotes') && vm.ecbARCheck">
+          <div class="ebAccordion-header" ng-click="showDebitNotes = !showDebitNotes">
+            <div class="ebAccordion-button">
+              <i ng-if="showDebitNotes" class="ebIcon ebIcon_small ebIcon_rightArrow_10px ng-scope"></i>
+              <i ng-if="!showDebitNotes" class="ebIcon ebIcon_small ebIcon_downArrow_10px ng-scope"></i>
+            </div>
+            <div class="ebAccordion-title">
+              {{'TEXT_DOWNLOAD_DEBIT_NOTES' | translate }}
+            </div>
+          </div>
+          <div ng-show="!showDebitNotes">
+            <p ng-if="!vm.debitNotesLength" ng-show="!vm.showDebitNotes">{{'TEXT_NO_DEBIT_NOTES' | translate }}
+            </p>
+              <ul class="list-unstyled" ng-if="vm.debitNotesLength" ng-show="!showCreditNotes">
+                <li ng-repeat="invoice in vm.listOfDebitNotes | orderBy: vm.getSortByColumn()" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ecb-invoiceContainer pull-{{vm.layoutLeftDirection}}">
+                  <div class="ecb-invoiceCard">
+                    <div class="ecb-invoicesCardsTop">
+                      <div class="ecb-invoiceImage pull-{{vm.layoutLeftDirection}}">
+                        <img ng-src="./images/creditNotes.svg">
+                      </div>
+                      <div ng-if="!vm.showDebitNotes" class="ecb-invoiceText pull-{{vm.layoutLeftDirection}}">
+                        <p class="ecb-invoiceWordsbreak"><span class="ecb-invoiceFileName">{{  invoice.FileName}}</span></p>
+                        <p><span class="ecb-invoiceDate ecb-labelText">{{ 'TEXT_DATE' | translate }} :</span>{{vm.getInvoiceDate(invoice.Dt_create)}}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="ecb-invoicesCardsBottom pull-{{vm.layoutRightDirection}}">
+                       <span class="ebColor_textLinkBlue" ng-click="vm.saveDebitNotePDF(invoice.FullPath,invoice.FileName)"><i class="fa fa-download ecb-invoiceDownload" aria-hidden="true"></i>{{ 'TEXT_DOWNLOAD' | translate }}</span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+        </div>
+      <div class="content ecb-invoiceRow" ng-if="vm.isCardVisible('quotes')">
+        <div class="ebAccordion-header" ng-click="showQuotes = !showQuotes">
+          <div class="ebAccordion-button">
+            <i ng-if="showQuotes" class="ebIcon ebIcon_small ebIcon_rightArrow_10px ng-scope"></i>
+            <i ng-if="!showQuotes" class="ebIcon ebIcon_small ebIcon_downArrow_10px ng-scope"></i>
+          </div>
+          <div class="ebAccordion-title">
+           {{'TEXT_QUOTES' | translate }}
+          </div>
+        </div>
+        <div>
+          <p ng-if="!vm.quotesLength" ng-show="!showQuotes">{{'TEXT_NO_QUOTES' | translate }}
+          </p>
+            <ul class="list-unstyled" ng-if="vm.quotesLength" ng-show="!showQuotes">
+              <li ng-repeat="invoice in vm.listOfQuotes | orderBy: vm.getSortByColumn()" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ecb-invoiceContainer pull-{{vm.layoutLeftDirection}}">
+                <div class="ecb-invoiceCard">
+                  <div class="ecb-invoicesCardsTop">
+                    <div class="ecb-invoiceImage pull-{{vm.layoutLeftDirection}}">
+                      <img ng-src="./images/statements.svg">
+                    </div>
+                    <div class="ecb-invoiceText pull-{{vm.layoutLeftDirection}}">
+                      <p class="ecb-invoiceWordsbreak"><span class="ecb-invoiceFileName">{{invoice.fileName}}</span></p>
+                      <p><span class="ecb-invoiceDate ecb-labelText">{{ 'TEXT_DATE' | translate }} :</span>{{vm.getInvoiceDate(invoice.creationDate)}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="ecb-invoicesCardsBottom pull-{{vm.layoutRightDirection}}">
+                     <span class="ebColor_textLinkBlue" ng-click="vm.saveQuotesPDF(invoice.fileName)"><i class="fa fa-download ecb-invoiceDownload" aria-hidden="true"></i>{{ 'TEXT_DOWNLOAD' | translate }}</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

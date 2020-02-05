@@ -1,0 +1,45 @@
+.ecb-filterform .form-group > label{
+	padding-left : 0;
+	top : 9px;
+	text-align : right;
+}
+.ecb-filterform .ecb-calendar{
+	top :4px;
+}
+.ecb-filterform input[type='text']{
+	height : 30px;
+}
+
+.ecb-filterform .form-group > div{
+	padding-left : 0 !important;
+	padding-right : 0 !important;
+}
+.ecb-filterform .ecb-sortBy{
+	border-top: 1px solid #e6e6e6;
+    padding-top: 8px;    
+    border-bottom: 1px solid #e6e6e6;
+    height: 48px !important;
+}
+.ecb-filter-modal-content{
+	overflow : auto;
+}
+.ecb-filterCheckBox{
+	border-top: 1px solid #e6e6e6;
+    padding-top: 8px; 
+    border-bottom: 1px solid #e6e6e6;
+    height: 100% !important;
+}
+.ecb-filterShowLabel{
+	text-align: right;
+    padding-right: 16px !important;
+    padding-top: 5px;
+}
+.ecb-paymentStatusFilter .ebCheckbox-label {
+	vertical-align: bottom;
+	font-weight: normal;
+}
+body[dir='RTL'] .ebControlFilterLabelRtl{
+  float: right;
+  text-align: left;
+  padding: 0px 5px;
+}

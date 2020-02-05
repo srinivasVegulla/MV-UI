@@ -1,0 +1,24 @@
+{
+	
+  
+  "widgetname": "Charges",
+   "prebillAmount": "$325.00",
+   "Chargestotal": "Charges Sub-Total",
+   "bills": "Prebill Adjustments",
+   "charges":"Non Standard Charges",
+   "prebills": "-150.00",
+   "Chargesvalue": "325.00",
+   "nsc": "Non Standard Charges",
+   "nscvalue": "-100.00",
+   "view": "View All >",
+   "postbillamount": "$-50.00",
+   "postbilldate": "8/2/17",
+   "po1": "Order Cookies Flat Adjustment Display",
+   "misc": "Miscellaneous Adjustments",
+   "miscvalue": "-100.00"
+
+   
+ 
+  
+
+}  

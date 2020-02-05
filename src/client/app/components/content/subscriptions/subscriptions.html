@@ -1,0 +1,309 @@
+<div class="widget ecb-subscriptionsExpandMain" ng-class="{ 'card-expanded': vm.subscriptionCardState === 'expanded',
+'card-collapsed': vm.subscriptionCardState != 'expanded','store-expanded': vm.subscriptionStoreState === 'expanded', 'ecbCardExpanded': vm.widgetOpen}">
+  <div class="header clearfix" ng-if="!vm.isStoreOpen">
+    <h2 class="subscriptions-header-name pull-{{vm.layoutLeftDirection}}">{{ 'TEXT_MY_SUBSCRIPTIONS' | translate }}</h2>
+    <button class="btn ebBtn btn-sm btn-link pull-right close-image-view-all expanded-charges-view ecb-subscriptionClose ecb-rtlSubscriptionClose" ng-click="vm.closeSubscriptionViewAll()" ng-show="vm.showCloseButton()" ng-if="!vm.isStoreOpen">
+        <i class="fa fa-times ebIcon ebIcon_interactive" aria-hidden="true"></i>
+    </button>
+      <button class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue pull-right ecb-addSubscription ecb-rtlAddSubscription" ng-class="{'disabled' : (!vm.isOffersAvailable) }" data-toggle="modal" ng-click="vm.openStoreOverlay()" ng-if="vm.showAddSubscription()" ng-disabled="!vm.isOffersAvailable">+ {{ 'TEXT_SUBSCRIPTION' | translate }}</button>
+    <div class="pull-right ecb-cardTabularExpandIcons" ng-if="vm.widgetOpen">
+      <div class="pull-right text-center ecb-rtlTabularIconSet ecb-cardTabularIconSetMain">
+        <div class="ecb-cardTabularIconSet" class="col-md-12">
+          <div ng-click="vm.showTabularView()" ng-class="vm.getActiveViewStyle('table')"><i class="fa fa-table ecb-settingsHeaderIcon" aria-hidden="true"></div>
+          <div ng-click="vm.showCardView()" ng-class="vm.getActiveViewStyle('card')"><i class="fa fa-th ecb-settingsHeaderIcon" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="col-md-3 pull-right ecb-settingsMenu text-center ecb-rtlSettingsMenu" ng-click="vm.toggleTabularViewSettings()" ng-if="vm.isExpandTabularView()">
+        <span class="ebIcon_settings ecb-headerIcons"></span>
+      </div>
+    </div>
+  </div>
+    <div class="ecbRelativeClass" ng-if="vm.loading">
+      <div class="ebLoader">
+        <div class="ebLoader-Holder">
+          <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+        </div>
+      </div>
+    </div>
+    <div class="ecb-offerChargeTabularView subscriptionCell" ng-if="vm.isExpandTabularView() && !vm.loading">
+<div ng-if="vm.displayableSubscriptions.length > 0" class="ecb-uiGrid" ui-grid="vm.gridOptions" dir="{{vm.i18n.languageDirection}}"
+  ui-grid-resize-columns ui-grid-auto-resize ui-grid-move-columns ui-grid-pinning ng-style="vm.getViewAllBodyHeight()"></div>
+  <div ng-if="vm.displayableSubscriptions.length == 0">
+    <p class="messagePaddingViewAll">{{ 'TEXT_NO_SUBSCRIPTION' | translate }}.</p>
+  </div>
+    </div>
+    <div class="ecb-subscriptionsCancel-tabularDialogue" ng-if="vm.openCancelDialogue">
+        <div class="ebDialogBox confirmation">
+          <div class="ebDialogBox-contentBlock confirmation-content">
+            <div class="ebDialogBox-primaryText confirmation-border">{{ 'TEXT_CANCEL_SUBSCRIPTION' | translate }}
+            </div>
+            <div class="ebDialogBox-secondaryText ebText_alternative content-area-subscription col-md-12">
+            <div class="col-md-8 col-sm-8">
+            <div>{{vm.selectedSubscription.subscriptionName}}</div>
+            <div>{{vm.selectedSubscription.dateRange}}</div>
+            </div>
+              <div class="col-md-4 col-sm-4 form-group">
+              <label class="ecb-subscriptionCancelLabel ebControl-label ecb-subscriptionsCancelOn">
+                {{'TEXT_CANCEL_ON' | translate }}
+              </label>
+              <div class="ecb-subscriptionDatepicker">
+                <datepicker ng-if="(vm.widgetOpen)" button-prev="<i class='fa fa-arrow-left'></i>" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" date-min-limit="{{vm.minimumEndDate[selectedSubscription.productOfferingId]}}" date-format="{{ vm.localizePickDateFormat }}" date-set="{{vm.minimumEndDate[selectedSubscription.productOfferingId]}}">
+                  <input name="vm.datePicker[vm.item]" type="text" id='dateIdTabular'
+                    class="form-control ebInput ebInput_width_full textBoxHeight"
+                    ng-model="vm.datePicker[vm.item]"
+                    ng-change="vm.selectEndDateTabular('dateIdTabular')" />
+                  <i ng-click="vm.selectEndDateTabular('dateIdTabular')" class="ebIcon ebIcon_calendar ecb-calendar"></i>
+                </datepicker>
+                 <datepicker ng-if="!(vm.widgetOpen)" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" date-min-limit="{{vm.minimumEndDate[selectedSubscription.productOfferingId]}}" date-format="{{ vm.localizePickDateFormat }}" date-set="{{vm.minimumEndDate[selectedSubscription.productOfferingId]}}" datepicker-append-to=".ecb-selectedSubscriptionContent" class="ecb-datePicker">
+                  <input name="vm.datePicker[vm.item]" type="text" id='dateIdTabular'
+                    class="form-control ebInput ebInput_width_full textBoxHeight            dateIdTabular{{selectedSubscription.productOfferingId}}"
+                    ng-model="vm.datePicker[vm.item]"
+                    ng-change="vm.selectEndDateTabular('dateIdTabular')" />
+                  <i ng-click="vm.selectEndDateTabular('dateIdTabular')" class="ebIcon ebIcon_calendar ecb-calendar"></i>
+                </datepicker>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="ebDialogBox-actionBlock ecb-subscriptionConfirmationFooter">
+            <button class="ebBtn ebBtn_color_red" ng-click="vm.submitCancelSubscription(vm.selectedSubscription, vm.datePicker[vm.item], vm.item)">{{ 'TEXT_OK' | translate }}</button>
+            <button class="ebBtn" ng-click="vm.closeCancelSubscription(vm.item)">{{ 'TEXT_CANCEL' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    <div class="ecb-cardTabularSettings ecb-rtlCardTabularSettings" ng-if="vm.isSettings()">
+      <div class="ecb-settingsHeader">
+        <div class="pull-{{vm.layoutLeftDirection}}">
+          <span class="ebIcon_settings ecb-headerIcons"></span>
+          <span class="ebText"><b>{{'TEXT_SETTINGS'|translate}}</b></span>
+        </div>
+        <div class="pull-{{vm.layoutRightDirection}}">
+          <button class="btn ebBtn ebBtn_color_darkBlue" ng-click="vm.applyCancelSettings(1)" ng-disabled="vm.isAllColumnDeselected()">{{'TEXT_APPLY'| translate}}</button>
+          <button class="btn ebBtn ebBtn-default" ng-click="vm.applyCancelSettings(0)">{{'TEXT_CANCEL'| translate}}</button>
+        </div>
+      </div>
+      <div class="ecb-settingsCheckboxHeader">
+        <div class="ebLabel pull-{{vm.layoutLeftDirection}}">{{'TEXT_SELECT'| translate}} :</div>
+        <div class="pull-{{vm.layoutLeftDirection}}"><a class="ebColor_textLinkBlue" ng-click="vm.toggleSelectAll(1)">{{'TEXT_ALL'| translate}}</a></div>
+        <div class="pull-{{vm.layoutLeftDirection}}">|</div>
+        <div class="pull-{{vm.layoutLeftDirection}}"><a class="ebColor_textLinkBlue" ng-click="vm.toggleSelectAll(0)">{{'TEXT_NONE'| translate}}</a></div>
+      </div>
+      <div class="ecb-settingsColumnList" ng-style="vm.getSettingsHeight()">
+        <ul class="list-unstyled">
+        <li ng-repeat="header in vm.unFreezeColumnsList(vm.displayableSubscriptionsHeader)">
+          <label>
+            <input class="ebCheckbox" type="checkbox" value="{{header}}"
+              ng-checked="vm.checkboxSelectionTemp.indexOf(header) > -1" ng-click="vm.toggleHeaderSelection(header)" ng-disabled="vm.freezeColumnsTemp.indexOf(header) > -1">
+            <span class="ebCheckbox-inputStatus"></span>
+            <span class="ebCheckbox-label">{{vm.subscriptionHeaderKey(header)}}</span>
+          </label>
+          <div ng-class="{ 'ecb-freezeChecked': vm.checkboxSelectionTemp.indexOf(header) == -1}" ng-click="vm.toggleFreezingColumns(header, true)"><i class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i></div>
+        </li>
+        <li ng-if="vm.showMidLine(vm.displayableSubscriptionsHeader)" class="ecb-freezeColumnsDivide"></li>
+        <li ng-repeat="header in vm.freezeColumns">
+          <label>
+            <input class="ebCheckbox" type="checkbox" value="{{header}}" checked="checked" disabled="disabled">
+            <span class="ebCheckbox-inputStatus"></span>
+            <span class="ebCheckbox-label">{{vm.subscriptionHeaderKey(header)}}</span>
+          </label>
+          <div ng-class="{ 'ecb-freeze': vm.freezeColumnsTemp.indexOf(header) > -1}" ng-click="vm.toggleFreezingColumns(header)"><i class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i></div>
+        </li>
+      </ul>
+      </div>
+    </div>
+    <div class="content widget-content-list ecb-subscriptionContent ecb-expandSubscriptionBody" ng-class="{'widget-no-content' : (vm.subscriptions.length <=1), 'ecbWidgetClosed': !vm.widgetOpen}" ng-if="!vm.isExpandTabularView() && !vm.isStoreOpen">
+    <div ng-if="vm.cancelSubscriptions && !vm.loading"
+      class="list-content ecb-subscriptionCard ecb-cardBorder pull-{{vm.layoutLeftDirection}}"
+      ng-repeat="subscription in vm.subscriptions | orderBy: vm.getSortByColumn():(vm.sortOrder == 'desc' ? true : false) |
+      filter: vm.selectedFilters track by $index | limitTo: vm.limit"
+      ng-class="(vm.widgetOpen) ? 'col-md-4 col-sm-6 col-xs-12' : 'col-md-12 col-sm-12 col-xs-12'"
+      ng-mouseover="hoverCancel= true" ng-mouseleave="hoverCancel = false">
+     <div class="subscription-content content-table-wrapper content-wrapper">
+      <div class="ecb-subscriptionImages img-responsive pull-{{vm.layoutLeftDirection}}">
+       <img
+         ng-src="{{vm.getOfferImage(subscription.productOfferingId)}}" /></div>
+      <div class="ecb-subscriptionDetails pull-{{vm.layoutLeftDirection}}">
+        <div class="ecb-subscriptionName">{{subscription.subscriptionName}}</div>
+        <div class="ecb-subscriptionDescription">{{subscription.description}}</div>
+        <div class="ecb-subscriptionDate">
+            <span class="ecb-subscriptionDateContent">{{ 'TEXT_DATES' | translate }}</span>
+            <span class="ecb-subscriptionDateContent">{{subscription.dateRange}}</span>
+        </div>
+      </div>
+      </div>
+      <div class="ecb-subscriptionCancel" ng-if="vm.checkCancelHover(hoverCancel)">
+          <button class="btn ebBtn ebBtn_small ebColor_textLinkBlue" ng-if="vm.isCancelButton(subscription)" ng-click="(vm.itemDisabled[subscription.productOfferingId] === true) || vm.openCancelSubscriptionDialog(subscription, false)" ng-class="{disabled:vm.itemDisabled[subscription.productOfferingId] == true}">
+            <i class="fa fa-minus-circle ecb-subscriptionIconSpace" aria-hidden="true"></i>
+            <span class="ebColor_textLinkBlue">{{ 'TEXT_CANCEL_SUBSCRIPTION' | translate }}</span>
+          </button>
+          <div class="ebInfoPopup" ng-if="vm.isCallCancelButton(subscription) || vm.isContactCustomerCancelButton(subscription)">
+            <div class="ebInfoPopup-infoIcon">
+              <i class="ebIcon ebIcon_info ebIcon_interactive"></i>
+            </div>
+            <div class="ebInfoPopup-content ebInfoPopup-content_corner_bottomRight">
+              <div class="ebInfoPopup-contentText" ng-if="vm.isCallCancelButton(subscription)">{{ 'TEXT_CALL_CANCEL_SUBSCRIPTION' | translate }}</div>
+              <div class="ebInfoPopup-contentText" ng-if="vm.isContactCustomerCancelButton(subscription)">{{ 'TEXT_CONTACT_CUSTOMERCARE_CANCEL_SUBSCRIPTION' | translate }}</div>
+              <div class="ebInfoPopup-arrowShadow"></div>
+              <div class="ebInfoPopup-arrowBorder"></div>
+            </div>
+          </div>
+      </div>
+
+      <div class="cancel-subscription" ng-class="{active:vm.item == subscription.productOfferingId}">
+        <div class="ebDialogBox confirmation">
+          <div class="ebDialogBox-contentBlock confirmation-content">
+            <div class="ebDialogBox-primaryText confirmation-border">{{ 'TEXT_CANCEL_SUBSCRIPTION' | translate }}
+            </div>
+            <div class="ebDialogBox-secondaryText ebText_alternative content-area-subscription col-md-12">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="ecb-subscriptionNameElipses">{{subscription.subscriptionName}}</div>
+            <div>{{subscription.dateRange}}</div>
+            </div>
+              <div class="col-md-6 col-sm-6 col-xs-6 ecb-subscriptionCancelOn form-group">
+              <label class="ecb-subscriptionCancelLabel ebControl-label ecb-subscriptionsCancelOn">
+                {{'TEXT_CANCEL_ON' | translate }}
+              </label>
+              <div class="ecb-subscriptionDatepicker">
+                <datepicker ng-if="(vm.widgetOpen)" button-prev="<i class='fa fa-arrow-left'></i>" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" date-min-limit="{{vm.minimumEndDate[subscription.productOfferingId]}}" date-format="{{ vm.localizePickDateFormat }}" date-set="{{vm.minimumEndDate[subscription.productOfferingId]}}">
+                  <input name="vm.datePicker[subscription.productOfferingId]" type="text" class="form-control ebInput ebInput_width_full textBoxHeight dateId{{subscription.productOfferingId}}" ng-model="vm.datePicker[subscription.productOfferingId]" ng-change="vm.selectEndDate(subscription.productOfferingId)"/>
+                  <i ng-click="vm.selectEndDate(subscription.productOfferingId)" class="ebIcon ebIcon_calendar ecb-calendar"></i>
+                </datepicker>
+                 <datepicker ng-if="(!vm.widgetOpen && (vm.item == subscription.productOfferingId))"
+                   button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>"
+                   date-min-limit="{{vm.minimumEndDate[subscription.productOfferingId]}}"
+                   date-format="{{ vm.localizePickDateFormat }}"
+                   date-set="{{vm.minimumEndDate[subscription.productOfferingId]}}"
+                   datepicker-append-to=".ecb-subscriptionContent" class="ecb-datePicker">
+                  <input name="vm.datePicker[subscription.productOfferingId]" type="text" class="form-control ebInput ebInput_width_full textBoxHeight dateId{{subscription.productOfferingId}}" ng-model="vm.datePicker[subscription.productOfferingId]" ng-change="vm.selectEndDate(subscription.productOfferingId)"/>
+                  <i ng-click="vm.selectEndDate(subscription.productOfferingId)" class="ebIcon ebIcon_calendar ecb-calendar"></i>
+                </datepicker>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="ebDialogBox-actionBlock ecb-subscriptionConfirmationFooter">
+            <button class="ebBtn ebBtn_color_red"
+              ng-click="vm.submitCancelSubscription(subscription, vm.datePicker[subscription.productOfferingId],
+              subscription.productOfferingId)">{{ 'TEXT_OK' | translate }}</button>
+            <button class="ebBtn"
+              ng-click="vm.closeCancelSubscription(subscription.productOfferingId)">{{ 'TEXT_CANCEL' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="vm.subError" class="error-container">
+      <div class="error-message">
+        <div ng-if="vm.errorSubscriptions">
+          <div class="error-ebDialogBox error-confirmation">
+            <div class="ebDialogBox-contentBlock confirmation-content">
+              <div>
+                <i ng-click="vm.subErrorMessage()" class="fa fa-times error-close" aria-hidden="true"></i>
+              </div>
+              <div class="row ebDialogBox-primaryTextBox error-primaryText">
+                <p class="col-xs-12 col-sm-12 col-md-12">{{ 'TEXT_ERROR_CANCEL_SUBSCRIPTION' | translate }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="vm.subscriptionsLength" class="ach-cc-menu">
+        <p>{{ 'TEXT_NO_SUBSCRIPTION' | translate }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer clearfix pull-{{vm.layoutRightDirection}}" ng-if="!vm.isStoreOpen && vm.subscriptions.length && !vm.widgetOpen && !vm.loading">
+    <p class="ebText">
+      <button class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue btn-link-noborder" ng-click="vm.toggleSubscriptionCardState()">{{'TEXT_VIEW_ALL'|translate}} ></button>
+    </p>
+  </div>
+  <!-- Subscriptions store overlay starts -->
+  <div ng-if="vm.isStoreOpen">
+    <div class="ebQuickActionBar ecb-actionBarPosition" ng-if="vm.isOffersAvailable">
+      <input type="text" class="ebInput ecb-storeSearchBar" ng-focus="vm.filterOffers()"
+        placeholder="{{ 'TEXT_SEARCH_HERE' | translate }}" ng-model="vm.searchText">
+      <button class="eaMyApp-searchBtn ebBtn ebBtn_noMargin ebBtn_color_darkBlue" ng-click="vm.filterOffers()">
+          <i class="ebIcon ebIcon_medium ebIcon_left ebIcon_searchWhite"></i>
+          <span>{{ 'TEXT_SEARCH' | translate }}</span>
+      </button>
+      <div class="ebLayout-clearFix"></div>
+    </div>
+      <nav class="col-xs-12 ecb-horizontalBarRoute" ng-if="vm.activeRouteBar">
+      <div>
+        <label>{{ 'TEXT_VIEWING_ACCOUNT_AS' | translate }} <strong>{{ vm.userName }}</strong>.</label>
+        <a ng-click="vm.routeToActiveUser()">{{ 'TEXT_GOTO_OWN_ACCOUNT' | translate }}</a>
+      </div>
+    </nav>
+    <div class="ecbRelativeClass" ng-if="vm.loading">
+      <div class="ebLoader">
+        <div class="ebLoader-Holder">
+          <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+        </div>
+      </div>
+    </div>
+      <div class="ecb-subscriptionOffersContent clearfix" ng-if="!vm.loading" ng-style="vm.getOffersContentHeight()">
+        <div class="ecb-offersContainer">
+          <div ng-if="!vm.isOffersAvailable">{{ 'TEXT_NO_OFFER_SUBSCRIPTIONS' | translate }}</div>
+          <div ng-if="vm.isOffersAvailable"
+            ng-repeat="offer in vm.myEligibleOffers | orderBy : 'offer.ta_dt_end' | filter : vm.filterValue"
+            class="ecb-eligibleOffer col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="ecb-eligibleOfferBrief">
+              <div class="ecb-eligibleOfferHeader">
+                <div>{{offer.nm_display_name}}</div>
+              </div>
+              <div class="ecb-eligibleOfferImage"><img ng-src="{{vm.getOfferImage(offer.id_po)}}"></div>
+              <div class="ecb-eligibleOfferDescription">{{offer.nm_desc | showEllipsis : 136}}</div>
+<div class="ecb-eligibleOfferAvailability"><span class="ecb-offerDate">{{ 'TEXT_AVAILABLE_BETWEEN' | translate }}</span>
+{{vm.showLocalizedDateFormat(offer.ta_dt_start)}} - <span ng-if="offer.ta_dt_end">{{vm.showLocalizedDateFormat(offer.ta_dt_end)}}</span><span
+    ng-if="!offer.ta_dt_end" class="ecb-offerEndDate">N/A</span></div>
+              <!--//TO-DO in future <div ng-if="offer.c_externalinformationurl" class="ecb-offerLearnMore">
+                  <a class="ebColor_textLinkBlue" ng-href="{{offer.c_externalinformationurl}}" target="_blank">{{ 'TEXT_LEARN_MORE' | translate }}</a>
+              </div> -->
+              <div class="ecb-addSubscriptionIcon">
+                <div class="pull-{{vm.layoutRightDirection}} ecb-addSubscriptionOfferIcon"  ng-if="offer.b_user_subscribe == 'Y'" ng-click="vm.showOfferDetails(offer.id_po)">
+                  <i class="ebIcon ebIcon_add"></i>
+                </div>
+                <div class="ebInfoPopup pull-{{vm.layoutRightDirection}}" ng-if="offer.b_user_subscribe == 'N'">
+                  <div class="ebInfoPopup-infoIcon" ng-mouseover="vm.showOfferTooltip(offer.id_po)" ng-mouseleave="vm.closeOfferTooltip(offer.id_po)">
+                      <i class="ebIcon ebIcon_info ebIcon_interactive"></i>
+                  </div>
+                  <div class="ebInfoPopup-content" ng-class="(vm.isRTL) ? 'ebInfoPopup-content_corner_bottomLeft' : 'ebInfoPopup-content_corner_bottomRight'" ng-if="vm.showOfferTooltip[offer.id_po]">
+                      <div class="ebInfoPopup-closeButton" ng-click="vm.closeOfferTooltip(offer.id_po)">
+                          <i class="ebIcon ebIcon_close ebIcon_interactive"></i>
+                      </div>
+                      <div class="ebInfoPopup-contentText">{{ 'TEXT_CONTACT_CUSTOMER_CARE_ADD_SUBSCRIPTION' | translate }}</div>
+                      <div class="ebInfoPopup-arrowShadow"></div>
+                      <div class="ebInfoPopup-arrowBorder"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ecb-eligibleOfferDetails" ng-show="vm.isOfferDetails == offer.id_po">
+              <div class="ecb-eligibleOfferDetailsHeader">
+                <div>{{offer.nm_display_name}}</div>
+              </div>
+              <div class="ecb-eligibleOfferDetailsDescription">{{offer.nm_desc}}</div>
+              <div class="ecb-eligibleOfferDetailsAvailability"><span>{{ 'TEXT_AVAILABLE_BETWEEN' | translate }}</span> {{vm.showLocalizedDateFormat(offer.ta_dt_start)}} - {{vm.showLocalizedDateFormat(offer.ta_dt_end)}}<span ng-if="!offer.ta_dt_end" class="ecb-offerDetailsEndDate">N/A</span></div>
+              <div class="ecb-eligibleOfferDatepicker">
+                <label class="ebControl-label">{{ 'TEXT_EFFECTIVE_START_DATE' | translate }}</label>
+                <div class="ecb-subscriptionDatepicker pull-{{vm.layoutRightDirection}}">
+                  <datepicker button-prev="<i class='fa fa-arrow-left'></i>" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" date-min-limit="{{vm.offerEffectiveDate[offer.id_po]}}" date-format="{{ vm.localizePickDateFormat }}" date-set="{{vm.offerEffectiveDate[offer.id_po] | date: vm.localizePickDateFormat}}">
+                    <input name="vm.offerDate[offer.id_po]" type="text"
+                      class="form-control ebInput ebInput_width_full textBoxHeight offerDateId{{offer.id_po}}"
+                      ng-model="vm.offerDate[offer.id_po]" ng-change="vm.selectEffectiveStartDate(offer.id_po)" />
+                    <i ng-click="vm.selectEffectiveStartDate(offer.id_po)" class="ebIcon ebIcon_calendar ecb-calendar"></i>
+                  </datepicker>
+                </div>
+              </div>
+              <div class="ecb-addSubscriptionOffer">
+                <button class="btn ebBtn ebBtn_medium" ng-click="vm.addSubscription(offer, offer.id_po)"><i class="ebIcon ebIcon_add"></i><span>{{ 'TEXT_ADD_SUBSCRIPTION' | translate }}</span></button>
+                <button class="btn ebBtn ebBtn_medium" ng-click="vm.cancelOfferSubscription(offer.id_po)"><span>{{ 'TEXT_CANCEL' | translate }}</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <!-- Subscriptions store overlay ends -->
+<div ng-if="vm.isTabularViewSettings || vm.openCancelDialogue" class="ecb-widgetBackdrop"></div>
+</div>

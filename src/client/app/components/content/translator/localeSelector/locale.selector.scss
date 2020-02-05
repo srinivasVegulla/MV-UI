@@ -1,0 +1,40 @@
+﻿// Translator Locale Selector Styles
+
+@import "../../../../../styles/_variables.scss";
+
+.locale-selector {
+    img {
+        padding: 2.5px;
+    }
+
+    img:hover,
+    img:focus {
+        outline: solid 1px $ebColor_darkBlue;
+
+    }
+
+    .selected-locale {
+        outline: solid 2px $ebColor_darkBlue;
+    }
+}
+@media screen and (min-width: 300px) and (max-width: 767px){/* Mview - 562 */
+.locale-selector {
+    img {
+        padding: 2.5px;
+        width:25px;/* Mview - 562 */
+    }
+
+    img:hover {
+        border: solid 1px $ebColor_darkBlue;
+    }
+
+    .selected-locale {
+        border: solid 2px $ebColor_darkBlue;
+    }
+}
+}
+
+*:focus, .ebInput:focus, .ebIcon:focus, .ebCheckbox:focus + .ebCheckbox-inputStatus:after, .ebRadioBtn:focus + .ebRadioBtn-inputStatus:after, textarea:focus, button:focus, i:focus {
+box-shadow: 0 0 2px 1px #4d90fe ;
+}
+

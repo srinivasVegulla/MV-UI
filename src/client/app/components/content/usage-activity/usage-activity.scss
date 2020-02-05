@@ -1,0 +1,21 @@
+.ecb-usageSvg-contentResponsive {
+    display: inline-block;
+    position: absolute;
+    top: 70px;
+    left: 20px;
+}
+
+.ecb-usageActivity-Svg > svg {
+    width: 100%;
+    height: 100%;
+    padding-left:50px;
+}
+
+.currentMonth {
+    fill: #33badd;
+    cursor: pointer;
+}
+
+.currentMonth:hover {
+    fill: #21a5c9;
+}

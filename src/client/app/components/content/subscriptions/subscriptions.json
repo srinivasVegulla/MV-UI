@@ -1,0 +1,31 @@
+{
+  "Subscriptions": [
+    {
+      "subscriptionId": 1626224254,
+      "productOfferingId": 1436,
+      "subscriptionName": "DEMO PO",
+      "userUnsubscribe": true,
+      "startDate": 1465790400000,
+      "endDate": 1499918400000,
+      "description": null
+    },
+    {
+      "subscriptionId": 1854752297,
+      "productOfferingId": 262,
+      "subscriptionName": "Single-Bucket Storage Rerate",
+      "userUnsubscribe": false,
+      "startDate": 1465790400000,
+      "endDate": 2145934800000,
+      "description": "Single-Bucket Storage Rerate"
+    },
+    {
+      "subscriptionId": 1912651234,
+      "productOfferingId": 197,
+      "subscriptionName": "Multi-Bucket Compute Discount",
+      "userUnsubscribe": false,
+      "startDate": 1465790400000,
+      "endDate": 2145934800000,
+      "description": "Multi-Bucket Compute Discount"
+    }
+  ]
+}

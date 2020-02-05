@@ -1,0 +1,43 @@
+.ecb-payersubscriptionImage {
+    margin: 1%;
+    width: auto;
+    max-width: 31%;
+}
+.ecb-payersubscriptionImage img{
+    width: auto;
+    max-width: 96%;
+    height: auto;
+    max-height: 90px;
+    opacity: 0.8;
+    margin: 10px 2%;
+}
+
+.ecb-payerSubscriptionsExpandMain .col-md-12 {
+    width: 98.5%;
+}
+.card-expanded .widget-content-list.ecb-payerSubscriptionBody {
+    overflow-y: auto !important;
+}
+.card-expanded .ecb-payerSubscriptionBody .ecb-asOfTodayLabel {
+    display: none;
+}
+.ecb-payerSubscriptionBody .ecb-subscriptionCard,
+.card-expanded .ecb-payerSubscriptionBody .ecb-subscriptionCard {
+    height: 110px !important;
+}
+.ecb-payerSubscriptionBody .list-content {
+    padding: 2px 1px !important;
+}
+
+/* Hebrew Css fixes start */
+body[dir='RTL'] .ecb-payersubscriptionImage{
+ float: right;
+}
+
+/* Hebrew Css fixes end */
+@media screen and (max-width: 767px) {
+  .widget-no-content{
+    height: auto !important;
+    max-height: 273px;
+  }
+}

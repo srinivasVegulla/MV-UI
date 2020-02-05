@@ -1,0 +1,285 @@
+<div class="widget ecb-amountDueLiveWidget" ng-if="ecbWidgetState === 'minimal'">
+    <div class="ecb-minimalWidgetHeader clearfix">
+      <h2 class="pull-{{vm.layoutLeftDirection}} ecb-headerText">{{'TEXT_TOTAL_AMOUNT_DUE' | translate}}</h2>
+      <button class="btn ebBtn btn-link pull-{{vm.layoutRightDirection}} ecb-makePaymentButton" id="makePaymentMinimal" ng-if="vm.allowMakePayment"
+        ng-click="vm.makePayment(vm.accountId, vm.getCurrencySign(vm.duePaymentAmount.currency))" data-toggle="modal">
+        {{'TEXT_MAKE_A_PAYMENT'| translate}}
+      </button>
+    </div>
+    <div class="ecbRelativeClass" ng-if="vm.loading">
+      <div class="ebLoader">
+        <div class="ebLoader-Holder">
+          <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+        </div>
+      </div>
+    </div>
+    <div class="ecb-minimalWidgetContent" ng-if="!vm.loading">
+      <div class="ecb-minimalPaymentDetails pull-{{vm.layoutLeftDirection}}">
+        <div class="ecb-minimalAmountDue">
+          <span class="ebText amount">
+              <sup class="currency-symbol">{{vm.getCurrencySign(vm.duePaymentAmount.currency)}}</sup>
+              {{vm.currencyFormatter(vm.duePaymentAmount.amount, vm.duePaymentAmount.currency, false)}}
+          </span>
+        </div>
+        <div ng-show="vm.duePaymentAmount.amount > 0">
+          <ul class="list-inline nowrap-links ecbNoLeftMargin">
+            <li ng-if="vm.autopay" class="ecb-rtlLeftAlign">
+              <button class="btn ebBtn btn-link ecb-amountDueEditIcon" ng-click="vm.paymentSetup(vm.accountId)">
+                <i class="fa fa-pencil ebIcon ecb-autoPayEditIcon" aria-hidden="true"></i>
+                {{ 'TEXT_AUTOPAY_DUEDATE' | translate }} {{vm.duePaymentAmount.dueDate | date: 'shortDate'}}
+              </button>
+            </li>
+            <li ng-if="vm.autopay" class="ecb-rtlLeftAlign">
+              <span class="payment-due-block">
+                {{'TEXT_PAYMENT_METHOD' | translate}}
+              </span> {{ vm.defaultPaymentMethod.truncdAcctNum }}
+            </li>
+            <li ng-if="!vm.autopay" class="ecb-rtlLeftAlign">
+              <button class="btn ebBtn btn-link ecbNoPadding" ng-click="vm.paymentSetup(vm.accountId)">
+                <i class="fa fa-pencil ebIcon ecb-autoPayEditIcon" aria-hidden="true"></i>{{ 'TEXT_AUTOPAY_OFF' | translate }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="ecb-minimalPaymentDate">
+        <div class="payment-due pull-{{vm.layoutLeftDirection}}" ng-show="vm.duePaymentAmount.amount > 0">
+          <p class="payment-due-block">{{'TEXT_PAYMENT_DUE'|translate}}</p>
+          <div class="top ">
+            <span class="ebText month-day">
+              {{vm.duePaymentAmount.dueDate| date:'MMM'}} {{vm.duePaymentAmount.dueDate| date:'dd'}}
+            </span>
+          </div>
+          <div class="bottom">
+            <span class="ebText">{{vm.duePaymentAmount.dueDate| date:'yyyy'}}</span>
+          </div>
+        </div>
+      </div>
+      <span ng-if="vm.showPastDue" class="ecb-totalPastDue pull-{{vm.layoutRightDirection}}">{{'TEXT_ACCOUNT_PAST_DUE' | translate}}</span>
+      <div class="ecb-linkToBills">
+        <button class="btn ebBtn btn-sm btn-link" ng-click="vm.setBillsView()">
+          {{'TEXT_GO_TO_BILLS' | translate}} >
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="widget ecb-paymentsHistoryExpandMain" ng-if="ecbWidgetState === 'detail'" ng-class="{ 'card-expanded': vm.paymentsCardState === 'expanded'}">
+    <div class="header clearfix">
+      <h2 class="pull-{{vm.layoutLeftDirection}}" ng-if="!vm.widgetOpen">{{'TEXT_TOTAL_AMOUNT_DUE' | translate}}</h2>
+      <h2 class="pull-left ecb-rtlPaymentHistoryTitle" ng-if="vm.isPaymentsHistory()">{{'TEXT_PAYMENTS_HISTORY'|translate}}</h2>
+      <h2 class="pull-left ecb-rtlPaymentHistoryTitle" ng-if="vm.isPaymentsReceived()">{{'TEXT_PAYMENTS_RECEIVED'|translate}}</h2>
+      <button class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue  pull-{{vm.layoutRightDirection}} ecb-makePaymentButton" id="makePayment"
+        ng-if="vm.allowMakePayment && !vm.widgetOpen" ng-click="vm.makePayment(vm.accountId, vm.getCurrencySign(vm.duePaymentAmount.currency))" data-toggle="modal">
+        {{'TEXT_MAKE_A_PAYMENT'| translate}}
+      </button>
+      <span class="pull-right close-image-view-all expanded-charges-view ecb-rtlPayHistory-closeIcon" ng-click="vm.paymentsHistoryExpandedStateClose()" ng-show="vm.widgetOpen">
+        <i class="fa fa-times ebIcon ebIcon_interactive ebColor_textLinkBlue" aria-hidden="true"></i>
+      </span>
+      <div class="pull-{{vm.layoutRightDirection}} ecb-cardTabularDownloadMain visible-xs" ng-if="vm.widgetOpen" ng-csv="vm.exportableHistoryInfo"
+        lazy-load="true" filename="{{vm.billAdjustmentData.filename}}" add-bom="true" charset="UTF-8" csv-header="vm.exportableDisplayKeys" field-separator=" , ">
+        <div class="ecb-cardTabularDownload">
+          <i class="fa fa-download ecb-settingsHeaderIcon" aria-hidden="true">
+        </div>
+      </div>
+      <div class="pull-{{vm.layoutRightDirection}} ecb-cardTabularExpandIcons" ng-if="vm.widgetOpen">
+        <div class="pull-{{vm.layoutRightDirection}} ecb-cardTabularDownloadMain" ng-if="vm.widgetOpen"
+          ng-csv="vm.exportableHistoryInfo" lazy-load="true" filename="{{vm.billAdjustmentData.filename}}" add-bom="true" charset="UTF-8" csv-header="vm.exportableDisplayKeys"
+          field-separator=" , ">
+          <div class="ecb-cardTabularDownload">
+            <i class="fa fa-download ecb-settingsHeaderIcon" aria-hidden="true">
+          </div>
+        </div>
+        <div class="pull-{{vm.layoutRightDirection}} text-center ecb-rtlTabularIconSet ecb-cardTabularIconSetMain">
+          <div class="ecb-cardTabularIconSet" class="col-md-12">
+            <div ng-click="vm.showPaymentsHistoryTabularCardView('table')" ng-class="vm.getPaymentsHistoryActiveViewStyle('table')">
+              <i class="fa fa-table ecb-settingsHeaderIcon" aria-hidden="true">
+            </div>
+            <div ng-click="vm.showPaymentsHistoryTabularCardView('card')" ng-class="vm.getPaymentsHistoryActiveViewStyle('card')">
+              <i class="fa fa-th ecb-settingsHeaderIcon" aria-hidden="true">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 pull-{{vm.layoutRightDirection}} ecb-settingsMenu text-center ecb-rtlSettingsMenu" ng-click="vm.togglePaymentsHistoryTabularViewSettings()"
+          ng-if="vm.showPaymentsHistorySettings()">
+          <span class="ebIcon_settings ecb-headerIcons"></span>
+        </div>
+      </div>
+    </div>
+    <div class="ecbRelativeClass" ng-if="vm.loading">
+      <div class="ebLoader">
+        <div class="ebLoader-Holder">
+          <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+        </div>
+      </div>
+    </div>
+    <div ng-if="!vm.nodata && !vm.widgetOpen && !vm.loading" class="content total-amount-due">
+      <div>
+        <div class="total-due pull-{{vm.layoutLeftDirection}}">
+          <p class="ebText ebColor_grey_40 ecb-labelText">{{'TEXT_TOTAL_AMOUNT_DUE'| translate}}</p>
+          <span class="ebText amount">
+            <sup class="currency-symbol">{{vm.getCurrencySign(vm.duePaymentAmount.currency)}}</sup>
+            {{vm.currencyFormatter(vm.duePaymentAmount.amount, vm.duePaymentAmount.currency, false)}}
+          </span>
+        </div>
+        <div class="payment-due pull-{{vm.layoutLeftDirection}}" ng-show="vm.duePaymentAmount.amount > 0">
+          <p class="ebText ebColor_grey_40 payment-due-block ecb-labelText">{{'TEXT_PAYMENT_DUE'|translate}}</p>
+          <div class="top ">
+            <span class="ebText month-day">
+              {{vm.duePaymentAmount.dueDate| date:'MMM'}} {{vm.duePaymentAmount.dueDate| date:'dd'}}
+            </span>
+          </div>
+          <div class="bottom">
+            <span class="ebText ecb-whiteText">{{vm.duePaymentAmount.dueDate| date:'yyyy'}}</span>
+          </div>
+          <span ng-if="vm.showPastDue" class="ecb-detailTotalPastDue">{{'TEXT_ACCOUNT_PAST_DUE' | translate}}</span>
+        </div>
+      </div>
+      <div ng-if="vm.allowMakePayment">
+        <div class="payment-modes pull-{{vm.layoutRightDirection}}">
+          <ul class="list-inline nowrap-links">
+            <li ng-if="vm.autopay && vm.duePaymentAmount.amount > 0" class="ecb-paymentLinks">
+              <button class="btn ebBtn btn-link ebColor_textLinkBlue ecb-amountDueEditIcon" ng-click="vm.paymentSetup(vm.accountId)">
+                <i class="fa fa-pencil ebIcon ecb-autoPayEditIcon" aria-hidden="true"></i>{{ 'TEXT_AUTOPAY_DUEDATE' | translate }} {{vm.duePaymentAmount.dueDate | date: 'shortDate'}}
+              </button>
+            </li>
+            <li ng-if="vm.autopay">
+              <span class="ebText ebColor_grey_40 payment-due-block ecb-labelText">
+                {{'TEXT_PAYMENT_METHOD' | translate}}
+              </span> {{ vm.defaultPaymentMethod.truncdAcctNum }}
+            </li>
+            <li ng-if="!vm.autopay" class="ecb-paymentLinks" >
+              <button class="btn ebBtn btn-link ebColor_textLinkBlue ecbNoPadding" ng-click="vm.paymentSetup(vm.accountId)">
+                <i class="fa fa-pencil ebIcon ecb-autoPayEditIcon" aria-hidden="true"></i>{{ 'TEXT_AUTOPAY_OFF' | translate }}
+              </button>
+            </li>
+            <li class="ecb-paymentLinks">
+            <button class="btn ebBtn btn-link ebColor_textLinkBlue pull-right" ng-click='vm.showPaymentHistoryPopup($event, true)' ng-mouseover='vm.showHideBillPopup(true, $event)'
+              ng-mouseleave='vm.showHideBillPopup(false)' ng-disabled="vm.transactionLinkDisable == true">
+                {{ vm.pendingStatusCount }} {{'TEXT_PENDING' | translate}} & {{ vm.rejectedStatusCount }} {{'TEXT_REJECTED_PAYMENTS' | translate}}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ecb-cardTabularSettings ecb-rtlCardTabularSettings" ng-if="vm.isTabularViewSettings">
+      <div class="ecb-settingsHeader">
+        <div class="pull-{{vm.layoutLeftDirection}}">
+          <span class="ebIcon_settings ecb-headerIcons"></span>
+          <span class="ebText">
+            <b>{{'TEXT_SETTINGS'|translate}}</b>
+          </span>
+        </div>
+        <div class="pull-{{vm.layoutRightDirection}}">
+          <button class="btn ebBtn ebBtn_color_darkBlue" ng-click="vm.applyCancelSettings(1)" ng-disabled="vm.isAllColumnDeselected()">{{'TEXT_APPLY'| translate}}</button>
+          <button class="btn ebBtn ebBtn-default" ng-click="vm.applyCancelSettings(0)">{{'TEXT_CANCEL'| translate}}</button>
+        </div>
+      </div>
+      <div class="ecb-settingsCheckboxHeader">
+        <div class="ebLabel pull-{{vm.layoutLeftDirection}}">{{'TEXT_SELECT'| translate}} :</div>
+        <div class="pull-{{vm.layoutLeftDirection}}">
+          <a class="ebColor_textLinkBlue" ng-click="vm.toggleSelectAll(1)">{{'TEXT_ALL'| translate}}</a>
+        </div>
+        <div class="pull-{{vm.layoutLeftDirection}}">|</div>
+        <div class="pull-{{vm.layoutLeftDirection}}">
+          <a class="ebColor_textLinkBlue" ng-click="vm.toggleSelectAll(0)">{{'TEXT_NONE'| translate}}</a>
+        </div>
+      </div>
+      <div class="ecb-settingsColumnList" ng-style="vm.getSettingsHeight()">
+        <ul class="list-unstyled" ng-if="vm.isPaymentsHistoryExpandTabularView()">
+          <li ng-repeat="header in vm.unFreezeColumnsList(vm.displayablePaymentsHistoryHeader)">
+            <label>
+              <input class="ebCheckbox" type="checkbox" value="{{header}}" ng-checked="vm.checkboxSelectionTemp.indexOf(header) > -1" ng-click="vm.toggleHeaderSelection(header)"
+                ng-disabled="vm.freezeColumnsTemp.indexOf(header) > -1">
+              <span class="ebCheckbox-inputStatus"></span>
+              <span class="ebCheckbox-label">{{vm.getPaymentsHistoryHeaderKey(header)}}</span>
+            </label>
+            <div ng-class="{ 'ecb-freezeChecked': vm.checkboxSelectionTemp.indexOf(header) == -1}" ng-click="vm.toggleFreezingColumns(header, true)">
+              <i class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i>
+            </div>
+          </li>
+          <li ng-if="vm.showMidLine(vm.displayablePaymentsHistoryHeader)" class="ecb-freezeColumnsDivide"></li>
+          <li ng-repeat="header in vm.freezeColumns">
+            <label>
+              <input class="ebCheckbox" type="checkbox" value="{{header}}" checked="checked" disabled="disabled">
+              <span class="ebCheckbox-inputStatus"></span>
+              <span class="ebCheckbox-label">{{vm.getPaymentsHistoryHeaderKey(header)}}</span>
+            </label>
+            <div ng-class="{ 'ecb-freeze': vm.freezeColumnsTemp.indexOf(header) > -1}" ng-click="vm.toggleFreezingColumns(header)">
+              <i class="fa fa-thumb-tack fa-rotate-45" aria-hidden="true"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- End of settings popup -->
+    <div ng-if="vm.nodata" class="content total-amount-due">
+      <p>{{ 'TEXT_NO_TOTAL_AMOUNT'| translate }}</p>
+    </div>
+    <div class="chargeSummary-cardView ecb-chargesExpanded ecb-paymentsHistory ecb-expandTADBody" ng-class= "{'ecbOverflowY': vm.isPaymentsHistoryCardView()}">
+      <div class="ecb-paymentsHistoryFilter" ng-if="vm.widgetOpen && !vm.loading &&  vm.displayableHistoryInfo.length > 0 && vm.isPaymentsHistoryCardView()">
+        <ul class="list-unstyled list-inline">
+          <li ng-repeat="item in vm.getPaymentStatusFilters()">
+            <input type="checkbox" ng-model="vm.statusFilter[item]" ng-checked="vm.statusFilter[item]" ng-change="vm.updateGrid()" value="{{item}}"> {{item}}
+          </li>
+        </ul>
+      </div>
+    <div  ng-if="vm.isPaymentsHistoryCardView() && !vm.loading">
+      <div class="ebNotification ebNotification_color_paleBlue" ng-if="vm.displayableHistoryInfo.length == 0">
+        <div class="ebNotification-content">
+          <span class="ebNotification-label">{{'TEXT_NO_TRANSACTION' | translate }}</span>
+        </div>
+      </div>
+      <div ng-if="vm.displayableHistoryInfo.length > 0">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ecb-cardPadding" ng-repeat="card in vm.displayableHistoryInfo | filter: vm.filterByStatus | orderBy: vm.getSortByColumn('transactiondate'):(vm.sortOrder == 'desc' ? true : false) | filter:vm.selectedFilters track by $index" index={{$index}} class="ecb-cardLayout" ecb-ellipsis>
+      <div class="ecb-cardLayoutBoxMain">
+          <table class="ebTable ebTable_striped ebTable_fullW">
+            <tbody>
+              <tr ng-repeat="(key, value) in card" ng-if="vm.removeinvoiceCols(key)">
+                <td class="ecb-cardLayoutLabel ebDialogBox-secondaryText">{{vm.getPaymentsHistoryHeaderKey(key)}}</td>
+                <td class="ebText" ng-if="vm.getPaymentsHistoryHeaderKey(key) !== 'Invoices'">
+                  <span ng-if="vm.paymentsHistoryConfigs[key].IsCurrency">{{value | currencyFilter:this}}</span>
+                  <span ng-if="!vm.paymentsHistoryConfigs[key].IsCurrency">{{value}}</span>
+                </td>
+                <td class="ebText" ng-if="vm.getPaymentsHistoryHeaderKey(key) === 'Invoices'">
+                  <table>
+                    <tr>
+                      <td class="ecb-cardLayoutLabel ebDialogBox-secondaryText">{{ 'TEXT_INVOICE_FOR' | translate }}#</td>
+                      <td class="ecb-cardLayoutLabel ebDialogBox-secondaryText">{{ 'TEXT_INVOICE_AMOUNT' | translate }}</td>
+                    </tr>
+                    <tr class="ecb-invoicesList" ng-repeat="invoiceList in value">
+                        <!-- <td class="ebText">{{value}}</td> -->
+                        <td class="ebText">{{invoiceList.InvoiceString}}</td>
+                        <td class="ebText">
+                          <span ng-if="vm.paymentsHistoryConfigs[key].IsCurrency">{{invoiceList.ClosedAmt | currencyFilter:this}}</span>
+                          <span ng-if="!vm.paymentsHistoryConfigs[key].IsCurrency">{{invoiceList.ClosedAmt}}</span>
+                        </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </div>
+      <div class="content ecb-offerChargeTabularView" ng-if="vm.isPaymentsHistoryExpandTabularView() && !vm.loading">
+        <div class="ecb-paymentsHistoryFilter" ng-if="vm.widgetOpen && !vm.loading &&  vm.displayableHistoryInfo.length > 0">
+          <ul class="list-unstyled list-inline">
+            <li ng-repeat="item in vm.getPaymentStatusFilters()">
+              <input type="checkbox" ng-model="vm.statusFilter[item]" ng-checked="vm.statusFilter[item]" ng-change="vm.updateGrid()" value="{{item}}"> {{item}}
+            </li>
+          </ul>
+        </div>
+  <div ng-if="vm.displayableHistoryInfo.length > 0" dir="{{vm.i18n.languageDirection}}" class="ecb-uiGrid" ui-grid="vm.gridOptions" ui-grid-resize-columns ui-grid-auto-resize
+    ui-grid-move-columns ui-grid-pinning ng-style="vm.getViewAllBodyHeight()">
+        </div>
+        <div class="ebNotification ebNotification_color_paleBlue" ng-if="vm.displayableHistoryInfo.length == 0">
+          <div class="ebNotification-content">
+            <span class="ebNotification-label">{{'TEXT_NO_TRANSACTION' | translate }}</span>
+          </div>
+      </div>
+    </div>
+    <div ng-if="vm.isTabularViewSettings" class="ecb-widgetBackdrop"></div>
+  </div>

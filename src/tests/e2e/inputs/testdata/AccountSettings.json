@@ -1,0 +1,18 @@
+{
+
+  
+  "img": "https://10.200.165.8:8080/images/goGreen.png",
+  "securitysettings": "Security Settings",
+  "randomques": "what age u got first job?",
+  "randomquesansr": "21",
+  "securitytoastmessage": "Security Method udpated successfully:",
+  "quesansr": "myfav",
+  "securityerrortoastmessage": "Could not save Security Info:Unable to set both the Security Question and the Custom Security Question.",
+  "Invoicemethod": "Invoice Method",
+  "Invoicemethodbeforechanging": "Paper Invoice Paper Invoice",
+  "papertype": "Paper Invoice",
+  "Invoicemethodafterchanging": "Paper Invoice Paper Invoice",
+  "Invoicetoastmessage": "Invoice Method udpated successfully:",
+  "accountSetting1":"Automatic Payment Off",
+  "accountSetting2":"Automatic Payment Off"
+  }

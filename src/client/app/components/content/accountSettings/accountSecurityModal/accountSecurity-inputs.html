@@ -1,0 +1,94 @@
+<div class="ecbRelativeClass" ng-if="vm.loading">
+  <div class="ebLoader">
+    <div class="ebLoader-Holder">
+      <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+    </div>
+  </div>
+</div>
+<div class="form-group ecb-changePasswordError" ng-if="vm.error">
+  <div class="col-xs-12" ng-if="vm.errorMessage == 1">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="vm.error = ''">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ 'TEXT_COULD_NOT_SAVE_EDIT' | translate }} {{ 'TEXT_SERVER_CONNECTION_FAILED' | translate }}
+    </div>
+  </div>
+  <div class="col-xs-12" ng-if="vm.errorMessage == 2">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="vm.error = ''">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ 'TEXT_COULD_NOT_SAVE_EDIT' | translate }} {{vm.error.Error}}
+    </div>
+  </div>
+  <div class="col-xs-12" ng-if="vm.errorMessage == 3">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="vm.error = ''">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ 'TEXT_ERROR_RETREIVING_DETAILS' |translate }} {{ 'TEXT_SERVER_CONNECTION_FAILED' | translate }} {{ 'TEXT_TRY_AGAIN' |translate
+      }}
+    </div>
+  </div>
+</div>
+<div ng-if="!vm.loading && !vm.error">
+  <div class="form-group">
+    <label for="country" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+      {{ 'TEXT_SECURITY_QUESTION' | translate }}
+    </label>
+    <div class="col-sm-9 col-xs-9 ">
+      <div class="dropdown">
+        <button class="ebBtn ebBtn-default dropdown-toggle form-control selectCountryDropDown" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="vm.selectedQuestion" name="securityQuestion">
+          <span class="dropdown-text pull-{{vm.layoutLeftDirection}}">
+          {{vm.selectedQuestion}}
+          </span>
+          <span class="caret pull-{{vm.layoutRightDirection}} filter-dropdown-caret"></span>
+        </button>
+        <ul class="dropdown-menu filterDropDownBox scrollable-menu country-dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li ng-repeat="securityQuestion in vm.securityQuestions" ng-class="{'ebComponentList-item_selected': (vm.selectedQuestion == securityQuestion.securityQuestion)}">
+            <a href="" ng-click="vm.updateSecurityQuestion($index)">
+              {{securityQuestion.securityQuestion}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="customSecurityQuestion" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+      {{ 'TEXT_CUSTOM_SECURITY_QUESTION' | translate }}
+    </label>
+    <div class="col-sm-9 col-xs-9 ">
+      <input name="customSecurityQuestion" type="text" maxlength="100" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.securityInfo.customSecurityQuestion"/>
+      <div class="help-block" ng-messages="securitySettingsForm.customSecurityQuestion.$error" ng-if="securitySettingsForm.customSecurityQuestion.$invalid && securitySettingsForm.customSecurityQuestion.$dirty">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="securityAnswer" class="col-sm-3 col-xs-3 ebControl-label ebControlLabelRtl">
+      {{ 'TEXT_SECURITY_ANSWER' | translate }}
+    </label>
+    <div class="col-sm-9 col-xs-9 ">
+      <span class="blueLine" ng-if="!(vm.checkForOptionNone())"></span>
+      <input name="securityAnswer" type="text" maxlength="50" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.securityInfo.securityAnswer" ng-if="!(vm.checkForOptionNone())" required ecb-set-focus="true" />
+      <input name="securityAnswer" type="text" maxlength="50" class="form-control ebInput ebInput_width_full textBoxHeight" ng-model="vm.securityInfo.securityAnswer" ng-if="(vm.checkForOptionNone())"ecb-set-focus="true" />
+      <div class="help-block" ng-messages="securitySettingsForm.securityAnswer.$error" ng-if="securitySettingsForm.securityAnswer.$invalid && securitySettingsForm.securityAnswer.$dirty">
+        <span ng-message="maxlength" class="statusError">
+          {{ 'TEXT_SECURITY_ANSWER_MAXLENGTH_ERROR_MSG' | translate }}
+        </span>
+        <span ng-message="required" class="statusError">
+          {{ 'TEXT_SECURITY_ANSWER_REQUIRED_ERROR_MSG' | translate }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="ecb-requiredFeild">
+    <label class="text-right">
+      {{ 'TEXT_REQUIRED_FIELD' | translate }}
+    </label>
+    <span class="blueLine ecb-requiredFeildAdjustment"></span>
+  </div>
+</div>

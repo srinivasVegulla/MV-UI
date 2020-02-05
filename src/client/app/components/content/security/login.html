@@ -1,0 +1,121 @@
+<div class="security-login-view container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
+      <div class="login-content">
+        <div class="login-logo"></div>
+        <h1 class="login-title" tabindex="-1">
+          {{ vm.applicationName }}
+        </h1>
+        <div class="ebLoader" ng-if="vm.loginProcessing">
+          <div class="ebLoader-Holder">
+            <span class="ebLoader-Dots ebLoader-Dots_color_paleBlue"></span>
+          </div>
+        </div>
+        <form name="loginForm" class="form-horizontal" ng-show="vm.showLoginForm" ng-submit="vm.login(loginForm)" novalidate method="POST">
+          <div class="form-group">
+            <div class="col-md-12">
+              <input id="username" name="username" type="text" class="input input-lg" tabindex="1" placeholder="{{ 'LOGIN_INPUT_USERNAME' | translate }}" pattern="{{vm.loginInputPattern}}" required ng-model="vm.loginData.userName" ecb-set-focus="true" />
+              <div class="help-block" ng-messages="loginForm.username.$error" ng-if="loginForm.username.$invalid && loginForm.username.$dirty">
+                <span ng-message="pattern" class="statusError">
+                  {{ 'LOGIN_VALIDATION_PATTERN_USERNAME' | translate }}
+                </span>
+                <span ng-message="required" class="statusError">
+                  {{ 'LOGIN_VALIDATION_REQUIRED_USERNAME' | translate }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <input id="password" name="password" type="password" class="input input-lg" tabindex="2" placeholder="{{ 'LOGIN_INPUT_PASSWORD' | translate }}" autocomplete="off" required ng-model="vm.loginData.password" />
+              <div class="help-block" ng-messages="loginForm.password.$error" ng-if="loginForm.password.$invalid && loginForm.password.$dirty">
+                <span ng-message="required" class="statusError">
+                  {{ 'LOGIN_VALIDATION_REQUIRED_PASSWORD' | translate }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12" ng-if="vm.resetPasswordError">
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="vm.closeExpiredLink()"><span class="ecb-dangerClose" aria-hidden="true">&times;</span></button>
+                {{ 'LOGIN_RESETPASSWORD_ERROR' | translate }}
+              </div>
+            </div>
+            <div class="col-md-12" ng-if="vm.resetLinkExpiredCheck">
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="vm.closeExpiredLink()"><span class="ecb-dangerClose" aria-hidden="true">&times;</span></button>
+                {{ 'LOGIN_RESETPASSWORD_LINK_EXPIRED' | translate }}
+              </div>
+            </div>
+            <div class="col-md-12" ng-show="vm.showError" ng-if="vm.errorMessage == 1">
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="ecb-dangerClose" aria-hidden="true">&times;</span></button>
+                {{ 'LOGIN_INVALID_CREDENTIALS' | translate }}
+              </div>
+            </div>
+            <div class="col-md-12" ng-show="vm.showError" ng-if="vm.errorMessage == 2">
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="ecb-dangerClose" aria-hidden="true">&times;</span></button>
+                {{ 'LOGIN_ACCOUNT_LOCKED' | translate }}
+              </div>
+            </div>
+            <div class="col-md-12" ng-show="vm.showError" ng-if="vm.errorMessage == 3">
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="ecb-dangerClose" aria-hidden="true">&times;</span></button>
+                {{ 'LOGIN_NO_LOGON' | translate }}
+              </div>
+            </div>
+            <div class="col-md-12" ng-show="vm.showError" ng-if="vm.errorMessage == 4">
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="ecb-dangerClose" aria-hidden="true">&times;</span></button>
+                {{ 'LOGIN_XSS_SQL_INJECTION' | translate }}
+              </div>
+            </div>
+            <div class="col-md-12" ng-show="vm.showError" ng-if="vm.errorMessage == 5">
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="ecb-dangerClose" aria-hidden="true">&times;</span></button>
+                {{ 'LOGIN_UNABLE_TO_CONNECT_TO_SERVER' | translate }}
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-4 col-sm-4 col-md-4">
+              <button type="submit" class="btn btn-primary btn-lg" tabindex="3" ng-disabled="loginForm.$invalid || vm.loginProcessing">
+                {{ 'LOGIN_INPUT_SUBMIT' | translate }}
+              </button>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4"></div>
+            <div class="col-xs-4 col-sm-4 col-md-4">
+              <button class="btn btn-link pull-right signup-background" tabindex="3" ui-sref="signUp" ng-if="vm.isSignUp" ng-disabled="vm.loginProcessing">
+                <b> {{ 'LOGIN_SIGN_UP' | translate }}</b>
+              </button>
+            </div>
+          </div>
+        </form>
+        <div ng-hide="vm.showLoginForm">
+          <ecb-forgot-password-instruction></ecb-forgot-password-instruction>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <ecb-locale-selector></ecb-locale-selector>
+          </div>
+        </div>
+        <div class="row" ng-show="vm.showLoginForm">
+          <div class="ecb-loginPasswordLink col-xs-12">
+            <button class="btn ebBtn btn-sm btn-link ebColor_textLinkBlue ng-binding" ng-click="vm.forgotPassword(loginForm)" ng-class="{ 'ecb-disableEvent': vm.loginProcessing }">
+              {{ 'LOGIN_FORGOT_PASSWORD' | translate }}
+            </button>
+          </div>
+        </div>
+        <div class="login-copyright ecbCopyRight" tabindex="-1">
+          {{ 'LOGIN_COPYRIGHT' | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-7 col-lg-8 hidden-xs" tabindex="-1">
+      <div class="login-background"></div>
+    </div>
+  </div>
+  <div ng-if="vm.loginProcessing" class="ecb-widgetBackdrop"></div>
+</div>

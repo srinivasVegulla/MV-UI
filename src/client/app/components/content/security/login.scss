@@ -1,0 +1,108 @@
+// Security Login View Styles
+
+@import "../../../../styles/_variables.scss";
+
+.security-login-view {
+  height: 100vh;
+  margin-left: -15px;
+  margin-right: -15px;
+
+  .login-content {
+    padding: 30px;
+
+    .input-lg {
+      width: 100%;
+    }
+
+    .login-logo {
+      height: 50px;
+      background-image: url("/static/default/branding/login-logo.jpg");
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .login-title {
+      background: transparent;
+      color: $ebColor_darkBlue;
+      display: block;
+      font-family: $font-family-Ericsson;
+      font-size: 28px;
+      font-weight: bold;
+      margin: 28px 0;
+      text-transform: uppercase;
+    }
+
+    @supports (-webkit-appearance:none) {
+      .login-title {
+        background: linear-gradient(330deg, #a2c517 10%, #009046 30%, #0082b6 50%, #151f77 75%, #db0050 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    .ecb-loginPasswordLink {
+      margin-top: 1em;
+    }
+
+    .login-copyright {
+      color: #b0b0af;
+      font-size: 10px;
+      margin-top: 20px;
+    }
+
+    .ng-invalid.ng-touched {
+      border-color: $ebColor-error;
+    }
+
+    .ng-invalid.ng-touched:focus {
+      box-shadow: 0 0 2px 1px $ebColor-error !important;
+    }
+
+    .ng-invalid.ng-touched:hover {
+      border-color: $ebColor-error !important;
+    }
+
+    .ecb-loginPasswordLink {
+      .btn-link{
+        font-size : 1.2rem;
+        padding : 0 4px;
+      }
+    }
+    .ecb-backtoLoginLink, .ecb-signup{
+      padding : 10px 0;
+    }
+
+  }
+
+  .login-background {
+    background-image: url("/static/default/branding/login-bg.jpg");
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    position: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: local;
+  }
+}
+
+// ToDo: Take this along when we create a language locale selector directive.
+.language-locale-selector {
+  margin-top: 24px;
+
+  img {
+    cursor: pointer;
+    margin: 0 1px;
+  }
+}
+
+@media (max-width: 460px) {
+ .security-login-view .login-content {
+    padding: 40px 0px;
+  }
+}
+
+.signup-background{
+  background-color:#fff !important;
+}
