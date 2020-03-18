@@ -80,7 +80,7 @@
     "karma-sinon": "1.0.5",
     "lodash": "3.10.1",
     "method-override": "2.3.10",
-    "minimist": "1.2.0",
+    "minimist": "1.2.5",
     "mocha": "2.5.3",
     "node-notifier": "4.6.1",
     "phantomjs-prebuilt": "2.1.6",
